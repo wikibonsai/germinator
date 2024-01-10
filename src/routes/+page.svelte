@@ -1,11 +1,16 @@
 <script lang='ts'>
   import ApiKey from "$lib/APIKey.svelte";
   import AboutModal from "$lib/AboutModal.svelte";
-  import FormatModal from "$lib/FormatModal.svelte";
+  import MkdnFmtModal from "$lib/MkdnFrmtModal.svelte";
 
   let isAbtMdlOpen: boolean = false;
   function toggleAbtMdl(): void {
     isAbtMdlOpen = !isAbtMdlOpen;
+  }
+
+  let isFmtMdlOpen: boolean = false;
+  function toggleFmtMdl(): void {
+    isFmtMdlOpen = !isFmtMdlOpen;
   }
 </script>
 
@@ -40,7 +45,10 @@
         <img id="helpIcon" alt="Format" class="w-6 h-6">
       </button>
       <!-- Format Markdown (toolbox) -->
-      <button id="mkdnFormatButton" class="rounded button-border hover:border-green-500 p-2 mr-2" title="Format">
+      <button id="mkdnFormatButton"
+              class="rounded button-border hover:border-green-500 p-2 mr-2"
+              title="Format"
+              on:click={toggleFmtMdl}>
         <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6">
       </button>
       <!-- Format Result -->
@@ -64,7 +72,7 @@
   <ApiKey></ApiKey>
 
   <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
-  <FormatModal></FormatModal>
+  <MkdnFmtModal bind:isOpen={isFmtMdlOpen}></MkdnFmtModal>
 
   <!-- local scripts -->
 
@@ -77,13 +85,11 @@
 
   <!-- vars -->
   <script src="/js/var/prompt.js" type="text/javascript"></script>
-  <script src="/js/var/state.js" type="text/javascript"></script>
   <!-- system -->
   <script src="/js/ai.js" type="text/javascript"></script>
   <!-- components -->
   <script src="/js/components/colors.js" type="text/javascript"></script>
   <script src="/js/components/result-format.js" type="text/javascript"></script>
-  <script src="/js/components/mkdn-format.js" type="text/javascript"></script>
   <script src="/js/components/copy.js" type="text/javascript"></script>
   <script src="/js/components/submit.js" type="text/javascript"></script>
   <!-- go -->
