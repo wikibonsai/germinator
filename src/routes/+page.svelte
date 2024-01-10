@@ -1,7 +1,12 @@
-<script>
+<script lang='ts'>
   import ApiKey from "$lib/APIKey.svelte";
   import AboutModal from "$lib/AboutModal.svelte";
   import FormatModal from "$lib/FormatModal.svelte";
+
+  let isAbtMdlOpen: boolean = false;
+  function toggleAbtMdl(): void {
+    isAbtMdlOpen = !isAbtMdlOpen;
+  }
 </script>
 
 <div class="font-sans mx-10">
@@ -28,7 +33,10 @@
     </div>
     <div class="flex justify-end items-center mb-4">
       <!-- About -->
-      <button id="aboutButton" class="rounded button-border hover:border-green-500 p-2 mr-2" title="Format">
+      <button id="aboutButton"
+              class="rounded button-border hover:border-green-500 p-2 mr-2"
+              title="Format"
+              on:click={toggleAbtMdl}>
         <img id="helpIcon" alt="Format" class="w-6 h-6">
       </button>
       <!-- Format Markdown (toolbox) -->
@@ -55,7 +63,7 @@
 
   <ApiKey></ApiKey>
 
-  <AboutModal></AboutModal>
+  <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
   <FormatModal></FormatModal>
 
   <!-- local scripts -->
@@ -74,7 +82,6 @@
   <script src="/js/ai.js" type="text/javascript"></script>
   <!-- components -->
   <script src="/js/components/colors.js" type="text/javascript"></script>
-  <script src="/js/components/about.js" type="text/javascript"></script>
   <script src="/js/components/result-format.js" type="text/javascript"></script>
   <script src="/js/components/mkdn-format.js" type="text/javascript"></script>
   <script src="/js/components/copy.js" type="text/javascript"></script>
