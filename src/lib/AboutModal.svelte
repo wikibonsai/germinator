@@ -26,12 +26,12 @@
     <div class="modal-content py-4 text-left px-6">
       <!--Title-->
       <div class="flex justify-between items-center pb-3">
+        <p class="text-2xl font-bold">About The Semantic Tree Germinator</p>
         <div class="about-modal-close cursor-pointer z-50" on:click={() => isOpen = false}>
           <svg class="fill-current" styles="color: var(--text-color);" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
             <path d="M16.292 2.292l-1.584-1.584-6.708 6.708-6.708-6.708-1.584 1.584 6.708 6.708-6.708 6.708 1.584 1.584 6.708-6.708 6.708 6.708 1.584-1.584-6.708-6.708z"></path>
           </svg>
         </div>
-        <p class="text-2xl font-bold">About The Semantic Tree Germinator</p>
       </div>
       <!--Body-->
       <div class="container mx-auto p-4">
