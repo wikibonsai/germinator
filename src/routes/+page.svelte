@@ -1,4 +1,5 @@
 <script>
+  import ApiKey from "$lib/APIKey.svelte";
   import AboutModal from "$lib/AboutModal.svelte";
   import FormatModal from "$lib/FormatModal.svelte";
 </script>
@@ -52,23 +53,7 @@
     <div id="resultBox" class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"></div>
   </div>
 
-  <!-- api key input -->
-
-  <div class="fixed bottom-4 right-4 w-full max-w-xs flex flex-row gap-1 rounded p-1.5 z-50 pointer-events-none api-key-input-bg-color">
-    <div class="relative flex-grow pointer-events-auto">
-      <input
-        id="openai_key_risky_but_cool"
-        type="password"
-        class="w-full px-3 py-1.5 bg-gray-200 text-sm border-none rounded focus:outline-none focus:bg-white focus:text-gray-800"
-        placeholder="Your OpenAI API Key (risky but cool)"
-        onfocus="this.type='text';"
-        onblur="this.type='password';"
-      />
-    </div>
-    <button class="flex-shrink-0 w-8 h-8 rounded p-0 cursor-pointer flex items-center justify-center pointer-events-auto" onclick="alert('If you have an OpenAI developer key, you can put it in this input and it will be used when posting to OpenAI.\n\nSee https://platform.openai.com/api-keys to get a key.\n\nPutting API keys into boxes is generally a bad idea! If you have any concerns, create an API key and then revoke it after using this site.)')">
-      <img id="helpApiKeyIcon" src="/img/icons/icons8-help-50.png" class="fill-current text-gray-600">
-    </button>
-  </div>
+  <ApiKey></ApiKey>
 
   <AboutModal></AboutModal>
   <FormatModal></FormatModal>
@@ -88,7 +73,6 @@
   <!-- system -->
   <script src="/js/ai.js" type="text/javascript"></script>
   <!-- components -->
-  <script src="/js/components/api-key.js" type="text/javascript"></script>
   <script src="/js/components/colors.js" type="text/javascript"></script>
   <script src="/js/components/about.js" type="text/javascript"></script>
   <script src="/js/components/result-format.js" type="text/javascript"></script>
