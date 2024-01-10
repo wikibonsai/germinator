@@ -2,11 +2,228 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<link rel="icon" type="image/png">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
+
+		<!-- styles -->
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<!-- markmap -->
+		<script src="https://cdn.jsdelivr.net/npm/markmap-lib"></script>
+		<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+		<script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
+		<!-- local -->
+		<link href="styles.css" rel="stylesheet">
 	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+
+	<body data-sveltekit-preload-data="hover" class="font-sans mx-10">
+		<!-- <div style="display: contents">%sveltekit.body%</div> -->
+		<div class="container mx-auto p-4">
+			<div class="flex items-center mb-2 p-10 justify-center sm:justify-start">
+				<a href="https://github.com/wikibonsai/wikibonsai">
+					<img id="wikibonsai-logo" alt="Logo" width="75px" height="60px" class="mr-4" />
+				</a>
+				<h1 class="text-4xl font-semibold my-0 mx-4 hidden sm:block">
+					Semantic Tree Germinator
+				</h1>
+				<button id="colorsButton" class="colors-button">🌘</button>
+			</div>
+			<div class="flex items-center gap-2.5">
+				<input
+					id="input"
+					type="text"
+					placeholder="tree (linguistics)"
+					class="input-border text-black focus:outline-green-500 p-2 mb-4 w-full rounded-lg">
+				<button id="growButton" class="bg-green-500 text-white px-4 py-2 mb-4 rounded-lg hover:bg-green-600">
+					Grow
+				</button>
+			</div>
+			<div class="flex justify-end items-center mb-4">
+				<!-- About -->
+				<button id="aboutButton" class="rounded button-border hover:border-green-500 p-2 mr-2" title="Format">
+					<img id="helpIcon" alt="Format" class="w-6 h-6">
+				</button>
+				<!-- Format Markdown (toolbox) -->
+				<button id="mkdnFormatButton" class="rounded button-border hover:border-green-500 p-2 mr-2" title="Format">
+					<img id="mkdnFormatIcon" alt="Format" class="w-6 h-6">
+				</button>
+				<!-- Format Result -->
+				<button id="resultFormatButton" class="rounded button-border hover:border-green-500 p-2 mr-2">
+					<img id="resultFormatIcon" alt="Toggle Format" class="w-6 h-6">
+				</button>
+				<!-- Copy icon -->
+				<button id="copyButton" class="rounded button-border hover:border-green-500 p-2 mr-2" title="Copy">
+					<img id="copyIcon" alt="Copy" class="w-6 h-6">
+				</button>
+			</div>
+			<div id="loader" class="sprout-loader">
+				<div class="sprout"></div>
+				<div class="leaf left"></div>
+				<div class="leaf right"></div>
+			</div>
+			<!-- results -->
+			<div id="resultBox" class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"></div>
+		</div>
+
+		<!-- api key input -->
+
+		<div class="fixed bottom-4 right-4 w-full max-w-xs flex flex-row gap-1 rounded p-1.5 z-50 pointer-events-none api-key-input-bg-color">
+			<div class="relative flex-grow pointer-events-auto">
+				<input
+					id="openai_key_risky_but_cool"
+					type="password"
+					class="w-full px-3 py-1.5 bg-gray-200 text-sm border-none rounded focus:outline-none focus:bg-white focus:text-gray-800"
+					placeholder="Your OpenAI API Key (risky but cool)"
+					onfocus="this.type='text';"
+					onblur="this.type='password';"
+				/>
+			</div>
+			<button class="flex-shrink-0 w-8 h-8 rounded p-0 cursor-pointer flex items-center justify-center pointer-events-auto" onclick="alert('If you have an OpenAI developer key, you can put it in this input and it will be used when posting to OpenAI.\n\nSee https://platform.openai.com/api-keys to get a key.\n\nPutting API keys into boxes is generally a bad idea! If you have any concerns, create an API key and then revoke it after using this site.)')">
+				<img id="helpApiKeyIcon" src="./img/icons/icons8-help-50.png" class="fill-current text-gray-600">
+			</button>
+		</div>
+
+		<!-- About Modal -->
+
+		<div class="modal about-modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+			<!-- Modal content -->
+			<div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+			
+			<div class="modal-container w-11/12 md:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto">
+				<!-- Add margin if you want to see some of the overlay behind the modal-->
+				<div class="modal-content py-4 text-left px-6">
+					<!--Title-->
+					<div class="flex justify-between items-center pb-3">
+						<div class="about-modal-close cursor-pointer z-50">
+							<svg class="fill-current" styles="color: var(--text-color);" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+								<path d="M16.292 2.292l-1.584-1.584-6.708 6.708-6.708-6.708-1.584 1.584 6.708 6.708-6.708 6.708 1.584 1.584 6.708-6.708 6.708 6.708 1.584-1.584-6.708-6.708z"></path>
+							</svg>
+						</div>
+						<p class="text-2xl font-bold">About The Semantic Tree Germinator</p>
+					</div>
+					<!--Body-->
+					<div class="container mx-auto p-4">
+						<a href="https://waitbutwhy.com/2017/04/neuralink.html" class="block">
+							<img src="./img/waitbutwhy-neuralink-tree.png" class="mx-auto" height="50%" width="50%">
+						</a>
+						<blockquote class="text-lg mb-4">
+							<p>
+								It is important to view knowledge as a sort of semantic tree. Make sure you understand the fundamental principles, i.e., the trunk and big branches before you get into the leaves/details or there is nothing for them to hang on to.
+							</p>
+							<p>
+								~ <a href="https://www.reddit.com/r/IAmA/comments/2rgsan/comment/cnfre0a/?utm_source=share&utm_medium=web2x&context=3&rdt=50009">Elon Musk</a>
+							</p>
+						</blockquote>
+						<p class="text-xs mt-2">
+							Text output is formatted in markdown, which can be particularly useful for markdown-based PKMs like <a href="https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai">vscode-wikibonsai</a>.
+						</p>
+						<p class="text-xs mt-2">
+							A <a href="https://github.com/wikibonsai/wikibonsai">WikiBonsai</a> project;
+							above image from <a href="https://waitbutwhy.com/2017/04/neuralink.html">waitbutwhy</a>;
+							mindmap courtesy of <a href="https://markmap.js.org/">markmap</a>; 
+							icons from <a href="https://icons8.com">icons8</a>.
+						</p>
+					</div>
+					<!--Footer-->
+					<div class="flex justify-end pt-2">
+						<button id="okButton" class="about-modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-600">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Markdown Formatting Modal -->
+
+		<div class="modal mkdn-format-modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+			<!-- Modal content -->
+			<div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+			
+			<div class="modal-container w-11/12 md:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto">
+				<!-- Add margin if you want to see some of the overlay behind the modal-->
+				<div class="modal-content py-4 text-left px-6">
+					<!--Title-->
+					<div class="flex justify-between items-center pb-3">
+						<p class="text-2xl font-bold">Markdown Formatting</p>
+						<div class="mkdn-format-modal-close cursor-pointer z-50">
+							<svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+								<path d="M16.292 2.292l-1.584-1.584-6.708 6.708-6.708-6.708-1.584 1.584 6.708 6.708-6.708 6.708 1.584 1.584 6.708-6.708 6.708 6.708 1.584-1.584-6.708-6.708z"></path>
+							</svg>
+						</div>
+					</div>
+					<!--Body-->
+					<form id="toolboxForm" class="space-y-4">
+						<div class="dropdown-container">
+							<!-- Indent Dropdown -->
+							<div class="dropdown-label">
+								<span>Indent</span>
+								<select id="indentSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+									<option value="2 spaces">2 spaces</option>
+									<option value="4 spaces">4 spaces</option>
+									<option value="1 tab">1 tab</option>
+								</select>
+							</div>
+							<!-- Format Dropdown -->
+							<div class="dropdown-label">
+								<span>Wiki</span>
+								<select id="wikiSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+									<option value="regular text">regular text</option>
+									<option value="[[wiki text]]">[[wiki text]]</option>
+								</select>
+							</div>
+							<!-- Case Dropdown -->
+							<div class="dropdown-label">
+								<span>Case</span>
+								<select id="caseSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+									<option value="upper">Upper Case</option>
+									<option value="lower">lower case</option>
+								</select>
+							</div>
+							<!-- Whitespace Dropdown -->
+							<div class="dropdown-label">
+								<span>Whitespace</span>
+								<select id="whitespaceSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+									<option value=" ">white space</option>
+									<option value="-">kabob-space</option>
+									<option value="_">snake_space</option>
+								</select>
+							</div>
+						</div>
+					</form>
+					<!--Footer-->
+					<div class="flex justify-end pt-2">
+						<button id="saveButton" class="mkdn-format-modal-close px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-600">Save</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- local scripts -->
+
+		<!--
+			note:
+				these scripts are separated for cosmetic (and sanity) reasons. this all still acts like a giant single html file so most things are happening in the global namespace. if anything ever seems confusing, sense might be made by referring back to this html file.
+
+				if this project grows further, it should probably first be refactored to use a proper front-end framework.
+		-->
+
+		<!-- vars -->
+		<script src="./js/var/prompt.js" type="text/javascript"></script>
+		<script src="./js/var/state.js" type="text/javascript"></script>
+		<!-- system -->
+		<script src="./js/ai.js" type="text/javascript"></script>
+		<!-- components -->
+		<script src="./js/components/api-key.js" type="text/javascript"></script>
+		<script src="./js/components/colors.js" type="text/javascript"></script>
+		<script src="./js/components/about.js" type="text/javascript"></script>
+		<script src="./js/components/result-format.js" type="text/javascript"></script>
+		<script src="./js/components/mkdn-format.js" type="text/javascript"></script>
+		<script src="./js/components/copy.js" type="text/javascript"></script>
+		<script src="./js/components/submit.js" type="text/javascript"></script>
+		<!-- go -->
+		<script src="./js/init.js" type="text/javascript"></script>
+
 	</body>
+
 </html>
