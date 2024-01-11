@@ -1,15 +1,43 @@
 <script lang='ts'>
+  import { onMount } from 'svelte';
+
   export let isOpen: boolean = false;
+
+  let indentKind: string | null = '';
+  let textKind: string | null = '';
+  let caseKind: string | null = '';
+  let whiteSpaceKind: string | null = '';
 
   function toggleModal(): void {
     isOpen = !isOpen;
   }
+
+  function saveMkdnFmt(): void {
+    indentKind = document.getElementById('indentSelect')?.value;
+    textKind = document.getElementById('wikiSelect')?.value;
+    caseKind = document.getElementById('caseSelect')?.value;
+    whiteSpaceKind = document.getElementById('whitespaceSelect')?.value;
+    localStorage.setItem('indent', indentKind ? indentKind : '');
+    localStorage.setItem('text', textKind ? textKind : '');
+    localStorage.setItem('case', caseKind ? caseKind : '');
+    localStorage.setItem('whitespace', whiteSpaceKind ? whiteSpaceKind : '');
+    console.log(indentKind, textKind, caseKind, whiteSpaceKind);
+    toggleModal();
+  };
 
   function handleKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape' && isOpen) {
       toggleModal();
     }
   }
+
+  onMount(() => {
+    indentKind = localStorage.getItem('indent') ? localStorage.getItem('indent') : '2 spaces';
+    textKind = localStorage.getItem('text') ? localStorage.getItem('text') : '[[wiki text]]';
+    caseKind = localStorage.getItem('case') ? localStorage.getItem('case') : 'lower';
+    whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
+  });
+
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -76,7 +104,7 @@
       <div class="flex justify-end pt-2">
         <button id="saveButton"
                 class="px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-600"
-                on:click={toggleModal}>
+                on:click={saveMkdnFmt}>
           Save
         </button>
       </div>
