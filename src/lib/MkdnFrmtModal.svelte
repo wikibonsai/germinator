@@ -1,18 +1,16 @@
 <script lang='ts'>
-  import { onMount } from 'svelte';
-
   export let isOpen: boolean = false;
-
-  let indentKind: string | null = '';
-  let textKind: string | null = '';
-  let caseKind: string | null = '';
-  let whiteSpaceKind: string | null = '';
+  // mkdn formatting initialized in parent
+  export let indentKind: string | null = '';
+  export let textKind: string | null = '';
+  export let caseKind: string | null = '';
+  export let whiteSpaceKind: string | null = '';
 
   function toggleModal(): void {
     isOpen = !isOpen;
   }
 
-  function saveMkdnFmt(): void {
+  function saveMkdnFrmt(): void {
     indentKind = document.getElementById('indentSelect')?.value;
     textKind = document.getElementById('wikiSelect')?.value;
     caseKind = document.getElementById('caseSelect')?.value;
@@ -21,7 +19,7 @@
     localStorage.setItem('text', textKind ? textKind : '');
     localStorage.setItem('case', caseKind ? caseKind : '');
     localStorage.setItem('whitespace', whiteSpaceKind ? whiteSpaceKind : '');
-    console.log(indentKind, textKind, caseKind, whiteSpaceKind);
+    console.log('updated mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
     toggleModal();
   };
 
@@ -30,14 +28,6 @@
       toggleModal();
     }
   }
-
-  onMount(() => {
-    indentKind = localStorage.getItem('indent') ? localStorage.getItem('indent') : '2 spaces';
-    textKind = localStorage.getItem('text') ? localStorage.getItem('text') : '[[wiki text]]';
-    caseKind = localStorage.getItem('case') ? localStorage.getItem('case') : 'lower';
-    whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
-  });
-
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -67,7 +57,9 @@
           <!-- Indent Dropdown -->
           <div class="dropdown-label">
             <span>Indent</span>
-            <select id="indentSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <select id="indentSelect"
+                    class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    bind:value={indentKind}>
               <option value="2 spaces">2 spaces</option>
               <option value="4 spaces">4 spaces</option>
               <option value="1 tab">1 tab</option>
@@ -76,7 +68,9 @@
           <!-- Format Dropdown -->
           <div class="dropdown-label">
             <span>Wiki</span>
-            <select id="wikiSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <select id="wikiSelect"
+                    class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    bind:value={textKind}>
               <option value="regular text">regular text</option>
               <option value="[[wiki text]]">[[wiki text]]</option>
             </select>
@@ -84,7 +78,9 @@
           <!-- Case Dropdown -->
           <div class="dropdown-label">
             <span>Case</span>
-            <select id="caseSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <select id="caseSelect"
+                    class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    bind:value={caseKind}>
               <option value="upper">Upper Case</option>
               <option value="lower">lower case</option>
             </select>
@@ -92,7 +88,9 @@
           <!-- Whitespace Dropdown -->
           <div class="dropdown-label">
             <span>Whitespace</span>
-            <select id="whitespaceSelect" class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <select id="whitespaceSelect"
+                    class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    bind:value={whiteSpaceKind}>
               <option value=" ">white space</option>
               <option value="-">kabob-space</option>
               <option value="_">snake_space</option>
@@ -104,7 +102,7 @@
       <div class="flex justify-end pt-2">
         <button id="saveButton"
                 class="px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-600"
-                on:click={saveMkdnFmt}>
+                on:click={saveMkdnFrmt}>
           Save
         </button>
       </div>

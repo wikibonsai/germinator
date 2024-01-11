@@ -1,17 +1,18 @@
 <script lang='ts'>
   import ApiKey from "$lib/APIKey.svelte";
   import AboutModal from "$lib/AboutModal.svelte";
-  import MkdnFmtModal from "$lib/MkdnFrmtModal.svelte";
+  import MkdnFrmtModal from "$lib/MkdnFrmtModal.svelte";
 
   let isAbtMdlOpen: boolean = false;
   function toggleAbtMdl(): void {
     isAbtMdlOpen = !isAbtMdlOpen;
   }
 
-  let isFmtMdlOpen: boolean = false;
-  function toggleFmtMdl(): void {
-    isFmtMdlOpen = !isFmtMdlOpen;
+  let isFrmtMdlOpen: boolean = false;
+  function toggleFrmtMdl(): void {
+    isFrmtMdlOpen = !isFrmtMdlOpen;
   }
+
 </script>
 
 <div class="font-sans mx-10">
@@ -48,7 +49,7 @@
       <button id="mkdnFormatButton"
               class="rounded button-border hover:border-green-500 p-2 mr-2"
               title="Format"
-              on:click={toggleFmtMdl}>
+              on:click={toggleFrmtMdl}>
         <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6">
       </button>
       <!-- Format Result -->
@@ -72,7 +73,12 @@
   <ApiKey></ApiKey>
 
   <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
-  <MkdnFmtModal bind:isOpen={isFmtMdlOpen}></MkdnFmtModal>
+  <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}
+                 bind:indentKind={indentKind}
+                 bind:textKind={textKind}
+                 bind:caseKind={caseKind}
+                 bind:whiteSpaceKind={whiteSpaceKind}>
+  </MkdnFrmtModal>
 
   <!-- local scripts -->
 
