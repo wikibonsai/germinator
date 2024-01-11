@@ -1,3 +1,12 @@
+<script lang='ts'>
+  import { onMount } from 'svelte';
+
+  onMount(() => {
+    const apiKey: string | null = localStorage.getItem('api-key');
+    document.getElementById('openai_key_risky_but_cool').value = apiKey;
+  });
+</script>
+
 <div class="fixed bottom-4 right-4 w-full max-w-xs flex flex-row gap-1 rounded p-1.5 z-50 pointer-events-none api-key-input-bg-color">
   <div class="relative flex-grow pointer-events-auto">
     <input
