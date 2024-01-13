@@ -1,19 +1,20 @@
 // courtesy: https://github.com/tldraw/make-real-starter
 
+import { SYSTEM_PROMPT } from './prompt';
+
+
 async function fetchFromOpenAi(
-  providedApiKey,
-  body,
+  providedApiKey: string,
+  body: JSON,
 ) {
   const apiKey = providedApiKey ?? process.env.OPENAI_API_KEY
-
   if (!apiKey) {
     throw new Error(
       'You need to provide an API key. Make sure OPENAI_API_KEY is set in your .env file.'
     )
   }
-
   try {
-    const repsonse = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,15 +22,15 @@ async function fetchFromOpenAi(
       },
       body: JSON.stringify(body),
     })
-
-    return await repsonse.json()
+    return await response.json()
   } catch (e) {
     console.error(e)
     throw new Error('Sorry, there was an error fetching from OpenAI')
   }
 }
 
-async function makeReal(userMessage, opts) {
+// todo: option type
+export async function makeReal(userMessage: string, opts: any) {
   if (!opts.apikey) {
     alert('Please enter an OpenAI API key');
     return;
@@ -44,7 +45,6 @@ async function makeReal(userMessage, opts) {
   try {
     console.debug('seed prompt:', seedPrompt);
     console.debug('sending concept seed to chatgpt...');
-
     // make a request to openai. `fetchFromOpenAi` is a next.js server action,
     // so our api key is hidden.
     showLoader();
