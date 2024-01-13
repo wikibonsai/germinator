@@ -1,7 +1,42 @@
 <script lang='ts'>
+  import { onMount } from 'svelte';
   import ApiKey from "$lib/APIKey.svelte";
   import AboutModal from "$lib/AboutModal.svelte";
   import MkdnFrmtModal from "$lib/MkdnFrmtModal.svelte";
+
+  // theme colors
+
+  var isDark: boolean = false;
+
+  function toggleTheme() {
+    isDark = !isDark;
+    updateThemeElements();
+  }
+
+  // Function to update elements based on the current theme
+  function updateThemeElements() {
+    const favicon: Element | null = document.querySelector('[rel="icon"]');
+    const logo: HTMLElement | null = document.getElementById('wikibonsai-logo');
+    const helpIcon: HTMLElement | null = document.getElementById('helpIcon');
+    const resultFormatIcon: HTMLElement | null = document.getElementById('resultFormatIcon');
+    const mkdnFormatIcon: HTMLElement | null = document.getElementById('mkdnFormatIcon');
+    const copyIcon: HTMLElement | null = document.getElementById('copyIcon');
+    // update colors
+    if (isDark) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+    favicon.href         = isDark ? './favicon-dark.png' : './favicon-light.png';
+    logo.src             = isDark ? './img/logo/wikibonsai-dark.svg' : './img/logo/wikibonsai-light.svg';
+    helpIcon.src         = isDark ? './img/icons/icons8-help-50-dark.png' : './img/icons/icons8-help-50-light.png';
+    resultFormatIcon.src = isDark ? './img/icons/icons8-mind-map-30-dark.png' : './img/icons/icons8-mind-map-30-light.png';
+    mkdnFormatIcon.src   = isDark ? './img/icons/icons8-adjust-30-dark.png' : './img/icons/icons8-adjust-30-light.png';
+    copyIcon.src         = isDark ? './img/icons/icons8-copy-30-dark.png' : './img/icons/icons8-copy-30-light.png';
+    localStorage.setItem('is-dark', String(isDark));
+  }
+
+  // modals
 
   let isAbtMdlOpen: boolean = false;
   function toggleAbtMdl(): void {
@@ -13,6 +48,14 @@
     isFrmtMdlOpen = !isFrmtMdlOpen;
   }
 
+
+  // set the initial theme
+  onMount(() => {
+    const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const storedIsDark: string | null = localStorage.getItem('is-dark');
+    isDark = (storedIsDark !== null) ? (storedIsDark === 'true') : prefersDarkScheme;
+    updateThemeElements();
+  });
 </script>
 
 <div class="font-sans mx-10">
@@ -25,7 +68,9 @@
       <h1 class="text-4xl font-semibold my-0 mx-4 hidden sm:block">
         Semantic Tree Germinator
       </h1>
-      <button id="colorsButton" class="colors-button">🌘</button>
+      <button id="colorsButton" class="colors-button" on:click={toggleTheme}>
+        {isDark ? '🌘' : '☀️'}
+      </button>
     </div>
     <div class="flex items-center gap-2.5">
       <input
@@ -94,7 +139,6 @@
   <!-- system -->
   <script src="/js/ai.js" type="text/javascript"></script>
   <!-- components -->
-  <script src="/js/components/colors.js" type="text/javascript"></script>
   <script src="/js/components/result-format.js" type="text/javascript"></script>
   <script src="/js/components/copy.js" type="text/javascript"></script>
   <script src="/js/components/submit.js" type="text/javascript"></script>
