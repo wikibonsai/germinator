@@ -6,8 +6,8 @@
   import { makeReal } from "$lib/ai";
 
   // theme colors
-
   var isDark: boolean = false;
+  var theme: string = 'light';
   var isMarkdown: boolean = true;
   var resultMkdn: string = '';
   // mkdn format options
@@ -16,6 +16,16 @@
   let caseKind: string | null = '';
   let whiteSpaceKind: string | null = '';
 
+  // image sources based on theme color
+  $: favicon          = `./favicon-${theme}.png`;
+  $: logo             = `./img/logo/wikibonsai-${theme}.svg`;
+  $: helpIcon         = `./img/icons/icons8-help-50-${theme}.png`;
+  $: resultFormatIcon = isMarkdown
+                        ? `./img/icons/icons8-markdown-30-${theme}.png`
+                        : `./img/icons/icons8-mind-map-30-${theme}.png`;
+  $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${theme}.png`;
+  $: copyIcon         = `./img/icons/icons8-copy-30-${theme}.png`;
+
   function toggleTheme() {
     isDark = !isDark;
     updateThemeElements();
@@ -23,25 +33,14 @@
 
   // Function to update elements based on the current theme
   function updateThemeElements() {
-    const favicon: Element | null = document.querySelector('[rel="icon"]');
-    const logo: HTMLElement | null = document.getElementById('wikibonsai-logo');
-    const helpIcon: HTMLElement | null = document.getElementById('helpIcon');
-    const resultFormatIcon: HTMLElement | null = document.getElementById('resultFormatIcon');
-    const mkdnFormatIcon: HTMLElement | null = document.getElementById('mkdnFormatIcon');
-    const copyIcon: HTMLElement | null = document.getElementById('copyIcon');
-    // update colors
+    theme = isDark ? 'dark' : 'light';
+    localStorage.setItem('is-dark', String(isDark));
+    // update css
     if (isDark) {
       document.body.classList.add('dark');
     } else {
       document.body.classList.remove('dark');
     }
-    favicon.href         = isDark ? './favicon-dark.png' : './favicon-light.png';
-    logo.src             = isDark ? './img/logo/wikibonsai-dark.svg' : './img/logo/wikibonsai-light.svg';
-    helpIcon.src         = isDark ? './img/icons/icons8-help-50-dark.png' : './img/icons/icons8-help-50-light.png';
-    resultFormatIcon.src = isDark ? './img/icons/icons8-mind-map-30-dark.png' : './img/icons/icons8-mind-map-30-light.png';
-    mkdnFormatIcon.src   = isDark ? './img/icons/icons8-adjust-30-dark.png' : './img/icons/icons8-adjust-30-light.png';
-    copyIcon.src         = isDark ? './img/icons/icons8-copy-30-dark.png' : './img/icons/icons8-copy-30-light.png';
-    localStorage.setItem('is-dark', String(isDark));
   }
 
   // modals
@@ -233,7 +232,7 @@
   <div class="container mx-auto p-4">
     <div class="flex items-center mb-2 p-10 justify-center sm:justify-start">
       <a href="https://github.com/wikibonsai/wikibonsai">
-        <img id="wikibonsai-logo" alt="Logo" width="75px" height="60px" class="mr-4" />
+        <img id="wikibonsai-logo" alt="Logo" width="75px" height="60px" class="mr-4" src={logo}/>
       </a>
       <h1 class="text-4xl font-semibold my-0 mx-4 hidden sm:block">
         Semantic Tree Germinator
@@ -260,27 +259,27 @@
               class="rounded button-border hover:border-green-500 p-2 mr-2"
               title="Format"
               on:click={toggleAbtMdl}>
-        <img id="helpIcon" alt="Format" class="w-6 h-6">
+        <img id="helpIcon" alt="Format" class="w-6 h-6" src={helpIcon}>
       </button>
       <!-- Format Markdown (toolbox) -->
       <button id="mkdnFormatButton"
               class="rounded button-border hover:border-green-500 p-2 mr-2"
               title="Format"
               on:click={toggleFrmtMdl}>
-        <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6">
+        <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6" src={mkdnFormatIcon}>
       </button>
       <!-- Format Result -->
       <button id="resultFormatButton"
               class="rounded button-border hover:border-green-500 p-2 mr-2"
               on:click={toggleRsltFrmt}>
-        <img id="resultFormatIcon" alt="Toggle Format" class="w-6 h-6">
+        <img id="resultFormatIcon" alt="Toggle Format" class="w-6 h-6" src={resultFormatIcon}>
       </button>
       <!-- Copy icon -->
       <button id="copyButton"
               class="rounded button-border hover:border-green-500 p-2 mr-2"
               title="Copy"
               on:click={copy}>
-        <img id="copyIcon" alt="Copy" class="w-6 h-6">
+        <img id="copyIcon" alt="Copy" class="w-6 h-6" src={copyIcon}>
       </button>
     </div>
     <div id="loader" class="sprout-loader">
