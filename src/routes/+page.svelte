@@ -8,8 +8,11 @@
   // theme colors
   var isDark: boolean = false;
   var theme: string = 'light';
+  // result format
   var isMarkdown: boolean = true;
+  var result: any = null;
   var resultMkdn: string = '';
+  var resltMkmp: any = null;
   // mkdn format options
   let indentKind: string | null = '';
   let textKind: string | null = '';
@@ -83,13 +86,9 @@
     return Markmap.create('#markmap', null, root);
   }
   async function toggleRsltFrmt() {
-    const markdownIcon: string = isDark ? './img/icons/icons8-markdown-30-dark.png' : './img/icons/icons8-markdown-30-light.png';
-    const mindmapIcon: string = isDark ? './img/icons/icons8-mind-map-30-dark.png' : './img/icons/icons8-mind-map-30-light.png';
-    const icon = document.getElementById('resultFormatIcon');
     const resultBox = document.getElementById('resultBox');
     isMarkdown = !isMarkdown;
-    localStorage.setItem('is-markdown', isMarkdown);
-    icon.src = isMarkdown ? mindmapIcon : markdownIcon;
+    localStorage.setItem('is-markdown', String(isMarkdown));
     safelyRemoveChild("resultBox", "markmap");
     // update
     if (isMarkdown) {
@@ -208,18 +207,13 @@
     const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const storedIsDark: string | null = localStorage.getItem('is-dark');
     isDark = (storedIsDark !== null) ? (storedIsDark === 'true') : prefersDarkScheme;
+    // result format
     isMarkdown = (localStorage.getItem('is-markdown') === 'true');
     // mkdn format
     indentKind = localStorage.getItem('indent') ? localStorage.getItem('indent') : '2 spaces';
     textKind = localStorage.getItem('text') ? localStorage.getItem('text') : '[[wiki text]]';
     caseKind = localStorage.getItem('case') ? localStorage.getItem('case') : 'lower';
     whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
-    // result formatting
-    if (isMarkdown) {
-      document.getElementById('resultFormatIcon').src = isDark ? './img/icons/icons8-mind-map-30-dark.png' : './img/icons/icons8-mind-map-30-light.png';
-    } else {
-      document.getElementById('resultFormatIcon').src = isDark ? './img/icons/icons8-markdown-30-dark.png' : './img/icons/icons8-markdown-30-light.png';
-    }
     console.log('initial mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
     updateThemeElements();
   });
