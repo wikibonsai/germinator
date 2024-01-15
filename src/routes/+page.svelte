@@ -139,7 +139,7 @@
 
   // Copy (markdown) Button
 
-  async function svgToPngAndCopyToClipboard(svgElement, width, height) {
+  async function svgToPngAndCopyToClipboard(svgElement: SVGElement, width: number, height: number): void {
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
@@ -198,10 +198,9 @@
     if ($isMarkdown) {
       copyMkdnToClipBoard(resultMkdn);
     } else {
-      const svgElement = document.getElementById('markmap');
       const width = 800;
       const height = 800;
-      svgToPngAndCopyToClipboard(svgElement, width, height);
+      svgToPngAndCopyToClipboard(resultMkmp, width, height);
     }
   }
 
@@ -298,7 +297,7 @@
         {@html resultMkdn}
       {:else}
         <svg id="markmap"
-             style="width: 100%; height: 800px"
+             style="width: 800px; height: 800px"
              bind:this={resultMkmp}
              xmlns="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink">
