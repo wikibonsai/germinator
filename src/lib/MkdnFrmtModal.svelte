@@ -11,10 +11,6 @@
   }
 
   function saveMkdnFrmt(): void {
-    indentKind = document.getElementById('indentSelect')?.value;
-    textKind = document.getElementById('wikiSelect')?.value;
-    caseKind = document.getElementById('caseSelect')?.value;
-    whiteSpaceKind = document.getElementById('whitespaceSelect')?.value;
     localStorage.setItem('indent', indentKind ? indentKind : '');
     localStorage.setItem('text', textKind ? textKind : '');
     localStorage.setItem('case', caseKind ? caseKind : '');
