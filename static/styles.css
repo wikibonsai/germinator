@@ -135,7 +135,7 @@ select {
 /* sprout loader animation */
 
 .sprout-loader {
-  display: none;
+  display: flex;
   width: 25px;
   height: 25px;
   position: fixed;
@@ -192,7 +192,7 @@ select {
 /* result box */
 
 .result-box {
-  display: none;
+  display: flex;
 }
 
 .markmap > svg {

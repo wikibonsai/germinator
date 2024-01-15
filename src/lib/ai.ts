@@ -47,7 +47,6 @@ export async function makeReal(userMessage: string, opts: any) {
     console.debug('sending concept seed to chatgpt...');
     // make a request to openai. `fetchFromOpenAi` is a next.js server action,
     // so our api key is hidden.
-    showLoader();
     const openAiResponse = await fetchFromOpenAi(opts.apikey, {
       model: 'gpt-4-1106-preview',
       max_tokens: 4096,
@@ -64,16 +63,5 @@ export async function makeReal(userMessage: string, opts: any) {
     return 'something went wrong with chatgpt -- oh no! 😲';
     throw e;
   }
-  hideLoader();
   return chatGptResponse;
-}
-
-function showLoader(resultBox) {
-  document.getElementById('resultBox').style.display = 'none';
-  document.getElementById('loader').style.display = 'flex';
-}
-
-function hideLoader(resultBox) {
-  document.getElementById('loader').style.display = 'none';
-  document.getElementById('resultBox').style.display = 'flex';
 }

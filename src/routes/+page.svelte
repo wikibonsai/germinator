@@ -5,6 +5,8 @@
   import MkdnFrmtModal from "$lib/MkdnFrmtModal.svelte";
   import { makeReal } from "$lib/ai";
 
+  // loading
+  var loading: boolean = false;
   // theme colors
   var isDark: boolean = false;
   var theme: string = 'light';
@@ -101,6 +103,8 @@
   // ai
 
   async function goai() {
+    // reset to disable result box for 'loading'
+    resultMkdn = '';
     // If you're using the API key input, we preference the key from there.
     const apiKeyFromDangerousApiKeyInput = document.body.querySelector('#openai_key_risky_but_cool')?.value;
     if (!apiKeyFromDangerousApiKeyInput) {
@@ -109,6 +113,7 @@
     const userMsg = document.getElementById('input').value;
     let result = document.getElementById('resultBox');
     safelyRemoveChild("resultBox", "markmap");
+    loading = true;
     resultMkdn = await makeReal(
       userMsg,
       {
@@ -119,6 +124,7 @@
         whitespace: whiteSpaceKind,
       },
     );
+    loading = false;
     if (isMarkdown) {
       result.innerHTML = resultMkdn;
     } else {
@@ -276,13 +282,21 @@
         <img id="copyIcon" alt="Copy" class="w-6 h-6" src={copyIcon}>
       </button>
     </div>
-    <div id="loader" class="sprout-loader">
-      <div class="sprout"></div>
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
-    </div>
+    {#if loading}
+      <!-- loader -->
+      <div id="loader" class="sprout-loader">
+        <div class="sprout"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+      </div>
+    {/if}
     <!-- results -->
-    <div id="resultBox" class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"></div>
+    <div id="resultBox"
+          class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"
+          style="display: {resultMkdn === '' ? 'none' : 'flex'}"
+          contenteditable="true"
+          bind:innerHTML={result}>
+    </div>
   </div>
 
   <ApiKey></ApiKey>
