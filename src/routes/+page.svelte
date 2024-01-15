@@ -7,6 +7,7 @@
 
   // loading
   var loading: boolean = false;
+  var userMsg: string = '';
   // theme colors
   var isDark: boolean = false;
   var theme: string = 'light';
@@ -110,7 +111,6 @@
     if (!apiKeyFromDangerousApiKeyInput) {
       alert('Please enter an OpenAI API key');
     }
-    const userMsg = document.getElementById('input').value;
     let result = document.getElementById('resultBox');
     safelyRemoveChild("resultBox", "markmap");
     loading = true;
@@ -246,7 +246,8 @@
         id="input"
         type="text"
         placeholder="tree (linguistics)"
-        class="input-border text-black focus:outline-green-500 p-2 mb-4 w-full rounded-lg">
+        class="input-border text-black focus:outline-green-500 p-2 mb-4 w-full rounded-lg"
+        bind:value={userMsg}>
       <button id="growButton"
               class="bg-green-500 text-white px-4 py-2 mb-4 rounded-lg hover:bg-green-600"
               on:click={goai}>
