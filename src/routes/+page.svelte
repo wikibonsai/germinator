@@ -1,9 +1,14 @@
 <script lang='ts'>
-  import { onMount } from 'svelte';
+  import { onMount, afterUpdate } from 'svelte';
+  import type { Writable } from 'svelte/store';
+  import { writable } from 'svelte/store';
+  import { Transformer } from 'markmap-lib';
+  import * as markmap from 'markmap-view';
   import ApiKey from "$lib/APIKey.svelte";
   import AboutModal from "$lib/AboutModal.svelte";
   import MkdnFrmtModal from "$lib/MkdnFrmtModal.svelte";
   import { makeReal } from "$lib/ai";
+
 
   // loading
   var loading: boolean = false;
@@ -12,10 +17,9 @@
   var isDark: boolean = false;
   var theme: string = 'light';
   // result format
-  var isMarkdown: boolean = true;
-  var result: any = null;
+  var isMarkdown: Writable<boolean> = writable(true);
   var resultMkdn: string = '';
-  var resltMkmp: any = null;
+  var resultMkmp: any = null;
   // mkdn format options
   let indentKind: string | null = '';
   let textKind: string | null = '';
@@ -26,7 +30,7 @@
   $: favicon          = `./favicon-${theme}.png`;
   $: logo             = `./img/logo/wikibonsai-${theme}.svg`;
   $: helpIcon         = `./img/icons/icons8-help-50-${theme}.png`;
-  $: resultFormatIcon = isMarkdown
+  $: resultFormatIcon = $isMarkdown
                         ? `./img/icons/icons8-markdown-30-${theme}.png`
                         : `./img/icons/icons8-mind-map-30-${theme}.png`;
   $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${theme}.png`;
@@ -63,57 +67,54 @@
 
   // result format
 
-  function safelyRemoveChild(parentId: string, childId: string) {
-    // Get the parent and child elements by their IDs
-    const parentElement: HTMLElement | null = document.getElementById(parentId);
-    const childElement: HTMLElement | null = document.getElementById(childId);
-    // check if both elements exist and if the child is indeed a child of the parent
-    if (parentElement && childElement && parentElement.contains(childElement)) {
-      parentElement.removeChild(childElement);
-    } else {
-      parentElement.innerHTML = '';
-    }
+  function resetResult() {
+    resultMkdn = '';
+    resultMkmp = null;
   }
-  function appendSvgToResultBox() {
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("id", "markmap");
-    svg.setAttribute("style", "width: 800px; height: 800px");
-    const resultBox: HTMLElement | null = document.getElementById("resultBox");
-    resultBox.appendChild(svg);
-  }
-  async function createMarkmap(markdown: string): any {
-    const { Markmap, Transformer, loadCSS, loadJS } = window.markmap;
-    const transformer = new Transformer();
-    const { root, features } = transformer.transform(markdown);
-    appendSvgToResultBox();
-    return Markmap.create('#markmap', null, root);
-  }
+
   async function toggleRsltFrmt() {
-    const resultBox = document.getElementById('resultBox');
-    isMarkdown = !isMarkdown;
-    localStorage.setItem('is-markdown', String(isMarkdown));
-    safelyRemoveChild("resultBox", "markmap");
-    // update
-    if (isMarkdown) {
-      resultBox.innerHTML = resultMkdn;
-    } else {
-      await createMarkmap(resultMkdn);
+    $isMarkdown = !$isMarkdown;
+    localStorage.setItem('is-markdown', String($isMarkdown));
+  }
+
+  // markmap svg handling
+
+  // very helpful: https://svelte.dev/repl/9499dbcf3f3240e4af42e38ab19cc9ea?version=3.47.0
+  async function generateMarkmap(): Promise<any> {
+    const transformer = new Transformer();
+    const { root, features } = transformer.transform(resultMkdn);
+    const { styles, scripts } = transformer.getUsedAssets(features);
+    const { Markmap, loadCSS, loadJS } = markmap;
+    if (styles) loadCSS(styles);
+    if (scripts) loadJS(scripts, { getMarkmap: () => markmap });
+    // const options = {
+    //   //style: id => 'div{padding-bottom:0.25em!important} g g:last-of-type div{font-weight:bold; font-size:18px} foreignObject{overflow:visible!important; transform:translateX(-1%)} g g:last-of-type rect {transform:scaleX(125%) translateX(-3%)}',
+    //   //style: id => 'div{padding-bottom:0.3em!important} g g:last-of-type div{font-weight:bold;} foreignObject{overflow:visible!important; transform:translateX(-1%)}',
+    //   duration:0,
+    //   style: id => 'div{padding-bottom:0.12em!important}',
+    //   spacingVertical: 8, // 5			
+    //   //spacingHorizontal: 100,
+    //   paddingX:15, // 8
+    // }
+    clearSVG();
+    Markmap.create('#markmap', undefined, root);
+  }
+
+  function clearSVG() {
+    while (resultMkmp && resultMkmp.firstChild) {
+      resultMkmp.removeChild(resultMkmp.firstChild);
     }
-  };
+  }
 
   // ai
 
   async function goai() {
-    // reset to disable result box for 'loading'
-    resultMkdn = '';
-    // If you're using the API key input, we preference the key from there.
+    loading = true;
+    resetResult();
     const apiKeyFromDangerousApiKeyInput = document.body.querySelector('#openai_key_risky_but_cool')?.value;
     if (!apiKeyFromDangerousApiKeyInput) {
       alert('Please enter an OpenAI API key');
     }
-    let result = document.getElementById('resultBox');
-    safelyRemoveChild("resultBox", "markmap");
-    loading = true;
     resultMkdn = await makeReal(
       userMsg,
       {
@@ -125,11 +126,6 @@
       },
     );
     loading = false;
-    if (isMarkdown) {
-      result.innerHTML = resultMkdn;
-    } else {
-      await createMarkmap(resultMkdn);
-    }
   }
 
   async function submit(event: KeyboardEvent) {
@@ -197,9 +193,8 @@
     }, 2000);
   }
   function copy() {
-    if (isMarkdown) {
-      let semtree = document.getElementById('resultBox').innerHTML;
-      copyMkdnToClipBoard(semtree);
+    if ($isMarkdown) {
+      copyMkdnToClipBoard(resultMkdn);
     } else {
       const svgElement = document.getElementById('markmap');
       const width = 800;
@@ -214,7 +209,7 @@
     const storedIsDark: string | null = localStorage.getItem('is-dark');
     isDark = (storedIsDark !== null) ? (storedIsDark === 'true') : prefersDarkScheme;
     // result format
-    isMarkdown = (localStorage.getItem('is-markdown') === 'true');
+    $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
     // mkdn format
     indentKind = localStorage.getItem('indent') ? localStorage.getItem('indent') : '2 spaces';
     textKind = localStorage.getItem('text') ? localStorage.getItem('text') : '[[wiki text]]';
@@ -222,6 +217,9 @@
     whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
     console.log('initial mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
     updateThemeElements();
+  });
+  afterUpdate(() => {
+    generateMarkmap();
   });
 </script>
 
@@ -292,11 +290,18 @@
       </div>
     {/if}
     <!-- results -->
-    <div id="resultBox"
-          class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"
-          style="display: {resultMkdn === '' ? 'none' : 'flex'}"
-          contenteditable="true"
-          bind:innerHTML={result}>
+    <div class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"
+          style="display: {(resultMkdn === '') ? 'none' : 'flex'}">
+      {#if $isMarkdown}
+        {@html resultMkdn}
+      {:else}
+        <svg id="markmap"
+             style="width: 100%; height: 800px"
+             bind:this={resultMkmp}
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+        </svg>
+      {/if}
     </div>
   </div>
 
