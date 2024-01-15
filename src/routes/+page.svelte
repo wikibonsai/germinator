@@ -204,7 +204,8 @@
     }
   }
 
-  // set the initial theme
+  // svelte-handling
+
   onMount(() => {
     const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const storedIsDark: string | null = localStorage.getItem('is-dark');
@@ -219,6 +220,7 @@
     console.log('initial mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
     updateThemeElements();
   });
+
   afterUpdate(() => {
     generateMarkmap();
   });
@@ -234,7 +236,7 @@
         <img id="wikibonsai-logo" alt="Logo" width="75px" height="60px" class="mr-4" src={logo}/>
       </a>
       <h1 class="text-4xl font-semibold my-0 mx-4 hidden sm:block">
-        Semantic Tree Germinator
+        Germinator
       </h1>
       <button id="colorsButton" class="colors-button" on:click={toggleTheme}>
         {isDark ? '🌘' : '☀️'}
