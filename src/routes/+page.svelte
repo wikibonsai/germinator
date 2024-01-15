@@ -25,6 +25,8 @@
   let textKind: string | null = '';
   let caseKind: string | null = '';
   let whiteSpaceKind: string | null = '';
+  // copied
+  let isCopied: boolean = false;
 
   // image sources based on theme color
   $: favicon          = `./favicon-${theme}.png`;
@@ -34,7 +36,7 @@
                         ? `./img/icons/icons8-markdown-30-${theme}.png`
                         : `./img/icons/icons8-mind-map-30-${theme}.png`;
   $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${theme}.png`;
-  $: copyIcon         = `./img/icons/icons8-copy-30-${theme}.png`;
+  $: copyIcon         = isCopied ? './img/icons/icons8-check-30.png' : `./img/icons/icons8-copy-30-${theme}.png`;
 
   function toggleTheme() {
     isDark = !isDark;
@@ -171,7 +173,8 @@
         }, 'image/png');
       };
   }
-  function copyMkdnToClipBoard(text) {
+
+  function copyMkdnToClipBoard(text: string): void {
     navigator.clipboard.writeText(text)
       .then(() => {
         if (text.length > 0) {
@@ -183,16 +186,15 @@
         console.error('Error in copying text: ', err);
       });
   }
-  function copied() {
-    const icon = document.getElementById('copyIcon');
-    const copyIcon = isDark ? './img/icons/icons8-copy-30-dark.png' : './img/icons/icons8-copy-30-light.png';
-    const checkImg = './img/icons/icons8-check-30.png';
-    icon.src = checkImg;
+
+  function copied(): void {
+    isCopied = true;
     setTimeout(function() {
-      icon.src = copyIcon;
+      isCopied = false;
     }, 2000);
   }
-  function copy() {
+
+  function copy(): void {
     if ($isMarkdown) {
       copyMkdnToClipBoard(resultMkdn);
     } else {
