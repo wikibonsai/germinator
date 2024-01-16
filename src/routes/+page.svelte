@@ -52,10 +52,19 @@
     }
   }
 
-  function toggleTheme() {
-    isDark = !isDark;
-    localStorage.setItem('is-dark', String(isDark));
-  }
+  onMount(() => {
+    const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const storedIsDark: string | null = localStorage.getItem('is-dark');
+    isDark = (storedIsDark !== null) ? (storedIsDark === 'true') : prefersDarkScheme;
+    // result format
+    $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
+    // mkdn format
+    indentKind = localStorage.getItem('indent') ? localStorage.getItem('indent') : '2 spaces';
+    textKind = localStorage.getItem('text') ? localStorage.getItem('text') : '[[wiki text]]';
+    caseKind = localStorage.getItem('case') ? localStorage.getItem('case') : 'lower';
+    whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
+    console.log('initial mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
+  });
 
   // modals
 
@@ -206,22 +215,6 @@
       svgToPngAndCopyToClipboard(resultMkmp, width, height);
     }
   }
-
-  // svelte-handling
-
-  onMount(() => {
-    const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const storedIsDark: string | null = localStorage.getItem('is-dark');
-    isDark = (storedIsDark !== null) ? (storedIsDark === 'true') : prefersDarkScheme;
-    // result format
-    $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
-    // mkdn format
-    indentKind = localStorage.getItem('indent') ? localStorage.getItem('indent') : '2 spaces';
-    textKind = localStorage.getItem('text') ? localStorage.getItem('text') : '[[wiki text]]';
-    caseKind = localStorage.getItem('case') ? localStorage.getItem('case') : 'lower';
-    whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
-    console.log('initial mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
-  });
 </script>
 
 <svelte:window on:keydown={submit} />
