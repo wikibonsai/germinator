@@ -10,6 +10,8 @@
   import { makeReal } from "$lib/util/ai";
 
 
+  // api key
+  let apiKey: string | null;
   // loading
   let loading: boolean = false;
   let userMsg: string = '';
@@ -116,14 +118,11 @@
   async function goai() {
     loading = true;
     resultMkdn = '';
-    const apiKeyFromDangerousApiKeyInput = document.body.querySelector('#openai_key_risky_but_cool')?.value;
-    if (!apiKeyFromDangerousApiKeyInput) {
-      alert('Please enter an OpenAI API key');
-    }
+    if (!apiKey) { alert('Please enter an OpenAI API key'); return; }
     resultMkdn = await makeReal(
       userMsg,
       {
-        apikey: apiKeyFromDangerousApiKeyInput,
+        apikey: apiKey,
         indent: indentKind,
         text: textKind,
         case: caseKind,
@@ -307,7 +306,7 @@
     </div>
   </div>
 
-  <ApiKey></ApiKey>
+  <ApiKey bind:apiKey={apiKey}></ApiKey>
 
   <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
   <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}

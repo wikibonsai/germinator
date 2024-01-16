@@ -1,7 +1,7 @@
 <script lang='ts'>
   import { onMount } from 'svelte';
 
-  var apiKey: string | null;
+  export let apiKey: string | null;
 
   onMount(() => {
     apiKey = localStorage.getItem('api-key');
