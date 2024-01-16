@@ -9,9 +9,9 @@
 
   async function goai() {
     dispatch('loading', true);
-    $resultMkdn = '';
+    $resultMkdn.descendants = '';
     if ($apiKey === '') { alert('Please enter an OpenAI API key'); return; }
-    $resultMkdn = await makeReal(
+    $resultMkdn.descendants = await makeReal(
       userMsg,
       {
         apikey: $apiKey,

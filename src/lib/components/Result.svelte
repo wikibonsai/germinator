@@ -4,7 +4,7 @@
   import { Markmap, loadCSS, loadJS } from 'markmap-view';
   import { isMarkdown, resultMkdn, resultMkmp } from '$lib/util/store';
 
-  $: if ($resultMkdn && $resultMkdn.length > 0) {
+  $: if ($resultMkdn.descendants && $resultMkdn.descendants.length > 0) {
     delayAndGenerate();
   }
   $: if (!$isMarkdown) {
@@ -27,7 +27,7 @@
     // await tick();
     // setup
     const transformer = new Transformer();
-    const { root, features } = transformer.transform($resultMkdn);
+    const { root, features } = transformer.transform($resultMkdn.descendants);
     // styling
     // const { styles, scripts } = transformer.getUsedAssets(features);
     // if (styles) loadCSS(styles);
@@ -51,9 +51,9 @@
 </script>
 
 <div class="flex whitespace-pre-wrap box-border bg-white text-black p-4 mb-10 rounded-lg"
-     style="display: {($resultMkdn === '') ? 'none' : 'flex'}">
+     style="display: {($resultMkdn.descendants === '') ? 'none' : 'flex'}">
   {#if $isMarkdown}
-    {@html $resultMkdn}
+    {@html $resultMkdn.descendants}
   {:else}
     <svg id="markmap"
         bind:this={$resultMkmp}

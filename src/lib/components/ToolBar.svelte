@@ -98,7 +98,7 @@
 
   function copy(): void {
     if ($isMarkdown) {
-      copyMkdnToClipBoard($resultMkdn);
+      copyMkdnToClipBoard($resultMkdn.descendants);
     } else {
       const width = 800;
       const height = 800;

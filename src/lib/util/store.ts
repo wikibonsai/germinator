@@ -22,5 +22,10 @@ export const apiKey: Writable<string> = writable('');
 // result
 
 export const isMarkdown: Writable<boolean> = writable(true);
-export const resultMkdn: Writable<string> = writable('');
+
+export const resultMkdn: Writable<Record<string, string>> = writable({
+  ancestors: '',
+  descendants: '',
+  atom: '',
+});
 export const resultMkmp: Writable<SVGSVGElement | null> = writable(null);
