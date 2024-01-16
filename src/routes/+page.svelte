@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { onMount, afterUpdate } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
   import { Transformer } from 'markmap-lib';
@@ -70,28 +70,37 @@
   async function toggleRsltFrmt() {
     $isMarkdown = !$isMarkdown;
     localStorage.setItem('is-markdown', String($isMarkdown));
+    generateMarkmap();
   }
 
   // markmap svg handling
 
   // very helpful: https://svelte.dev/repl/9499dbcf3f3240e4af42e38ab19cc9ea?version=3.47.0
   async function generateMarkmap(): Promise<any> {
-    const transformer = new Transformer();
-    const { root, features } = transformer.transform(resultMkdn);
-    const { styles, scripts } = transformer.getUsedAssets(features);
-    if (styles) loadCSS(styles);
-    if (scripts) loadJS(scripts, { getMarkmap: () => markmap });
-    // const options = {
-    //   //style: id => 'div{padding-bottom:0.25em!important} g g:last-of-type div{font-weight:bold; font-size:18px} foreignObject{overflow:visible!important; transform:translateX(-1%)} g g:last-of-type rect {transform:scaleX(125%) translateX(-3%)}',
-    //   //style: id => 'div{padding-bottom:0.3em!important} g g:last-of-type div{font-weight:bold;} foreignObject{overflow:visible!important; transform:translateX(-1%)}',
-    //   duration:0,
-    //   style: id => 'div{padding-bottom:0.12em!important}',
-    //   spacingVertical: 8, // 5
-    //   //spacingHorizontal: 100,
-    //   paddingX:15, // 8
-    // }
-    clearSVG();
-    Markmap.create('#markmap', undefined, root);
+    if (!$isMarkdown) {
+      // wait for the DOM to update
+      await tick();
+      // generate markmap
+      const transformer = new Transformer();
+      const { root, features } = transformer.transform(resultMkdn);
+      // styling
+      // const { styles, scripts } = transformer.getUsedAssets(features);
+      // if (styles) loadCSS(styles);
+      // if (scripts) loadJS(scripts, { getMarkmap: () => Markmap });
+      // options
+      // const options = {
+      //   //style: id => 'div{padding-bottom:0.25em!important} g g:last-of-type div{font-weight:bold; font-size:18px} foreignObject{overflow:visible!important; transform:translateX(-1%)} g g:last-of-type rect {transform:scaleX(125%) translateX(-3%)}',
+      //   //style: id => 'div{padding-bottom:0.3em!important} g g:last-of-type div{font-weight:bold;} foreignObject{overflow:visible!important; transform:translateX(-1%)}',
+      //   duration:0,
+      //   style: id => 'div{padding-bottom:0.12em!important}',
+      //   spacingVertical: 8, // 5
+      //   //spacingHorizontal: 100,
+      //   paddingX:15, // 8
+      // }
+      // go
+      clearSVG();
+      Markmap.create('#markmap', undefined, root);
+    }
   }
 
   function clearSVG() {
@@ -119,6 +128,7 @@
         whitespace: whiteSpaceKind,
       },
     );
+    await generateMarkmap();
     loading = false;
   }
 
@@ -210,11 +220,6 @@
     caseKind = localStorage.getItem('case') ? localStorage.getItem('case') : 'lower';
     whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
     console.log('initial mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
-    updateThemeElements();
-  });
-
-  afterUpdate(() => {
-    generateMarkmap();
   });
 </script>
 
