@@ -69,11 +69,6 @@
 
   // result format
 
-  function resetResult() {
-    resultMkdn = '';
-    resultMkmp = null;
-  }
-
   async function toggleRsltFrmt() {
     $isMarkdown = !$isMarkdown;
     localStorage.setItem('is-markdown', String($isMarkdown));
@@ -112,7 +107,7 @@
 
   async function goai() {
     loading = true;
-    resetResult();
+    resultMkdn = '';
     const apiKeyFromDangerousApiKeyInput = document.body.querySelector('#openai_key_risky_but_cool')?.value;
     if (!apiKeyFromDangerousApiKeyInput) {
       alert('Please enter an OpenAI API key');
