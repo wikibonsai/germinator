@@ -2,7 +2,7 @@
   import { onMount, tick } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
-  import { theme } from '$lib/util/store';
+  import { resultMkdn, theme } from '$lib/util/store';
   import { Transformer } from 'markmap-lib';
   import { Markmap, loadCSS, loadJS } from 'markmap-view';
   import ApiKey from "$lib/components/APIKey.svelte";
@@ -16,7 +16,6 @@
   let userMsg: string = '';
   // result format
   let isMarkdown: Writable<boolean> = writable(true);
-  let resultMkdn: string = '';
   let resultMkmp: any = null;
 
   // mkdn format options
@@ -191,7 +190,7 @@
 
   function copy(): void {
     if ($isMarkdown) {
-      copyMkdnToClipBoard(resultMkdn);
+      copyMkdnToClipBoard($resultMkdn);
     } else {
       const width = 800;
       const height = 800;
@@ -257,9 +256,9 @@
     {/if}
     <!-- results -->
     <div class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"
-          style="display: {(resultMkdn === '') ? 'none' : 'flex'}">
+          style="display: {($resultMkdn === '') ? 'none' : 'flex'}">
       {#if $isMarkdown}
-        {@html resultMkdn}
+        {@html $resultMkdn}
       {:else}
         <svg id="markmap"
              style="width: 800px; height: 800px"

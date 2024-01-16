@@ -7,3 +7,6 @@ export const theme = writable('light');
 
 export const apiKey = writable('');
 
+// result
+
+export const resultMkdn = writable('');
