@@ -5,7 +5,7 @@
   import Loader from "$lib/components/Loader.svelte";
   import MarkMap from "$lib/components/MarkMap.svelte";
   import Search from "$lib/components/Search.svelte";
-  import ToolBox from "$lib/components/ToolBox.svelte";
+  import ToolBar from "$lib/components/ToolBar.svelte";
 
   let loading: boolean = false;
 
@@ -19,7 +19,7 @@
     <!-- colors handled in header -->
     <Header></Header>
     <Search on:loading={load}></Search>
-    <ToolBox></ToolBox>
+    <ToolBar></ToolBar>
     {#if loading}
       <Loader></Loader>
     {/if}

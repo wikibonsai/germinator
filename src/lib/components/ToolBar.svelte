@@ -117,7 +117,7 @@
           on:click={toggleAbtMdl}>
     <img id="helpIcon" alt="Format" class="w-6 h-6" src={helpIcon}>
   </button>
-  <!-- Format Markdown (toolbox) -->
+  <!-- Format Markdown -->
   <button id="mkdnFormatButton"
           class="rounded button-border hover:border-green-500 p-2 mr-2"
           title="Format"
