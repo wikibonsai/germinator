@@ -37,22 +37,20 @@
                         : `./img/icons/icons8-mind-map-30-${theme}.png`;
   $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${theme}.png`;
   $: copyIcon         = isCopied ? './img/icons/icons8-check-30.png' : `./img/icons/icons8-copy-30-${theme}.png`;
+  // colors
+  $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side
+    if (isDark) {
+      theme = 'dark';
+      document.body.classList.add('dark');
+    } else {
+      theme = 'light';
+      document.body.classList.remove('dark');
+    }
+  }
 
   function toggleTheme() {
     isDark = !isDark;
-    updateThemeElements();
-  }
-
-  // Function to update elements based on the current theme
-  function updateThemeElements() {
-    theme = isDark ? 'dark' : 'light';
     localStorage.setItem('is-dark', String(isDark));
-    // update css
-    if (isDark) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
   }
 
   // modals
