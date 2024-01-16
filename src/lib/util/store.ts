@@ -20,4 +20,6 @@ export const apiKey = writable('');
 
 // result
 
+export const isMarkdown = writable(true);
 export const resultMkdn = writable('');
+export const resultMkmp = writable(null);
