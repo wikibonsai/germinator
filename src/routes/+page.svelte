@@ -9,11 +9,10 @@
   import AboutModal from "$lib/components/AboutModal.svelte";
   import Header from "$lib/components/Header.svelte";
   import MkdnFrmtModal from "$lib/components/MkdnFrmtModal.svelte";
-  import { makeReal } from "$lib/util/ai";
+  import Search from "$lib/components/Search.svelte";
 
   // loading
   let loading: boolean = false;
-  let userMsg: string = '';
   // result format
   let isMarkdown: Writable<boolean> = writable(true);
   let resultMkmp: any = null;
@@ -47,6 +46,12 @@
   let isFrmtMdlOpen: boolean = false;
   function toggleFrmtMdl(): void {
     isFrmtMdlOpen = !isFrmtMdlOpen;
+  }
+
+  // loading
+
+  function load(event: CustomEvent<boolean>) {
+    loading = event.detail;
   }
 
   // result format
@@ -188,24 +193,10 @@
   }
 </script>
 
-<svelte:window on:keydown={submit} />
-
 <div class="font-sans mx-10">
   <div class="container mx-auto p-4">
     <Header></Header>
-    <div class="flex items-center gap-2.5">
-      <input
-        id="input"
-        type="text"
-        placeholder="tree (linguistics)"
-        class="input-border text-black focus:outline-green-500 p-2 mb-4 w-full rounded-lg"
-        bind:value={userMsg}>
-      <button id="growButton"
-              class="bg-green-500 text-white px-4 py-2 mb-4 rounded-lg hover:bg-green-600"
-              on:click={goai}>
-        Grow
-      </button>
-    </div>
+    <Search on:loading={load}></Search>
     <div class="flex justify-end items-center mb-4">
       <!-- About -->
       <button id="aboutButton"
