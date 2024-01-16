@@ -11,15 +11,16 @@
 
 
   // loading
-  var loading: boolean = false;
-  var userMsg: string = '';
+  let loading: boolean = false;
+  let userMsg: string = '';
   // theme colors
-  var isDark: boolean = false;
-  var theme: string = 'light';
+  let isDark: boolean = false;
+  let theme: string = 'light';
   // result format
-  var isMarkdown: Writable<boolean> = writable(true);
-  var resultMkdn: string = '';
-  var resultMkmp: any = null;
+  let isMarkdown: Writable<boolean> = writable(true);
+  let resultMkdn: string = '';
+  let resultMkmp: any = null;
+
   // mkdn format options
   let indentKind: string | null = '';
   let textKind: string | null = '';
@@ -36,6 +37,7 @@
                         ? `./img/icons/icons8-markdown-30-${theme}.png`
                         : `./img/icons/icons8-mind-map-30-${theme}.png`;
   $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${theme}.png`;
+  // copy
   $: copyIcon         = isCopied ? './img/icons/icons8-check-30.png' : `./img/icons/icons8-copy-30-${theme}.png`;
   // colors
   $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side
