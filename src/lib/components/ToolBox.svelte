@@ -141,3 +141,10 @@
 
 <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
 <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}></MkdnFrmtModal>
+
+<style>
+  .button-border {
+    border-color: var(--border-color);
+    border-width: 1px;
+  }
+</style>

@@ -71,3 +71,29 @@
     </div>
   </div>
 </div>
+
+<style>
+  /* 
+  blockquotes
+
+  src:
+    - https://github.com/wikibonsai/jekyll-wikibonsai/blob/ddc978d53c2eb40f018060207a0760f6e2f42cb4/_sass/base/_markdown.scss#L206
+    - https://codepen.io/jimmycow/pen/LmjVaz
+    - https://codepen.io/JoeHastings/pen/MOdRVm
+  */
+  blockquote {
+    border-left: 0.25em solid var(--accent-color);
+  }
+  blockquote p {
+    padding-left: 1.5em;
+    margin: 0.75em;
+  }
+  blockquote:before {
+    color: var(--accent-color);
+    font-family: 'Special Elite', cursive;
+    font-size: 50px;
+    content: '“';
+    position: absolute;
+    padding: 10px;
+  }
+</style>

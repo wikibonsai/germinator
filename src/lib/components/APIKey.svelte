@@ -32,3 +32,9 @@
     <img id="helpApiKeyIcon" src="/img/icons/icons8-help-50.png" class="fill-current text-gray-600">
   </button>
 </div>
+
+<style>
+  .api-key-input-bg-color {
+    background-color: var(--accent-color);
+  }
+</style>

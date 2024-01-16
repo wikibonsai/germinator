@@ -55,3 +55,13 @@
     {$isDark ? '🌘' : '☀️'}
   </button>
 </div>
+
+<style>
+  .colors-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+</style>

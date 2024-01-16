@@ -124,3 +124,21 @@
   </div>
 </div>
 
+<style>
+  .dropdown-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px; /* Adjust the max-width as needed */
+  }
+
+  .dropdown-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .dropdown-label span {
+    margin-right: 1rem;
+    min-width: 80px; /* Ensure all labels have the same width */
+  }
+</style>

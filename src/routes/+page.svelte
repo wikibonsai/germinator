@@ -24,7 +24,7 @@
       <Loader></Loader>
     {/if}
     <!-- results -->
-    <div class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"
+    <div class="flex whitespace-pre-wrap box-border bg-white text-black p-4 mb-10 rounded-lg"
           style="display: {($resultMkdn === '') ? 'none' : 'flex'}">
       {#if $isMarkdown}
         {@html $resultMkdn}
