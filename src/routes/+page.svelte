@@ -3,7 +3,7 @@
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
   import { Transformer } from 'markmap-lib';
-  import * as markmap from 'markmap-view';
+  import { Markmap, loadCSS, loadJS } from 'markmap-view';
   import ApiKey from "$lib/components/APIKey.svelte";
   import AboutModal from "$lib/components/AboutModal.svelte";
   import MkdnFrmtModal from "$lib/components/MkdnFrmtModal.svelte";
@@ -81,7 +81,6 @@
     const transformer = new Transformer();
     const { root, features } = transformer.transform(resultMkdn);
     const { styles, scripts } = transformer.getUsedAssets(features);
-    const { Markmap, loadCSS, loadJS } = markmap;
     if (styles) loadCSS(styles);
     if (scripts) loadJS(scripts, { getMarkmap: () => markmap });
     // const options = {
@@ -89,7 +88,7 @@
     //   //style: id => 'div{padding-bottom:0.3em!important} g g:last-of-type div{font-weight:bold;} foreignObject{overflow:visible!important; transform:translateX(-1%)}',
     //   duration:0,
     //   style: id => 'div{padding-bottom:0.12em!important}',
-    //   spacingVertical: 8, // 5			
+    //   spacingVertical: 8, // 5
     //   //spacingHorizontal: 100,
     //   paddingX:15, // 8
     // }
