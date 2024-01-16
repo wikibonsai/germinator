@@ -2,6 +2,7 @@
   import { isMarkdown, resultMkdn } from '$lib/util/store';
   import ApiKey from "$lib/components/APIKey.svelte";
   import Header from "$lib/components/Header.svelte";
+  import Loader from "$lib/components/Loader.svelte";
   import MarkMap from "$lib/components/MarkMap.svelte";
   import Search from "$lib/components/Search.svelte";
   import ToolBox from "$lib/components/ToolBox.svelte";
@@ -20,12 +21,7 @@
     <Search on:loading={load}></Search>
     <ToolBox></ToolBox>
     {#if loading}
-      <!-- loader -->
-      <div id="loader" class="sprout-loader">
-        <div class="sprout"></div>
-        <div class="leaf left"></div>
-        <div class="leaf right"></div>
-      </div>
+      <Loader></Loader>
     {/if}
     <!-- results -->
     <div class="result-box whitespace-pre-wrap bg-white text-black input-border p-4 mb-10 rounded-lg"
