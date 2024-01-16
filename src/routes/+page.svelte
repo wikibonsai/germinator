@@ -11,9 +11,6 @@
   import MkdnFrmtModal from "$lib/components/MkdnFrmtModal.svelte";
   import { makeReal } from "$lib/util/ai";
 
-
-  // api key
-  let apiKey: string | null;
   // loading
   let loading: boolean = false;
   let userMsg: string = '';
@@ -274,7 +271,7 @@
     </div>
   </div>
 
-  <ApiKey bind:apiKey={apiKey}></ApiKey>
+  <ApiKey></ApiKey>
 
   <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
   <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}

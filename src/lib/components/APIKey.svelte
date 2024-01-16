@@ -1,10 +1,11 @@
 <script lang='ts'>
   import { onMount } from 'svelte';
-
-  export let apiKey: string | null;
+  import { apiKey } from '$lib/util/store';
 
   onMount(() => {
-    apiKey = localStorage.getItem('api-key');
+    $apiKey = localStorage.getItem('api-key')
+            ? localStorage.getItem('api-key')
+            : '';
   });
 </script>
 
@@ -15,7 +16,7 @@
       type="password"
       class="w-full px-3 py-1.5 bg-gray-200 text-sm border-none rounded focus:outline-none focus:bg-white focus:text-gray-800"
       placeholder="Your OpenAI API Key (risky but cool)"
-      bind:value={apiKey}
+      bind:value={$apiKey}
       on:focus={e => {
         e.target.type = 'text';
       }}
