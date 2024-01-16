@@ -4,10 +4,10 @@
   import { writable } from 'svelte/store';
   import { Transformer } from 'markmap-lib';
   import * as markmap from 'markmap-view';
-  import ApiKey from "$lib/APIKey.svelte";
-  import AboutModal from "$lib/AboutModal.svelte";
-  import MkdnFrmtModal from "$lib/MkdnFrmtModal.svelte";
-  import { makeReal } from "$lib/ai";
+  import ApiKey from "$lib/components/APIKey.svelte";
+  import AboutModal from "$lib/components/AboutModal.svelte";
+  import MkdnFrmtModal from "$lib/components/MkdnFrmtModal.svelte";
+  import { makeReal } from "$lib/util/ai";
 
 
   // loading
