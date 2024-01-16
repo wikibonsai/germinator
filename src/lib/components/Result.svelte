@@ -2,15 +2,24 @@
   import { onMount, tick } from 'svelte';
   import { Transformer } from 'markmap-lib';
   import { Markmap, loadCSS, loadJS } from 'markmap-view';
-  import { resultMkdn, resultMkmp } from '$lib/util/store';
+  import { isMarkdown, resultMkdn, resultMkmp } from '$lib/util/store';
 
   $: if ($resultMkdn && $resultMkdn.length > 0) {
-    generateMarkmap();
+    delayAndGenerate();
+  }
+  $: if (!$isMarkdown) {
+    delayAndGenerate();
   }
 
   onMount(() => {
     generateMarkmap();
   });
+
+  // note: markmap + svelte reactivity seems finicky...
+  //       ...add a delay to ensure markmap is drawn smoothly
+  function delayAndGenerate(): void {
+    setTimeout(() => generateMarkmap(), 100);
+  }
 
   // very helpful: https://svelte.dev/repl/9499dbcf3f3240e4af42e38ab19cc9ea?version=3.47.0
   async function generateMarkmap(): Promise<void> {
@@ -39,14 +48,20 @@
     }
     Markmap.create('#markmap', undefined, root);
   }
-
 </script>
 
-<svg id="markmap"
-     bind:this={$resultMkmp}
-     xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
-</svg>
+<div class="flex whitespace-pre-wrap box-border bg-white text-black p-4 mb-10 rounded-lg"
+     style="display: {($resultMkdn === '') ? 'none' : 'flex'}">
+  {#if $isMarkdown}
+    {@html $resultMkdn}
+  {:else}
+    <svg id="markmap"
+        bind:this={$resultMkmp}
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+    </svg>
+  {/if}
+</div>
 
 <style>
   svg {
