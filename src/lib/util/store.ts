@@ -1,13 +1,14 @@
+import type { Writable } from 'svelte/store';
 import { writable } from 'svelte/store';
 
 // colors
 
-export const isDark = writable(false);
-export const theme = writable('light');
+export const isDark: Writable<boolean> = writable(false);
+export const theme: Writable<string> = writable('light');
 
 // markdown format
 
-export const mkdnFrmt = writable({
+export const mkdnFrmt: Writable<Record<string, string>> = writable({
   indentKind: '',
   textKind: '',
   caseKind: '',
@@ -16,10 +17,10 @@ export const mkdnFrmt = writable({
 
 // api
 
-export const apiKey = writable('');
+export const apiKey: Writable<string> = writable('');
 
 // result
 
-export const isMarkdown = writable(true);
-export const resultMkdn = writable('');
-export const resultMkmp = writable(null);
+export const isMarkdown: Writable<boolean> = writable(true);
+export const resultMkdn: Writable<string> = writable('');
+export const resultMkmp: Writable<SVGElement | null> = writable(null);
