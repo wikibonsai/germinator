@@ -112,27 +112,27 @@
 <div class="flex justify-end items-center mb-4">
   <!-- About -->
   <button id="aboutButton"
-          class="rounded button-border hover:border-green-500 p-2 mr-2"
+          class="toolbar-button"
           title="Format"
           on:click={toggleAbtMdl}>
     <img id="helpIcon" alt="Format" class="w-6 h-6" src={helpIcon}>
   </button>
   <!-- Format Markdown -->
   <button id="mkdnFormatButton"
-          class="rounded button-border hover:border-green-500 p-2 mr-2"
+          class="toolbar-button"
           title="Format"
           on:click={toggleFrmtMdl}>
     <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6" src={mkdnFormatIcon}>
   </button>
   <!-- Format Result -->
   <button id="resultFormatButton"
-          class="rounded button-border hover:border-green-500 p-2 mr-2"
+          class="toolbar-button"
           on:click={toggleRsltFrmt}>
     <img id="resultFormatIcon" alt="Toggle Format" class="w-6 h-6" src={resultFormatIcon}>
   </button>
   <!-- Copy icon -->
   <button id="copyButton"
-          class="rounded button-border hover:border-green-500 p-2 mr-2"
+          class="toolbar-button"
           title="Copy"
           on:click={copy}>
     <img id="copyIcon" alt="Copy" class="w-6 h-6" src={copyIcon}>
@@ -143,8 +143,14 @@
 <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}></MkdnFrmtModal>
 
 <style>
-  .button-border {
+  .toolbar-button {
     border-color: var(--border-color);
+    border-radius: 0.25rem;
     border-width: 1px;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .toolbar-button:hover {
+    border-color: var(--border-color-hover);
   }
 </style>

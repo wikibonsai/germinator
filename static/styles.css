@@ -8,6 +8,8 @@
   --border-color: #b8d9b8;
   --accent-color:  #c7e6d3;
   --text-color: #5c5962;
+  /* same */
+  --border-color-hover: #22c55e;
 }
 
 /* Dark Theme */
@@ -16,6 +18,8 @@
   --border-color: #44434d;
   --accent-color: #44434d;
   --text-color: #e1e8e3;
+  /* same */
+  --border-color-hover: #22c55e;
 }
 
 body {
