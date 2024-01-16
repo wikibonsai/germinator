@@ -18,11 +18,6 @@
   let isMarkdown: Writable<boolean> = writable(true);
   let resultMkmp: any = null;
 
-  // mkdn format options
-  let indentKind: string | null = '';
-  let textKind: string | null = '';
-  let caseKind: string | null = '';
-  let whiteSpaceKind: string | null = '';
   // copied
   let isCopied: boolean = false;
 
@@ -40,12 +35,6 @@
   onMount(() => {
     // result format
     $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
-    // mkdn format
-    indentKind = localStorage.getItem('indent') ? localStorage.getItem('indent') : '2 spaces';
-    textKind = localStorage.getItem('text') ? localStorage.getItem('text') : '[[wiki text]]';
-    caseKind = localStorage.getItem('case') ? localStorage.getItem('case') : 'lower';
-    whiteSpaceKind = localStorage.getItem('whitespace') ? localStorage.getItem('whitespace') : 'kabob-space';
-    console.log('initial mkdn formatting: ', indentKind, textKind, caseKind, whiteSpaceKind);
   });
 
   // modals
@@ -273,10 +262,5 @@
   <ApiKey></ApiKey>
 
   <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
-  <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}
-                 bind:indentKind={indentKind}
-                 bind:textKind={textKind}
-                 bind:caseKind={caseKind}
-                 bind:whiteSpaceKind={whiteSpaceKind}>
-  </MkdnFrmtModal>
+  <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}></MkdnFrmtModal>
 </div>
