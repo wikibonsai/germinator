@@ -2,10 +2,12 @@
   import { onMount, tick } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { writable } from 'svelte/store';
+  import { theme } from '$lib/util/store';
   import { Transformer } from 'markmap-lib';
   import { Markmap, loadCSS, loadJS } from 'markmap-view';
   import ApiKey from "$lib/components/APIKey.svelte";
   import AboutModal from "$lib/components/AboutModal.svelte";
+  import Header from "$lib/components/Header.svelte";
   import MkdnFrmtModal from "$lib/components/MkdnFrmtModal.svelte";
   import { makeReal } from "$lib/util/ai";
 
@@ -15,9 +17,6 @@
   // loading
   let loading: boolean = false;
   let userMsg: string = '';
-  // theme colors
-  let isDark: boolean = false;
-  let theme: string = 'light';
   // result format
   let isMarkdown: Writable<boolean> = writable(true);
   let resultMkdn: string = '';
@@ -32,30 +31,17 @@
   let isCopied: boolean = false;
 
   // image sources based on theme color
-  $: favicon          = `./favicon-${theme}.png`;
-  $: logo             = `./img/logo/wikibonsai-${theme}.svg`;
-  $: helpIcon         = `./img/icons/icons8-help-50-${theme}.png`;
+  $: helpIcon         = `./img/icons/icons8-help-50-${$theme}.png`;
   $: resultFormatIcon = $isMarkdown
-                        ? `./img/icons/icons8-markdown-30-${theme}.png`
-                        : `./img/icons/icons8-mind-map-30-${theme}.png`;
-  $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${theme}.png`;
+                        ? `./img/icons/icons8-markdown-30-${$theme}.png`
+                        : `./img/icons/icons8-mind-map-30-${$theme}.png`;
+  $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${$theme}.png`;
   // copy
-  $: copyIcon         = isCopied ? './img/icons/icons8-check-30.png' : `./img/icons/icons8-copy-30-${theme}.png`;
-  // colors
-  $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side
-    if (isDark) {
-      theme = 'dark';
-      document.body.classList.add('dark');
-    } else {
-      theme = 'light';
-      document.body.classList.remove('dark');
-    }
-  }
+  $: copyIcon         = isCopied
+                        ? './img/icons/icons8-check-30.png'
+                        : `./img/icons/icons8-copy-30-${$theme}.png`;
 
   onMount(() => {
-    const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const storedIsDark: string | null = localStorage.getItem('is-dark');
-    isDark = (storedIsDark !== null) ? (storedIsDark === 'true') : prefersDarkScheme;
     // result format
     $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
     // mkdn format
@@ -220,19 +206,8 @@
 <svelte:window on:keydown={submit} />
 
 <div class="font-sans mx-10">
-  <!-- <div style="display: contents">%sveltekit.body%</div> -->
   <div class="container mx-auto p-4">
-    <div class="flex items-center mb-2 p-10 justify-center sm:justify-start">
-      <a href="https://github.com/wikibonsai/wikibonsai">
-        <img id="wikibonsai-logo" alt="Logo" width="75px" height="60px" class="mr-4" src={logo}/>
-      </a>
-      <h1 class="text-4xl font-semibold my-0 mx-4 hidden sm:block">
-        Germinator
-      </h1>
-      <button id="colorsButton" class="colors-button" on:click={toggleTheme}>
-        {isDark ? '🌘' : '☀️'}
-      </button>
-    </div>
+    <Header></Header>
     <div class="flex items-center gap-2.5">
       <input
         id="input"
