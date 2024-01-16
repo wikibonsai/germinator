@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import { isDark, theme } from '$lib/util/store';
 
-
   $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side
     if ($isDark) {
       $theme = 'dark';
@@ -34,7 +33,7 @@
 
   function toggleTheme(): void {
     $isDark = !$isDark;
-    localStorage.setItem('is-dark', String(isDark));
+    localStorage.setItem('is-dark', String($isDark));
   }
 </script>
 
