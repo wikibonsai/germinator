@@ -23,4 +23,4 @@ export const apiKey: Writable<string> = writable('');
 
 export const isMarkdown: Writable<boolean> = writable(true);
 export const resultMkdn: Writable<string> = writable('');
-export const resultMkmp: Writable<SVGElement | null> = writable(null);
+export const resultMkmp: Writable<SVGSVGElement | null> = writable(null);

@@ -45,7 +45,7 @@ a {
   top: 20px;
   right: 20px;
   font-size: 18px;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .toggle-button {
@@ -193,9 +193,4 @@ select {
 
 .result-box {
   display: flex;
-}
-
-.markmap > svg {
-  width: 100%;
-  height: 300px;
 }
