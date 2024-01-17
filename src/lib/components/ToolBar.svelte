@@ -41,6 +41,25 @@
 
   // copy (markdown) Button
 
+  function copied(): void {
+    isCopied = true;
+    setTimeout(function() {
+      isCopied = false;
+    }, 2000);
+  }
+
+  function copy(): void {
+    if ($isMarkdown) {
+      copyMkdnToClipBoard($resultMkdn.all);
+    } else {
+      const width = 800;
+      const height = 800;
+      if ($resultMkmp !== null) {
+        svgToPngAndCopyToClipboard($resultMkmp, width, height);
+      }
+    }
+  }
+
   async function svgToPngAndCopyToClipboard(svgElement: SVGElement, width: number, height: number): void {
     const canvas = document.createElement('canvas');
     canvas.width = width;
@@ -62,7 +81,7 @@
               })
             ]).then(() => {
               if (blob) {
-                console.debug('Semantict tree PNG copied to clipboard');
+                console.debug('Semantic tree PNG copied to clipboard');
                 copied();
               }
             })
@@ -87,25 +106,6 @@
       .catch(err => {
         console.error('Error in copying text: ', err);
       });
-  }
-
-  function copied(): void {
-    isCopied = true;
-    setTimeout(function() {
-      isCopied = false;
-    }, 2000);
-  }
-
-  function copy(): void {
-    if ($isMarkdown) {
-      copyMkdnToClipBoard($resultMkdn.descendants);
-    } else {
-      const width = 800;
-      const height = 800;
-      if ($resultMkmp !== null) {
-        svgToPngAndCopyToClipboard($resultMkmp, width, height);
-      }
-    }
   }
 </script>
 
