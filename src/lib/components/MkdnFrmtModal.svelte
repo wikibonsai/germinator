@@ -59,14 +59,14 @@
       <div class="flex justify-between items-center pb-3">
         <p class="text-2xl font-bold">Markdown Formatting</p>
         <button class="about-modal-close cursor-pointer z-50" on:click={closeModal}>
-          <svg class="fill-current" styles="color: var(--text-color);" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+          <svg class="title-color fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
             <path d="M16.292 2.292l-1.584-1.584-6.708 6.708-6.708-6.708-1.584 1.584 6.708 6.708-6.708 6.708 1.584 1.584 6.708-6.708 6.708 6.708 1.584-1.584-6.708-6.708z"></path>
           </svg>
         </button>
       </div>
       <!--Body-->
       <!-- todo: bind:group? https://svelte.dev/docs/element-directives#bind-group -->
-      <form id="toolboxForm" class="space-y-4">
+      <form class="space-y-4">
         <div class="dropdown-container">
           <!-- Indent Dropdown -->
           <div class="dropdown-label">
@@ -125,6 +125,10 @@
 </div>
 
 <style>
+  .title-color {
+    color: var(--text-color);
+  }
+
   .dropdown-container {
     display: flex;
     flex-direction: column;
