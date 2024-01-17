@@ -9,15 +9,19 @@
   const dispatch: EventDispatcher<any> = createEventDispatcher();
 
   async function goai() {
+    if ($apiKey === '' ) {
+      alert('Please enter an OpenAI API key');
+      return;
+    }
     dispatch('loading', true);
     $resultMkdn.ancestors = '';
     $resultMkdn.descendants = '';
     $resultMkdn.atom = '';
     if ($apiKey === '') { alert('Please enter an OpenAI API key'); return; }
     const result: string = await makeReal(
+      $apiKey,
       userMsg,
       {
-        apikey: $apiKey,
         indent: $mkdnFrmt.indentKind,
         text: $mkdnFrmt.textKind,
         case: $mkdnFrmt.caseKind,

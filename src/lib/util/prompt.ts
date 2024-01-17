@@ -166,21 +166,23 @@ Your goal here is to produce a semantic node that provides a well-rounded repres
 `;
 
 
-export function formatPrompt(
-  text: string,
-  cap: string,  // 'capitalize' (can't use 'case' keyword)
-  indent: string,
-  whitespace: string,
-  attrs: string,
-): string {
+export function formatPrompt(opts: any): string {
+  const text: string = opts.text;
+  const cap: string = opts.case; // 'capitalize' (can't use 'case' keyword)
+  const indent: string = opts.indent;
+  const whitespace: string = opts.whitespace;
+  const attrs: string = opts.attrs;
   // togglable formatting instructions
   const instructCaml: string = `
-Make sure to pretty-print CAML attributes such that the colons all line up together, like so:
+Align the colons in CAML attributes., like so:
 : short       :: ''
 : longer-text :: ''`;
   const instructYaml: string = `
 So, do not use colon prefixes and bookmark the node content between dashed lines (---) -- but don't forget the original separators for the final result either.
-And make sure to surround [[wikilinks]] with quotes like this: "[[wikilinks]]".
+And make sure to surround [[wikilinks]] that appear between YAML separators (---) with quotes like this:
+---
+attribute: "[[wikilinks]]"
+---
 `;
   const instructWiki: string = `
 Also, be sure to surround each entry in the tree with double square brackets [[like this]] to make them wiki-friendly.`;
@@ -205,6 +207,8 @@ followed by valid markdown for the semantic node,
 followed by a "${SEPARATOR}",
 followed by valid markdown for the semantic tree that represents a subtree whose root is the given concept.
 
+Do not add any labels, just send back the results for each of the three parts in the order specified above. Do not forget the separators between each entity. And be careful to only apply the following formatting rules to the appropriate entity that they address.
+
 
 FORMAT::MARKDOWN::SEMANTIC ANCESTORS:
 
@@ -217,18 +221,22 @@ Make sure to format the markdown of the semantic ancestors using:
 FORMAT::MARKDOWN::SEMANTIC NODE:
 
 Make sure to format the markdown for the features of the semantic node using:
+- ${cap} text.
 - ${attrs}
-
+- make sure any semantic attributes with one item, appear on the same line as the attribute.
+- make sure any semantic attributes with more than one item, place each item on its own line with dash bullet points between items (- ).
 ${attrsFrmt}
 
 
 FORMAT::MARKDOWN::SEMANTIC TREE:
 
 Make sure to format the markdown of the semantic tree using:
-- ${indent} for each level.
 - ${cap} case each word.
 - whitespace between words should be converted to '${whitespace}'.
-
+- ${indent} for each level.
 ${wikiFrmt}
+
 `;
 }
+
+export const PEPTALK: string = 'Go get \'em tiger!';
