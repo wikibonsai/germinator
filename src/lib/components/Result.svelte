@@ -19,6 +19,6 @@
   {#if $isMarkdown}
     {@html $resultMkdn.descendants}
   {:else}
-    <MarkMap markdown={$resultMkdn.descendants}></MarkMap>
+    <MarkMap markdown={$resultMkdn.descendants} bind:markmap={$resultMkmp}></MarkMap>
   {/if}
 </div>

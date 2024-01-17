@@ -5,7 +5,7 @@
   import { isMarkdown, resultMkdn, resultMkmp } from '$lib/util/store';
 
   export let markdown: string;
-  let markmap: SVGSVGElement | null;
+  export let markmap: SVGSVGElement | null;
 
   $: if (markdown && markdown.length > 0) {
     generateMarkmap();
@@ -19,7 +19,7 @@
   async function generateMarkmap(): Promise<void> {
     // setup
     const transformer = new Transformer();
-    const { root, features } = transformer.transform($resultMkdn.descendants);
+    const { root, features } = transformer.transform(markdown);
     // styling
     // const { styles, scripts } = transformer.getUsedAssets(features);
     // if (styles) loadCSS(styles);
