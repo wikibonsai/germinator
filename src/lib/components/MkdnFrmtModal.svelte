@@ -18,6 +18,9 @@
     $mkdnFrmt.whiteSpaceKind = localStorage.getItem('whitespace')
                              ? localStorage.getItem('whitespace')
                              : 'kabob-space';
+    $mkdnFrmt.attrKind = localStorage.getItem('attrs')
+                       ? localStorage.getItem('attrs')
+                       : 'caml';
     console.debug('initial mkdn formatting: ', $mkdnFrmt, $mkdnFrmt.indentKind, $mkdnFrmt.textKind, $mkdnFrmt.caseKind, $mkdnFrmt.whiteSpaceKind);
   });
 
@@ -34,6 +37,7 @@
     localStorage.setItem('text', $mkdnFrmt.textKind);
     localStorage.setItem('case', $mkdnFrmt.caseKind);
     localStorage.setItem('whitespace', $mkdnFrmt.whiteSpaceKind);
+    localStorage.setItem('attrs', $mkdnFrmt.attrKind);
     console.debug('updated mkdn formatting: ', $mkdnFrmt, $mkdnFrmt.indentKind, $mkdnFrmt.textKind, $mkdnFrmt.caseKind, $mkdnFrmt.whiteSpaceKind);
     toggleModal();
   };
@@ -108,6 +112,17 @@
               <option value=" ">white space</option>
               <option value="-">kabob-space</option>
               <option value="_">snake_space</option>
+            </select>
+          </div>
+          <!-- Attributes Dropdown -->
+          <div class="dropdown-label">
+            <span>Attributes</span>
+            <select id="attrSelect"
+                    class="block appearance-none w-full bg-white text-black border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    bind:value={$mkdnFrmt.attrKind}>
+              <option value="caml">CAML</option>
+              <option value="yaml">YAML</option>
+              <option value="text">text</option>
             </select>
           </div>
         </div>

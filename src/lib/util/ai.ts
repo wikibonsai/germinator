@@ -1,6 +1,7 @@
 // courtesy: https://github.com/tldraw/make-real-starter
 
-import { SYSTEM_PROMPT } from './prompt';
+import { SEPARATOR } from './const';
+import { formatPrompt, SYSTEM_PROMPT } from './prompt';
 
 
 async function fetchFromOpenAi(
@@ -36,11 +37,7 @@ export async function makeReal(userMessage: string, opts: any) {
     return;
   }
   // first, we build the prompt that we'll send to openai.
-  let formatPrompt = `\n\nMARKDOWN FORMATTING:\nMake sure to format the markdown of the semantic tree using ${opts.indent} for each level, make each word begin with ${opts.case} case, and whitespace between words should be converted to '${opts.whitespace}'.`;
-  if (opts.text === '[[wiki text]]') {
-    formatPrompt += '\n\nAlso, be sure to surround each entry in the tree with double square brackets [[like this]] to make them wiki-friendly.'
-  }
-  const seedPrompt = SYSTEM_PROMPT + formatPrompt;
+  const seedPrompt: string = SYSTEM_PROMPT + formatPrompt(opts.text, opts.case, opts.indent, opts.whitespace, opts.attrs);
   let chatGptResponse;
   try {
     console.debug('seed prompt:', seedPrompt);

@@ -9,10 +9,13 @@ export const theme: Writable<string> = writable('light');
 // markdown format
 
 export const mkdnFrmt: Writable<Record<string, string>> = writable({
+  // tree
   indentKind: '',
   textKind: '',
   caseKind: '',
-  whiteSpaceKind: ''
+  whiteSpaceKind: '',
+  // attrs
+  attrKind: '',
 });
 
 // api
@@ -24,6 +27,7 @@ export const apiKey: Writable<string> = writable('');
 export const isMarkdown: Writable<boolean> = writable(true);
 
 export const resultMkdn: Writable<Record<string, string>> = writable({
+  all: '',
   ancestors: '',
   descendants: '',
   atom: '',

@@ -1,6 +1,7 @@
 <script lang='ts'>
   import type { EventDispatcher } from 'svelte';
   import { createEventDispatcher } from 'svelte';
+  import { SEPARATOR } from '$lib/util/const';
   import { apiKey, mkdnFrmt, resultMkdn } from '$lib/util/store';
   import { makeReal } from "$lib/util/ai";
 
@@ -9,9 +10,11 @@
 
   async function goai() {
     dispatch('loading', true);
+    $resultMkdn.ancestors = '';
     $resultMkdn.descendants = '';
+    $resultMkdn.atom = '';
     if ($apiKey === '') { alert('Please enter an OpenAI API key'); return; }
-    $resultMkdn.descendants = await makeReal(
+    const result: string = await makeReal(
       userMsg,
       {
         apikey: $apiKey,
@@ -19,8 +22,17 @@
         text: $mkdnFrmt.textKind,
         case: $mkdnFrmt.caseKind,
         whitespace: $mkdnFrmt.whiteSpaceKind,
+        attrs: $mkdnFrmt.attrKind,
       },
     );
+    const resultStrippedBackTicks: string = result.replace(/```/g, '');
+    const results: string[] = resultStrippedBackTicks.split(SEPARATOR);
+    console.debug('result string: ', result);
+    console.debug('result array: ', results);
+    $resultMkdn.all = resultStrippedBackTicks.replace(new RegExp(SEPARATOR, 'g'), '\n\n');
+    $resultMkdn.ancestors = results[0];
+    $resultMkdn.atom = results[1];
+    $resultMkdn.descendants = results[2];
     dispatch('loading', false);
   }
 
