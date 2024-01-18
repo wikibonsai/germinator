@@ -15,7 +15,7 @@
     const link: HTMLLinkElement = document.querySelector("[rel='icon']") || createFaviconLink();
     link.href = favicon;
   }
-  $: favicon          = `./favicon-${$theme}.png`;
+  $: favicon          = `/favicon-${$theme}.png`;
   
   onMount(() => {
     const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
