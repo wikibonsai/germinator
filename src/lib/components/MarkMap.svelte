@@ -2,13 +2,14 @@
   import { onMount } from 'svelte';
   import { Transformer } from 'markmap-lib';
   import { Markmap, loadCSS, loadJS } from 'markmap-view';
-  import { isMarkdown, resultMkdn, resultMkmp } from '$lib/util/store';
 
   export let markdown: string;
   export let markmap: SVGSVGElement | null;
 
   $: if (markdown && markdown.length > 0) {
-    generateMarkmap();
+    if (markmap) {
+      generateMarkmap();
+    }
   }
 
   onMount(() => {
