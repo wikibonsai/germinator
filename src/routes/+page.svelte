@@ -1,28 +1,39 @@
-<script lang='ts'>
-  import ApiKey from "$lib/components/APIKey.svelte";
-  import Header from "$lib/components/Header.svelte";
-  import Loader from "$lib/components/Loader.svelte";
-  import Result from "$lib/components/Result.svelte";
-  import Search from "$lib/components/Search.svelte";
-  import ToolBar from "$lib/components/ToolBar.svelte";
-
-  let loading: boolean = false;
-
-  function load(event: CustomEvent<boolean>) {
-    loading = event.detail;
-  }
-</script>
-
-<div class="font-sans mx-10">
-  <div class="container mx-auto p-4">
-    <!-- colors handled in header -->
-    <Header></Header>
-    <Search on:loading={load}></Search>
-    <ToolBar></ToolBar>
-    {#if loading}
-      <Loader></Loader>
-    {/if}
-    <Result></Result>
-  </div>
-  <ApiKey></ApiKey>
+<div class="main">
+  <!-- <div class="container"> -->
+    <a href="/germ">
+      <img src="/img/chatgpt--come-with-me-if-you-want-to-grow.png" alt="Come with me if you want to grow.">
+      <!-- <button class="btn">Come with me if you want to grow.</button> -->
+    </a>
+  <!-- </div> -->
 </div>
+
+<style>
+  .main {
+    display: flex;
+    align-items: center;     /* Align vertically */
+    justify-content: center; /* Align horizontally */
+    min-height: 100vh;       /* Full viewport height */
+    font-family: sans-serif; /* Tailwind's 'font-sans' uses a specific sans-serif font stack */
+    margin-left: 2.5rem;     /* Assuming 1rem = 4 units, so 10 units = 2.5rem */
+    margin-right: 2.5rem;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  .btn {
+    background: var(--btn-color);
+    color: white;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .btn:hover {
+    background: var(--btn-color--hover);
+  }
+</style>
