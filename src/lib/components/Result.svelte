@@ -4,17 +4,17 @@
 </script>
 
 <!-- ancestry -->
-<div class="flex whitespace-pre-wrap box-border bg-white text-black p-4 mb-10 rounded-lg"
+<div class="result-box box-border"
      style="display: {($resultMkdn.ancestors === '') ? 'none' : 'flex'}">
   {@html $resultMkdn.ancestors}
 </div>
 <!-- atom -->
-<div class="flex whitespace-pre-wrap box-border bg-white text-black p-4 mb-10 rounded-lg"
+<div class="result-box box-border"
      style="display: {($resultMkdn.atom === '') ? 'none' : 'flex'}">
   {@html $resultMkdn.atom}
 </div>
 <!-- subtree -->
-<div class="flex whitespace-pre-wrap box-border bg-white text-black p-4 mb-10 rounded-lg"
+<div class="result-box box-border"
      style="display: {($resultMkdn.descendants === '') ? 'none' : 'flex'}">
   {#if $isMarkdown}
     {@html $resultMkdn.descendants}
@@ -22,3 +22,15 @@
     <MarkMap markdown={$resultMkdn.descendants} bind:markmap={$resultMkmp}></MarkMap>
   {/if}
 </div>
+
+<style>
+  .result-box {
+    display: flex;
+    white-space: pre-wrap;
+    background-color: var(--box-background);
+    color: var(--text-color);
+    border-radius: 0.5rem;
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+  }
+</style>

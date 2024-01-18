@@ -35,6 +35,6 @@
 
 <style>
   .api-key-input-bg-color {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color-light);
   }
 </style>

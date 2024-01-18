@@ -113,24 +113,25 @@
   <!-- About -->
   <button id="aboutButton"
           class="toolbar-button"
-          title="Format"
+          title="About"
           on:click={toggleAbtMdl}>
     <img id="helpIcon" alt="Format" class="w-6 h-6" src={helpIcon}>
   </button>
   <!-- Format Markdown -->
   <button id="mkdnFormatButton"
           class="toolbar-button"
-          title="Format"
+          title="Markdown Format"
           on:click={toggleFrmtMdl}>
     <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6" src={mkdnFormatIcon}>
   </button>
   <!-- Format Result -->
   <button id="resultFormatButton"
           class="toolbar-button"
+          title="Result Format"
           on:click={toggleRsltFrmt}>
     <img id="resultFormatIcon" alt="Toggle Format" class="w-6 h-6" src={resultFormatIcon}>
   </button>
-  <!-- Copy icon -->
+  <!-- Copy -->
   <button id="copyButton"
           class="toolbar-button"
           title="Copy"
@@ -144,13 +145,13 @@
 
 <style>
   .toolbar-button {
-    border-color: var(--border-color);
+    border-color: var(--accent-color-dark);
     border-radius: 0.25rem;
     border-width: 1px;
     padding: 0.5rem;
     margin-right: 0.5rem;
   }
   .toolbar-button:hover {
-    border-color: var(--border-color-hover);
+    border-color: var(--accent-color-light);
   }
 </style>

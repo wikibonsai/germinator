@@ -55,11 +55,42 @@
     id="input"
     type="text"
     placeholder="tree (linguistics)"
-    class="box-border text-black focus:outline-green-500 p-2 mb-4 w-full rounded-lg"
+    class="input box-border"
     bind:value={userMsg}>
   <button id="growButton"
-          class="bg-green-500 text-white px-4 py-2 mb-4 rounded-lg hover:bg-green-600"
+          class="btn"
           on:click={goai}>
     Grow
   </button>
 </div>
+
+<style>
+  .input {
+    color: var(--text-color);
+    background-color: var(--box-background);
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+
+  .input:focus {
+    outline: 2px solid var(--hover-color);
+  }
+
+  .btn {
+    background: var(--btn-color);
+    color: white;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .btn:hover {
+    background: var(--btn-color--hover);
+  }
+</style>

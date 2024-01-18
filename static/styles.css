@@ -4,22 +4,28 @@
 
 /* Base (Light Theme) */
 :root {
-  --background-color: #e4f3ea;
-  --border-color: #b8d9b8;
-  --accent-color:  #c7e6d3;
   --text-color: #5c5962;
+  --background-color: #e4f3ea;
+  --box-background: #fff;
+  --accent-color-light: #D1ECDC;
+  --accent-color-dark: #b6d1c1;
   /* same */
-  --border-color-hover: #22c55e;
+  --hover-color: #22c55e;
+  --btn-color: #22c55e;
+  --btn-color--hover: #16a34a;
 }
 
 /* Dark Theme */
 .dark {
-  --background-color: #27262b;
-  --border-color: #44434d;
-  --accent-color: #44434d;
   --text-color: #e1e8e3;
+  --background-color: #27262b;
+  --accent-color-light: #44434d;
+  --accent-color-dark: #313036;
+  --box-background: #313036; /* accent 2 */
   /* same */
-  --border-color-hover: #22c55e;
+  --hover-color: #22c55e;
+  --btn-color: #22c55e;
+  --btn-color--hover: #16a34a;
 }
 
 body {
@@ -32,8 +38,10 @@ a {
   text-decoration: underline !important;
 }
 
+/* uniform element patterns */
+
 .box-border {
-  border-color: var(--border-color);
+  border-color: var(--accent-color-light);
   border-width: 2px;
 }
 

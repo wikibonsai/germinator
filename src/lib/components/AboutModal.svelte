@@ -82,14 +82,14 @@
     - https://codepen.io/JoeHastings/pen/MOdRVm
   */
   blockquote {
-    border-left: 0.25em solid var(--accent-color);
+    border-left: 0.25em solid var(--accent-color-light);
   }
   blockquote p {
     padding-left: 1.5em;
     margin: 0.75em;
   }
   blockquote:before {
-    color: var(--accent-color);
+    color: var(--accent-color-light);
     font-family: 'Special Elite', cursive;
     font-size: 50px;
     content: '“';
