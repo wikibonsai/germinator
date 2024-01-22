@@ -122,7 +122,7 @@
                     bind:value={$mkdnFrmt.attrKind}>
               <option value="caml">CAML</option>
               <option value="yaml">YAML</option>
-              <option value="text">text</option>
+              <!-- <option value="text">text</option> -->
             </select>
           </div>
         </div>
