@@ -35,8 +35,8 @@
     </button>
     <nav class={isMenuOpen ? 'nav open' : 'nav'}>
       <div class="nav-items">
+        <a href={localBonsai} class="nav-link">Bonsais</a>
         <a href={localGerm} class="nav-link">Germinator</a>
-        <a href={localBonsai} class="nav-link">Maps</a>
         <a href="https://github.com/wikibonsai/" class="nav-link">GitHub</a>
       </div>
       <button class="btn btn-pad">sign up</button>

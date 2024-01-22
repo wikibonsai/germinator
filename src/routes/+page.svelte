@@ -118,7 +118,7 @@
     <span class="description-body description-body-col">
       <TendNTinkerCards content={
         {
-          'Maps': [localBonsai, 'Browse some example knowledge bonsais.'],
+          'Bonsais': [localBonsai, 'Browse some example knowledge bonsais.'],
           'The Germinator': [localGerm, 'Query an LLM to generate conceptual analyses.'],
           'Markdown': [appVSCodeWikiBonsai, 'Tend your markdown notes in VSCode.'],
           // 'CLI': [appTendrCLI, 'Tend your markdown notes in the CLI.'],
