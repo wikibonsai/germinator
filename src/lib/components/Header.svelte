@@ -25,10 +25,7 @@
 <svelte:window on:click={handleClickOutside} />
 
 <header class="header">
-  <div class="logo-container">
-    <Logo size={'small'}></Logo>
-    <div class="logo">WikiBonsai</div>
-  </div>
+  <Logo size={'small'} wTxt={true}></Logo>
   <div class="nav-container">
     <button class="hamburger" on:click={toggleMenu}>
       <div class="line"></div>
@@ -84,17 +81,6 @@
     height: 3px;
     background-color: var(--text-color);
     margin: 4px 0;
-  }
-
-  .logo {
-    font-size: 1.5rem;
-  }
-
-  .logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
   }
 
   .nav {

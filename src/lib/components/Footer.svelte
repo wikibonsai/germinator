@@ -9,10 +9,7 @@
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-column">
-      <div class="logo-container">
-        <Logo size={'small'}></Logo>
-        <div class="logo">WikiBonsai</div>
-      </div>
+      <Logo size={'small'} wTxt={true}></Logo>
       <div class="connect-container">
         <div class="social-links">
           <a href="https://github.com/wikibonsai" class="social-link" aria-label="GitHub">
@@ -117,17 +114,6 @@
     color: var(--accent-text-color);
     font-weight: 600;
     margin-bottom: 0.5rem;
-  }
-
-  .logo {
-    font-size: 1.5rem;
-  }
-
-  .logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
   }
 
   .social-link {
