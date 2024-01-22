@@ -8,7 +8,7 @@
   import Header from '$lib/components/Header.svelte';
   import MarkMap from '$lib/components/MarkMap.svelte';
   import TendNTinkerCards from '$lib/components/landing/TendNTinkerCards.svelte';
-  // import VinesSVG from '$lib/components/landing/VinesSVG.svelte';
+  import VinesSVG from '$lib/components/landing/VinesSVG.svelte';
   import WorkflowsShowCase from '$lib/components/landing/WorkflowsShowCase.svelte';
 
   export let data: PageData;
@@ -44,7 +44,7 @@
       <BonsaisDropDown title={'bonsais'} items={data.bonsais}></BonsaisDropDown>
     </div>
   </section>
-  <!-- <VinesSVG></VinesSVG> -->
+  <VinesSVG></VinesSVG>
   <!-- workflows section -->
   <section class="description">
     <h1 class="description-title">Workflows</h1>

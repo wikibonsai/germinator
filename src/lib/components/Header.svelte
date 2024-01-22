@@ -65,12 +65,13 @@
   }
 
   .header {
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--accent-color-light);
     position: sticky;
     top: 0;
     height: 10vh;
-    background-color: var(--background-color);
-    border-bottom: 1px solid var(--accent-color-light);
     display: flex;
+    z-index: 2;
     padding: 1rem;
     /* small */
     justify-content: space-between;

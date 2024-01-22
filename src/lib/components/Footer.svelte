@@ -74,11 +74,12 @@
 
   .footer {
     background-color: var(--accent-color-light);
-    padding: 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    z-index: 2;
+    padding: 1rem 0;
   }
 
   .footer-column {
