@@ -2,30 +2,27 @@
 
 /* base */
 
-/* Base (Light Theme) */
 :root {
+  --hover-color: #22c55e;
+  --btn-color: #22c55e;
+  --btn-color--hover: #16a34a;
+  /* light */
   --text-color: #5c5962;
+  --accent-text-color: #918f96;
   --background-color: #e4f3ea;
   --box-background: #fff;
   --accent-color-light: #D1ECDC;
   --accent-color-dark: #b6d1c1;
-  /* same */
-  --hover-color: #22c55e;
-  --btn-color: #22c55e;
-  --btn-color--hover: #16a34a;
 }
 
-/* Dark Theme */
+/* dark theme */
 .dark {
   --text-color: #e1e8e3;
+  --accent-text-color: #959f99;
   --background-color: #27262b;
   --accent-color-light: #44434d;
   --accent-color-dark: #313036;
-  --box-background: #313036; /* accent 2 */
-  /* same */
-  --hover-color: #22c55e;
-  --btn-color: #22c55e;
-  --btn-color--hover: #16a34a;
+  --box-background: #313036;
 }
 
 body {
@@ -34,11 +31,27 @@ body {
 }
 
 a {
-  color: #0066cc !important;
-  text-decoration: underline !important;
+  color: #00CC92;
+}
+
+code {
+  background-color: var(--accent-color-light);
 }
 
 /* uniform element patterns */
+
+/* btn */
+
+.img-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-btn:hover {
+  transform: scale(1.15);
+  /* box-shadow: 0 4px 8px var(--hover-color); */
+}
+
+/* box */
 
 .box-border {
   border-color: var(--accent-color-light);

@@ -1,9 +1,10 @@
 <script lang='ts'>
   import ApiKey from "$lib/components/APIKey.svelte";
-  import Header from "$lib/components/Header.svelte";
   import Loader from "$lib/components/Loader.svelte";
+  import Logo from '$lib/components/Logo.svelte';
   import Result from "$lib/components/Result.svelte";
   import Search from "$lib/components/Search.svelte";
+  import Theme from '$lib/components/Theme.svelte';
   import ToolBar from "$lib/components/ToolBar.svelte";
 
   let loading: boolean = false;
@@ -15,8 +16,13 @@
 
 <div class="main">
   <div class="container">
-    <!-- colors handled in header -->
-    <Header></Header>
+    <div class="flex items-center mb-2 p-2 justify-center sm:justify-start">
+      <Logo></Logo>
+      <h1 class="text-4xl font-semibold my-0 mx-4 hidden sm:block">
+        Germinator
+      </h1>
+      <Theme></Theme>
+    </div>
     <Search on:loading={load}></Search>
     <ToolBar></ToolBar>
     {#if loading}

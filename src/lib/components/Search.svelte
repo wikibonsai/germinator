@@ -1,7 +1,7 @@
 <script lang='ts'>
   import type { EventDispatcher } from 'svelte';
   import { createEventDispatcher } from 'svelte';
-  import { SEPARATOR } from '$lib/util/const';
+  import { AI_ERROR, SEPARATOR } from '$lib/util/const';
   import { apiKey, mkdnFrmt, resultMkdn } from '$lib/util/store';
   import { makeReal } from "$lib/util/ai";
 
@@ -29,14 +29,18 @@
         attrs: $mkdnFrmt.attrKind,
       },
     );
-    const resultStrippedBackTicks: string = result.replace(/```/g, '');
-    const results: string[] = resultStrippedBackTicks.split(SEPARATOR);
-    console.debug('result string: ', result);
-    console.debug('result array: ', results);
-    $resultMkdn.all = resultStrippedBackTicks.replace(new RegExp(SEPARATOR, 'g'), '\n\n');
-    $resultMkdn.ancestors = results[0];
-    $resultMkdn.atom = results[1];
-    $resultMkdn.descendants = results[2];
+    if (result.indexOf(AI_ERROR) === 0) {
+      alert(result);
+    } else {
+      const resultStrippedBackTicks: string = result.replace(/```/g, '');
+      const results: string[] = resultStrippedBackTicks.split(SEPARATOR);
+      console.debug('result string: ', result);
+      console.debug('result array: ', results);
+      $resultMkdn.all = resultStrippedBackTicks.replace(new RegExp(SEPARATOR, 'g'), '\n\n');
+      $resultMkdn.ancestors = results[0];
+      $resultMkdn.atom = results[1];
+      $resultMkdn.descendants = results[2];
+    }
     dispatch('loading', false);
   }
 
@@ -71,8 +75,8 @@
     box-sizing: border-box;
     width: 100%;
     border-radius: 0.5rem;
-    margin-bottom: 1rem;
     padding: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .input:focus {
@@ -83,11 +87,8 @@
     background: var(--btn-color);
     color: white;
     border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
     margin-bottom: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 
   .btn:hover {

@@ -15,11 +15,16 @@
 </div>
 <!-- subtree -->
 <div class="result-box box-border"
+     class:stretch-markmap={!$isMarkdown}
      style="display: {($resultMkdn.descendants === '') ? 'none' : 'flex'}">
   {#if $isMarkdown}
     {@html $resultMkdn.descendants}
   {:else}
-    <MarkMap markdown={$resultMkdn.descendants} bind:markmap={$resultMkmp}></MarkMap>
+    <MarkMap markdown={$resultMkdn.descendants}
+             bind:markmap={$resultMkmp}
+             height={85}
+             width={75}>
+    </MarkMap>
   {/if}
 </div>
 
@@ -32,5 +37,9 @@
     border-radius: 0.5rem;
     margin-bottom: 2.5rem;
     padding: 1rem;
+  }
+
+  .stretch-markmap {
+    min-height: 800px;
   }
 </style>

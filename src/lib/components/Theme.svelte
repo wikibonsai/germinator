@@ -16,7 +16,7 @@
     link.href = favicon;
   }
   $: favicon          = `/favicon-${$theme}.png`;
-  
+
   onMount(() => {
     const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const storedIsDark: string | null = localStorage.getItem('is-dark');
@@ -37,8 +37,8 @@
 </script>
 
 <button id="colorsButton"
-          class="colors-button"
-          on:click={toggleTheme}>
+        class="colors-button"
+        on:click={toggleTheme}>
   {$isDark ? '🌘' : '☀️'}
 </button>
 

@@ -1,5 +1,6 @@
 // courtesy: https://github.com/tldraw/make-real-starter
 
+import { AI_ERROR } from './const';
 import { formatPrompt, SYSTEM_PROMPT, PEPTALK } from './prompt';
 
 
@@ -46,12 +47,16 @@ export async function makeReal(apiKey: string, userMessage: string, opts: any): 
         ],
       },
     );
-    chatGptResponse = openAiResponse.choices[0].message.content;
-    console.debug('chatgpt: ', openAiResponse);
-    console.debug('chatgpt response: ', chatGptResponse);
+    if (openAiResponse.error) {
+      chatGptResponse = openAiResponse.error.message;
+    } else {
+      chatGptResponse = openAiResponse.choices[0].message.content;
+    }
+    console.debug('chatgpt response payload: ', openAiResponse);
+    console.debug('chatgpt response string: ', chatGptResponse);
   } catch (e) {
     console.error(e);
-    return 'something went wrong with chatgpt -- oh no! 😲';
+    return AI_ERROR + e;
   }
   return chatGptResponse;
 }
