@@ -5,7 +5,9 @@
   let isMenuOpen: boolean = false;
 
   const localGerm: string = '/germ';
-  const localBonsai: string = '/bonsai'
+  const localBonsai: string = '/bonsai';
+  const appVSCodeWikiBonsai: string = 'https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai';
+  const urlGitHub: string = 'https://github.com/wikibonsai/';
 
   function handleClickOutside(event: MouseEvent): void {
     const navElement = document.querySelector('.nav');
@@ -35,9 +37,10 @@
     </button>
     <nav class={isMenuOpen ? 'nav open' : 'nav'}>
       <div class="nav-items">
+        <a href={urlGitHub} class="nav-link">GitHub</a>
         <a href={localBonsai} class="nav-link">Bonsais</a>
         <a href={localGerm} class="nav-link">Germinator</a>
-        <a href="https://github.com/wikibonsai/" class="nav-link">GitHub</a>
+        <a href={appVSCodeWikiBonsai} class="nav-link">Markdown</a>
       </div>
       <button class="btn btn-pad">sign up</button>
     </nav>
@@ -156,6 +159,7 @@
     .nav-items {
       flex-direction: row;
       padding: 0;
+
     }
   }
 </style>
