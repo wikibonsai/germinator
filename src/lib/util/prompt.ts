@@ -178,14 +178,14 @@ Align the colons in CAML attributes., like so:
 : short       :: ''
 : longer-text :: ''`;
   const instructYaml: string = `
-So, do not use colon prefixes and bookmark the node content between dashed lines (---) -- but don't forget the original separators for the final result either.
-And make sure to surround [[wikilinks]] that appear between YAML separators (---) with quotes like this:
+So, do not use colon prefixes and bookmark the node content between dashed lines (---) -- but don't forget the original separators (${SEPARATOR}) for the final result either.
+Make sure to surround [[wikilinks]] with quotes ONLY WHERE THEY APPEAR between YAML separators (---) like this:
 ---
 attribute: "[[wikilinks]]"
 ---
 `;
   const instructWiki: string = `
-Also, be sure to surround each entry in the tree with double square brackets [[like this]] to make them wiki-friendly.`;
+Also, be sure to surround each entry in the tree with double square brackets [[like this]] to make them wiki-friendly. Do not use quotes here.`;
   // assignment
   const attrsFrmt: string = (attrs !== 'caml') ? instructYaml : instructCaml;
   const wikiFrmt: string = (text !== '[[wikitext]]') ? '' : instructWiki;
@@ -203,7 +203,9 @@ The final result should be single markdown file with the following text:
 
 The semantic ancestors,
 followed by a "${SEPARATOR}",
+${(attrs === 'yaml') ? 'followed by a "\n---\n",' : ''}
 followed by valid markdown for the semantic node,
+${(attrs === 'yaml') ? 'followed by a "\n---\n"' : ''}
 followed by a "${SEPARATOR}",
 followed by valid markdown for the semantic tree that represents a subtree whose root is the given concept.
 
