@@ -1,5 +1,6 @@
 <script lang='ts'>
   import Logo from '$lib/components/Logo.svelte';
+  import Theme from '$lib/components/Theme.svelte';
 
   let isMenuOpen: boolean = false;
 
@@ -41,7 +42,7 @@
       <button class="btn btn-pad">sign up</button>
     </nav>
   </div>
-  <!-- <Theme></Theme> -->
+  <Theme></Theme>
 </header>
 
 <style>

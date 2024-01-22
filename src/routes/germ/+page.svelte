@@ -22,7 +22,7 @@
       <h1 class="title-style">
         Germinator
       </h1>
-      <Theme></Theme>
+      <Theme pin={true}></Theme>
     </div>
     <Search on:loading={load}></Search>
     <ToolBar></ToolBar>

@@ -2,6 +2,8 @@
   import { onMount } from 'svelte';
   import { isDark, theme } from '$lib/util/store';
 
+  export let pin: boolean = false;
+
   $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side
     if ($isDark) {
       $theme = 'dark';
@@ -37,17 +39,26 @@
 </script>
 
 <button id="colorsButton"
-        class="colors-button"
+        class="colors-button img-btn {pin ? 'absolute-position' : 'flex-friendly'}"
         on:click={toggleTheme}>
   {$isDark ? '🌘' : '☀️'}
 </button>
 
 <style>
   .colors-button {
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .flex-friendly {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .absolute-position {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 18px;
-    cursor: pointer;
   }
 </style>

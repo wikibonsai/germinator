@@ -15,7 +15,7 @@
       <Logo></Logo>
       <DropDown title={data.title} items={data.bonsais}></DropDown>
     </div>
-    <Theme></Theme>
+    <Theme pin={true}></Theme>
   </div>
   <MarkMap markdown={data.markdown}
            bind:markmap={$resultMkmp}
