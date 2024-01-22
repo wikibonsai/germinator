@@ -69,6 +69,18 @@
 </div>
 
 <style>
+  .btn {
+    background: var(--btn-color);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn:hover {
+    background: var(--btn-color--hover);
+  }
+
   .input {
     color: var(--text-color);
     background-color: var(--box-background);
@@ -81,17 +93,5 @@
 
   .input:focus {
     outline: 2px solid var(--hover-color);
-  }
-
-  .btn {
-    background: var(--btn-color);
-    color: white;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .btn:hover {
-    background: var(--btn-color--hover);
   }
 </style>
