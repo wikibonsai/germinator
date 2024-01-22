@@ -9,6 +9,8 @@
   const appVSCodeWikiBonsai: string = 'https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai';
   const urlGitHub: string = 'https://github.com/wikibonsai/';
 
+  let screensize: string = 'small';
+
   function handleClickOutside(event: MouseEvent): void {
     const navElement = document.querySelector('.nav');
     const hamburgerButton = document.querySelector('.hamburger');
@@ -20,12 +22,20 @@
     }
   }
 
+  function updateScreenSize(): void {
+    screensize = (window.innerWidth >= 768) 
+      ? 'large'
+      : 'small';
+  }
+  // window.addEventListener('resize', 
+
   function toggleMenu(): void {
     isMenuOpen = !isMenuOpen;
   }
 </script>
 
-<svelte:window on:click={handleClickOutside} />
+<svelte:window on:resize={updateScreenSize}
+               on:click={handleClickOutside} />
 
 <header class="header">
   <Logo size={'small'} wTxt={true}></Logo>
@@ -37,6 +47,9 @@
     </button>
     <nav class={isMenuOpen ? 'nav open' : 'nav'}>
       <div class="nav-items">
+        {#if screensize === 'small'}
+          <Theme></Theme>
+        {/if}
         <a href={urlGitHub} class="nav-link">GitHub</a>
         <a href={localBonsai} class="nav-link">Bonsais</a>
         <a href={localGerm} class="nav-link">Germinator</a>
@@ -45,7 +58,9 @@
       <button class="btn btn-pad">sign up</button>
     </nav>
   </div>
-  <Theme></Theme>
+  {#if screensize === 'large'}
+    <Theme></Theme>
+  {/if}
 </header>
 
 <style>

@@ -45,6 +45,12 @@
 </button>
 
 <style>
+  .absolute-position {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
   .colors-button {
     cursor: pointer;
     font-size: 18px;
@@ -54,11 +60,5 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-  }
-
-  .absolute-position {
-    position: absolute;
-    top: 20px;
-    right: 20px;
   }
 </style>
