@@ -17,9 +17,9 @@
 
 <div class="main">
   <div class="container">
-    <div class="flex items-center mb-2 p-2 justify-center sm:justify-start">
+    <div class="flex-center">
       <Logo></Logo>
-      <h1 class="text-4xl font-semibold my-0 mx-4 hidden sm:block">
+      <h1 class="title-style">
         Germinator
       </h1>
       <Theme></Theme>
@@ -60,15 +60,23 @@
 <style>
   .container {
     width: 100%;
-    max-width: 640px; /* Tailwind's 'container' class has responsive widths, 640px is one example */
+    max-width: 640px;
     margin-left: auto;
     margin-right: auto;
-    padding: 1rem; /* 4 units of Tailwind's spacing scale */
+    padding: 1rem;
+  }
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    justify-content: center;
   }
 
   .main {
-    font-family: sans-serif; /* Tailwind's 'font-sans' uses a specific sans-serif font stack */
-    margin-left: 2.5rem; /* Assuming 1rem = 4 units, so 10 units = 2.5rem */
+    font-family: sans-serif;
+    margin-left: 2.5rem;
     margin-right: 2.5rem;
   }
 
@@ -84,5 +92,26 @@
 
   .stretch-markmap {
     min-height: 800px;
+  }
+
+  .title-style {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .flex-center {
+      justify-content: flex-start;
+    }
+
+    .title-style {
+      display: block;
+    }
   }
 </style>
