@@ -1,4 +1,19 @@
 <script lang='ts'>
+  import {
+    // URL_REPO_WIKIBONSAI,
+    // URL_REPO_VSCODE,
+    // URL_REPO_TENDR,
+    // URL_REPO_ASTRO,
+    // URL_REPO_ELEVENTY,
+    // URL_REPO_JEKYLL,
+    URL_DOCS_CITE,
+    URL_DOCS_DESIGN,
+    URL_DOCS_PHILOSOPHY,
+    URL_DOCS_USE,
+    URL_SOCIAL_GITHUB,
+    URL_SOCIAL_X,
+  } from '$lib/util/const';
+
   import { theme } from '$lib/util/store';
   import Logo from '$lib/components/Logo.svelte';
 
@@ -12,10 +27,10 @@
       <Logo size={'small'} wTxt={true}></Logo>
       <div class="connect-container">
         <div class="social-links">
-          <a href="https://github.com/wikibonsai" class="social-link" aria-label="GitHub">
+          <a href={URL_SOCIAL_GITHUB} class="social-link img-btn" aria-label="GitHub">
             <img src={logoGitHub} alt="GitHub" style="height:20px;width:20px;">
           </a>
-          <a href="https://x.com/wibomd" class="social-link" aria-label="Twitter">
+          <a href={URL_SOCIAL_X} class="social-link img-btn" aria-label="X">
             <img src={logoX} alt="X" style="height:20px;width:20px;">
           </a>
         </div>
@@ -24,30 +39,22 @@
     <div class="footer-column links">
       <!-- <div class="footer-column">
         <span class="footer-title">Projects</span>
-        <a href="https://github.com/wikibonsai/wikibonsai/">WikiBonsai</a>
-        <a href="https://github.com/wikibonsai/vscode-wikibonsai/">vscode-wikibonsai</a>
-        <a href="https://github.com/wikibonsai/tendr-cli/">tendr-cli</a>
-        <a href="https://github.com/wikibonsai/astro-wikibonsai/">astro-wikibonsai</a>
-        <a href="https://github.com/wikibonsai/eleventy-wikibonsai/">eleventy-wikibonsai</a>
-        <a href="https://github.com/wikibonsai/jekyll-wikibonsai/">jekyll-wikibonsai</a>
+        <a href={URL_REPO_WIKIBONSAI}>WikiBonsai</a>
+        <a href={URL_REPO_VSCODE}>vscode-wikibonsai</a>
+        <a href={URL_REPO_TENDR}>tendr-cli</a>
+        <a href={URL_REPO_ASTRO}>astro-wikibonsai</a>
+        <a href={URL_REPO_ELEVENTY}>eleventy-wikibonsai</a>
+        <a href={URL_REPO_JEKYLL}>jekyll-wikibonsai</a>
       </div> -->
       <div class="footer-column">
         <span class="footer-title">How To</span>
-        <a href="https://github.com/wikibonsai/wikibonsai/tree/main/docs/USE.md">
-          Getting Started
-        </a>
+        <a href={URL_DOCS_USE}>Getting Started</a>
       </div>
       <div class="footer-column">
         <span class="footer-title">About</span>
-        <a href="https://github.com/wikibonsai/wikibonsai/tree/main/docs/PHILOSOPHY.md">
-          Philosophy
-        </a>
-        <a href="https://github.com/wikibonsai/wikibonsai/tree/main/docs/DESIGN.md">
-          Design
-        </a>
-        <a href="https://github.com/wikibonsai/wikibonsai/tree/main/docs/CITE.md">
-          Influences
-        </a>
+        <a href={URL_DOCS_PHILOSOPHY}>Philosophy</a>
+        <a href={URL_DOCS_DESIGN}>Design</a>
+        <a href={URL_DOCS_CITE}>Influences</a>
       </div>
     </div>
   </div>

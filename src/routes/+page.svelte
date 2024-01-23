@@ -1,6 +1,15 @@
 <script lang='ts'>
   import type { PageData } from './$types'
-  import { DEMO_MKDN } from '$lib/util/const';
+  import {
+    DEMO_MKDN,
+    ROUTE_BONSAI,
+    ROUTE_GERM,
+    URL_SOCIAL_GITHUB,
+    URL_SSG_ASTRO,
+    URL_SSG_ELEVENTY,
+    URL_SSG_JEKYLL,
+    URL_VSCODE_PLUGIN,
+  } from '$lib/util/const';
   import { goTo } from '$lib/util/func';
   import AppTabSelect from '$lib/components/landing/AppTabSelect.svelte';
   import BonsaisDropDown from '$lib/components/DropDown.svelte';
@@ -14,12 +23,6 @@
   export let data: PageData;
 
   let temp: SVGSVGElement | null ;
-
-  const localGerm: string = '/germ';
-  const localBonsai: string = '/bonsai'
-  const repo: string = 'https://github.com/wikibonsai/';
-  const appVSCodeWikiBonsai: string = 'https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai';
-  const appTendrCLI: string = 'https://www.npmjs.com/package/tendr-cli';
 </script>
 
 <Header></Header>
@@ -69,7 +72,7 @@
       </div>
       <div class="come-with-me">
         <span>Come with me if you want to</span>
-        <button class="btn" on:click={goTo(localGerm)}>grow</button>
+        <button class="btn" on:click={goTo(ROUTE_GERM)}>grow</button>
       </div>
     </div>
   </section>
@@ -87,13 +90,13 @@
     <div class="description-body description-body-col">
       Showcase what you've cultivated with your favorite static site generator.
       <div class="ssg">
-        <a href="https://astro-wikibonsai.netlify.app">
+        <a href={URL_SSG_ASTRO}>
           <img class="ssg-logo img-btn" src="/img/social/Astro.svg" alt="astro-wikibonsai"/>
         </a>
-        <a href="https://eleventy-wikibonsai.netlify.app">
+        <a href={URL_SSG_ELEVENTY}>
           <img class="ssg-logo img-btn" src="/img/social/eleventy-logo.svg" alt="eleventy-wikibonsai"/>
         </a>
-        <a href="https://jekyll-wikibonsai.netlify.app">
+        <a href={URL_SSG_JEKYLL}>
           <img class="ssg-logo img-btn" src="/img/social/jekyll.png"alt="jekyll-wikibonsai"/>
         </a>
       </div>
@@ -108,7 +111,7 @@
         <span class="oss-description-txt">
            Many of the the WikiBonsai projects are open source to encourage standardization and long-term sustainability.
         </span>
-        <button class="btn" on:click={goTo(repo)}>GitHub</button>
+        <button class="btn" on:click={goTo(URL_SOCIAL_GITHUB)}>GitHub</button>
       </div>
     </div>
   </section>
@@ -118,10 +121,10 @@
     <span class="description-body description-body-col">
       <TendNTinkerCards content={
         {
-          'Bonsais': [localBonsai, 'Browse some example knowledge bonsais.'],
-          'The Germinator': [localGerm, 'Query an LLM to generate conceptual analyses.'],
-          'Markdown': [appVSCodeWikiBonsai, 'Tend your markdown notes in VSCode.'],
-          // 'CLI': [appTendrCLI, 'Tend your markdown notes in the CLI.'],
+          'Bonsais'        : [ROUTE_BONSAI      , 'Browse some example knowledge bonsais.'],
+          'The Germinator' : [ROUTE_GERM        , 'Query an LLM to generate conceptual analyses.'],
+          'Markdown'       : [URL_VSCODE_PLUGIN , 'Tend your markdown notes in VSCode.'],
+          // 'CLI'            : [URL_TENDR_CLI     , 'Tend your markdown notes in the CLI.'],
         }
       }></TendNTinkerCards>
     </span>

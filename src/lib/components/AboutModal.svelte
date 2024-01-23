@@ -1,5 +1,15 @@
 <script lang='ts'>
+  import {
+    URL_REF_ICONS8,
+    URL_REF_MARKMAP,
+    URL_REF_R_MUSK_TREE,
+    URL_REF_WAITBUTWHY,
+    URL_REPO_WIKIBONSAI,
+    URL_VSCODE_PLUGIN,
+  } from '$lib/util/const';
+
   export let isOpen: boolean = false;
+  const semtreeImg: string = './img/waitbutwhy-neuralink-tree.png';
 
   function closeModal(): void {
     isOpen = false;
@@ -39,25 +49,25 @@
       </div>
       <!--Body-->
       <div class="container mx-auto p-4">
-        <a href="https://waitbutwhy.com/2017/04/neuralink.html" class="block">
-          <img src="./img/waitbutwhy-neuralink-tree.png" class="mx-auto" height="50%" width="50%">
+        <a href={URL_REF_WAITBUTWHY} class="block">
+          <img src={semtreeImg} class="mx-auto" height="50%" width="50%">
         </a>
         <blockquote class="text-lg mb-4">
           <p>
             It is important to view knowledge as a sort of semantic tree. Make sure you understand the fundamental principles, i.e., the trunk and big branches before you get into the leaves/details or there is nothing for them to hang on to.
           </p>
           <p>
-            ~ <a href="https://www.reddit.com/r/IAmA/comments/2rgsan/comment/cnfre0a/?utm_source=share&utm_medium=web2x&context=3&rdt=50009">Elon Musk</a>
+            ~ <a href={URL_REF_R_MUSK_TREE}>Elon Musk</a>
           </p>
         </blockquote>
         <p class="text-xs mt-2">
-          Text output is formatted in markdown, which can be particularly useful for markdown-based PKMs like <a href="https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai">vscode-wikibonsai</a>.
+          Text output is formatted in markdown, which can be particularly useful for markdown-based PKMs like <a href={URL_VSCODE_PLUGIN}>vscode-wikibonsai</a>.
         </p>
         <p class="text-xs mt-2">
-          A <a href="https://github.com/wikibonsai/wikibonsai">WikiBonsai</a> project;
-          above image from <a href="https://waitbutwhy.com/2017/04/neuralink.html">waitbutwhy</a>;
-          mindmap courtesy of <a href="https://markmap.js.org/">markmap</a>; 
-          icons from <a href="https://icons8.com">icons8</a>.
+          A <a href={URL_REPO_WIKIBONSAI}>WikiBonsai</a> project;
+          above image from <a href={URL_REF_WAITBUTWHY}>waitbutwhy</a>;
+          mindmap courtesy of <a href={URL_REF_MARKMAP}>markmap</a>; 
+          icons from <a href={URL_REF_ICONS8}>icons8</a>.
         </p>
       </div>
       <!--Footer-->

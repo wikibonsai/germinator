@@ -1,8 +1,7 @@
 <script lang='ts'>
-  let selected: string = 'ide';
+  import { URL_TENDR_CLI, URL_VSCODE_PLUGIN } from '$lib/util/const';
 
-  const appVSCodeWikiBonsai: string = 'https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai';
-  const appTendrCLI: string = 'https://www.npmjs.com/package/tendr-cli';
+  let selected: string = 'ide';
 
   function select(tab: string): void {
     selected = tab;
@@ -11,7 +10,7 @@
 
 <div class="tab-container">
   <div class="tab-row">
-    <a href={appTendrCLI}>
+    <a href={URL_TENDR_CLI}>
       <img class="img-btn" src="/img/icons/icons8-cli-64.png" alt="cli">
     </a>
     <button class="tab" class:selected={selected === 'cli'} on:click={() => select('cli')}>
@@ -19,7 +18,7 @@
     </button>
   </div>
   <div class="tab-row">
-    <a href={appVSCodeWikiBonsai}>
+    <a href={URL_VSCODE_PLUGIN}>
       <img class="img-btn" src="/img/icons/icons8-ide-64.png" alt="vscode">
     </a>
     <button class="tab" class:selected={selected === 'ide'} on:click={() => select('ide')}>
@@ -29,13 +28,15 @@
 </div>
 {#if selected === 'cli'}
   <div class="app-content">
-    <a href={appTendrCLI}>
-      <img class="app-demo img-cli" src="/img/demo-tendr-cli.gif" alt="tendr-cli"/>
+    <a href={URL_TENDR_CLI}>
+      <img class="app-demo img-btn img-cli" src="/img/demo-tendr-cli.gif" alt="tendr-cli"/>
     </a>
   </div>
 {:else if selected === 'ide'}
   <div class="app-content">
-    <img class="app-demo img-vscode" src="/img/demo-vscode-wikibonsai.png" alt="vscode-wikibonsai"/>
+    <a href={URL_VSCODE_PLUGIN}>
+      <img class="app-demo img-btn img-vscode" src="/img/demo-vscode-wikibonsai.png" alt="vscode-wikibonsai"/>
+    </a>
   </div>
 {/if}
 

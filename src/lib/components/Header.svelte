@@ -1,15 +1,15 @@
 <script lang='ts'>
   import { onMount } from 'svelte';
+  import {
+    ROUTE_BONSAI,
+    ROUTE_GERM,
+    URL_SOCIAL_GITHUB,
+    URL_VSCODE_PLUGIN,
+  } from '$lib/util/const';
   import Logo from '$lib/components/Logo.svelte';
   import Theme from '$lib/components/Theme.svelte';
 
   let isMenuOpen: boolean = false;
-
-  const localGerm: string = '/germ';
-  const localBonsai: string = '/bonsai';
-  const appVSCodeWikiBonsai: string = 'https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai';
-  const urlGitHub: string = 'https://github.com/wikibonsai/';
-
   let screensize: string = 'small';
 
   onMount(() => {
@@ -54,10 +54,10 @@
         {#if screensize === 'small'}
           <Theme></Theme>
         {/if}
-        <a href={urlGitHub} class="nav-link">GitHub</a>
-        <a href={localBonsai} class="nav-link">Bonsais</a>
-        <a href={localGerm} class="nav-link">Germinator</a>
-        <a href={appVSCodeWikiBonsai} class="nav-link">Markdown</a>
+        <a href={URL_SOCIAL_GITHUB} class="nav-link">GitHub</a>
+        <a href={ROUTE_BONSAI} class="nav-link">Bonsais</a>
+        <a href={ROUTE_GERM} class="nav-link">Germinator</a>
+        <a href={URL_VSCODE_PLUGIN} class="nav-link">Markdown</a>
       </div>
       <button class="btn btn-pad">sign up</button>
     </nav>
