@@ -12,12 +12,12 @@
   } from '$lib/util/const';
   import { goTo } from '$lib/util/func';
   import AppTabSelect from '$lib/components/landing/AppTabSelect.svelte';
+  import BonsaiJungleGymSVG from '$lib/components/landing/BonsaiJungleGymSVG.svelte';
   import BonsaisDropDown from '$lib/components/DropDown.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
   import MarkMap from '$lib/components/MarkMap.svelte';
   import TendNTinkerCards from '$lib/components/landing/TendNTinkerCards.svelte';
-  import VinesSVG from '$lib/components/landing/VinesSVG.svelte';
   import WorkflowsShowCase from '$lib/components/landing/WorkflowsShowCase.svelte';
 
   export let data: PageData;
@@ -47,7 +47,7 @@
       <BonsaisDropDown title={'bonsais'} items={data.bonsais}></BonsaisDropDown>
     </div>
   </section>
-  <VinesSVG></VinesSVG>
+  <BonsaiJungleGymSVG></BonsaiJungleGymSVG>
   <!-- workflows section -->
   <section class="description">
     <h1 class="description-title">Workflows</h1>
@@ -156,7 +156,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
     padding-top: 4rem;
   }
 
