@@ -177,6 +177,11 @@ export function formatPrompt(opts: any): string {
 Align the colons in CAML attributes., like so:
 : short       :: ''
 : longer-text :: ''`;
+  // note: i don't know why, but the 'instructYaml' formatting prompt deeply
+  //       effects how [[wikirefs]] are generated. i don't feel this
+  //       description is necessary given the literal 'FORMAT::RESULT:'
+  //       given below...but for some reason this helps ChatGPT with
+  //       formatting seemingly unrelated [[wikirefs]] correctly.
   const instructYaml: string = `
 So, do not use colon prefixes and bookmark the node content between dashed lines (---) -- but don't forget the original separators (${SEPARATOR}) for the final result either.
 Make sure to surround [[wikilinks]] with quotes ONLY WHERE THEY APPEAR between YAML separators (---) like this:

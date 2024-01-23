@@ -1,6 +1,7 @@
 <script lang='ts'>
   import { theme } from '$lib/util/store';
 
+  // note: 'wTxt' is short for 'with text'
   export let wTxt: boolean = false;
   export let size: string = 'medium';
   $: logo = `/img/logo/wikibonsai-${$theme}.svg`;

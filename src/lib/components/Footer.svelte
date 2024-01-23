@@ -17,8 +17,8 @@
   import { theme } from '$lib/util/store';
   import Logo from '$lib/components/Logo.svelte';
 
-  const logoGitHub: string = `/img/social/github-mark-${$theme}.svg`;
-  const logoX: string = `/img/social/x-${$theme}.png`;
+  $: logoGitHub = `/img/social/github-mark-${$theme}.svg`;
+  $: logoX = `/img/social/x-${$theme}.png`;
 </script>
 
 <footer class="footer">
@@ -173,10 +173,6 @@
       flex-direction: row;
       justify-content: flex-end;
       width: 50%;
-    }
-
-    .social-links {
-      flex-direction: row;
     }
   }
 </style>
