@@ -1,31 +1,17 @@
 <!-- note: styles work best with ~3 cards -->
 
 <script lang='ts'>
-  import { goTo } from '$lib/util/func';
-
   // keys: title, values: url, description
   export let content: Record<string, string[]> = {};
 </script>
 
 <div class="card-container">
   {#each Object.entries(content) as [title, [url, description]]}
-    <button class="card" on:click={goTo(url)}>
+    <a href={url} class="card">
       <h3 class="card-title">{title}</h3>
       <p class="card-description">{description}</p>
-    </button>
+    </a>
   {/each}
-  <!-- <button class="card" on:click={goTo(localMap)}>
-    <h3 class="card-title">Maps</h3>
-    <p class="card-description">Browse some example knowledge bonsais.</p>
-  </button>
-  <button class="card" on:click={goTo(localGerm)}>
-    <h3 class="card-title">The Germinator</h3>
-    <p class="card-description">Query an LLM to generate conceptual analyses.</p>
-  </button>
-  <button class="card" on:click={goTo(appVSCodeWikiBonsai)}>
-    <h3 class="card-title">Markdown</h3>
-    <p class="card-description">Tend your markdown notes in VSCode.</p>
-  </button> -->
 </div>
 
 <style>

@@ -1,6 +1,4 @@
 <script lang='ts'>
-  import { goTo } from '$lib/util/func';
-
   export let title: string = 'dropdown';
   export let items: { slug: string, title: string }[] = [];
 
@@ -8,11 +6,6 @@
 
   function toggleDropdown() {
     isDropdownOpen = !isDropdownOpen;
-  }
-
-  function go(route: string, event: HTMLAnchorElement): void {
-    event.preventDefault();
-    goTo(route);
   }
 
   function handleClickOutside(event: MouseEvent): void {
@@ -29,7 +22,7 @@
   {#if isDropdownOpen}
     <div class="dropdown-menu">
       {#each items as item}
-        <a href={item.route} class="dropdown-item" on:click={go(item.route)}>
+        <a href={item.route} class="dropdown-item">
           {item.title}
         </a>
       {/each}
