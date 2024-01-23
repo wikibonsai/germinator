@@ -57,7 +57,7 @@
   .dropdown-menu {
     display: block;
     position: absolute;
-    background-color: var(--box-background);
+    background-color: var(--background-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
     margin-top: 0.5rem;
