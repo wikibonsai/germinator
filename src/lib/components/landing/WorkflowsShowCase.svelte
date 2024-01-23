@@ -2,7 +2,7 @@
   let hovered: boolean = false;
 </script>
 
-<div class="workflow-section" role="list">
+<div class="workflow-container" role="list">
   <div class="workflow"
        on:mouseover="{() => hovered = 1}"
        on:mouseout="{() => hovered = 0}"
@@ -46,7 +46,7 @@
 </div>
 
 <style>
-  .workflow-section {
+  .workflow-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -55,6 +55,12 @@
   }
 
   .workflow {
+    /* workflow content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* workflow */
     height: 150px;
     background-color: var(--background-color);
     border: 1px solid var(--accent-color-dark);

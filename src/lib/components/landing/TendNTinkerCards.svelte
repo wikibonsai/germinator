@@ -7,7 +7,7 @@
 
 <div class="card-container">
   {#each Object.entries(content) as [title, [url, description]]}
-    <a href={url} class="card">
+    <a href={url} class="card card-content">
       <h3 class="card-title">{title}</h3>
       <p class="card-description">{description}</p>
     </a>
@@ -24,12 +24,18 @@
   }
 
   .card {
-    height: 200px;
+    /* card-content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* card */
     background-color: var(--accent-color-light);
     border: 1px solid var(--accent-color-dark);
+    height: 200px;
     border-radius: 8px;
-    padding: 1rem;
     text-align: center;
+    padding: 1rem;
     margin: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     /* small */
@@ -66,7 +72,6 @@
 
     .card-container {
       flex-direction: row;
-      align-items: center;
     }
   }
 </style>
