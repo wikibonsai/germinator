@@ -15,12 +15,14 @@ const __dirname = path.dirname(__filename);
 
 export const bonsais: Bonsai[] = Object.entries(import.meta.glob('/bonsais/**/*.md', { eager: true }))
                                  .map(([filepath, bonsai]) => {
+                                  const fname: string = path.basename(filepath, '.md');
                                    const title: string = filepath.split('/').slice(-1)[0].replace('.md', '');
                                    const slug: string =  filepath.split('/').slice(-1)[0].replace('.md', '');
                                    const route: string = '/bonsai/' + slug;
                                    const absPath: string = path.join(__dirname, '..', '..', '..', filepath);
                                    const markdown: string = fs.readFileSync(absPath, 'utf-8');
                                    return {
+                                    fname,
                                      title,
                                      markdown,
                                      slug,
