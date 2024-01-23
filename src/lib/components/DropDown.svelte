@@ -1,6 +1,6 @@
 <script lang='ts'>
   export let title: string = 'dropdown';
-  export let items: { slug: string, title: string }[] = [];
+  export let items: { title: string, route: string }[] = [];
 
   let isDropdownOpen = false;
 
