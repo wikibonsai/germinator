@@ -1,4 +1,5 @@
 <script lang='ts'>
+  import { onMount } from 'svelte';
   import Logo from '$lib/components/Logo.svelte';
   import Theme from '$lib/components/Theme.svelte';
 
@@ -11,6 +12,10 @@
 
   let screensize: string = 'small';
 
+  onMount(() => {
+    updateScreenSize();
+  });
+
   function handleClickOutside(event: MouseEvent): void {
     const navElement = document.querySelector('.nav');
     const hamburgerButton = document.querySelector('.hamburger');
@@ -22,15 +27,14 @@
     }
   }
 
-  function updateScreenSize(): void {
-    screensize = (window.innerWidth >= 768) 
-      ? 'large'
-      : 'small';
-  }
-  // window.addEventListener('resize', 
-
   function toggleMenu(): void {
     isMenuOpen = !isMenuOpen;
+  }
+
+  function updateScreenSize(): void {
+    screensize = (window.innerWidth >= 768)
+      ? 'large'
+      : 'small';
   }
 </script>
 
