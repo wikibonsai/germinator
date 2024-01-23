@@ -13,6 +13,9 @@
   --box-background: #fff;
   --accent-color-light: #D1ECDC;
   --accent-color-dark: #b6d1c1;
+  --branch-light: #8C6239;
+  --branch-dark: #36290e;
+  --leaf: #31AF31;
 }
 
 /* dark theme */
@@ -22,7 +25,10 @@
   --background-color: #27262b;
   --accent-color-light: #44434d;
   --accent-color-dark: #313036;
-  --box-background: #313036;
+  --box-background: #44434d;
+  --branch-light: #166170;
+  --branch-dark: #393840;
+  --leaf: #31AF31;
 }
 
 body {
