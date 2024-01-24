@@ -34,7 +34,6 @@
   .dropdown {
     position: relative;
     display: inline-block;
-    padding: 0.5rem 1rem;
   }
 
   .dropdown-button {
@@ -42,6 +41,10 @@
     border: 1px solid var(--accent-color-dark);
     border-radius: 0.25rem;
     cursor: pointer;
+  }
+
+  .dropdown-button:hover {
+    border-color: var(--accent-color-light);
   }
 
   .dropdown-item {
