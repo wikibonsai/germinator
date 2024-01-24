@@ -20,7 +20,7 @@ export const trees: Tree[] = Object.entries(import.meta.glob('/trees/**/*.md', {
                                    .map(([filepath, tree]) => {
                                      const fname: string = path.basename(filepath, '.md');
                                      const title: string = (fname === '_base') ? 'Semantic Tree' : filepath.split('/').slice(-1)[0].replace('.md', '');
-                                     const slug: string =  filepath.split('/').slice(-1)[0].replace('.md', '');
+                                     const slug: string =  (fname === '_base') ? '' : filepath.split('/').slice(-1)[0].replace('.md', '');
                                      const route: string = '/tree/' + slug;
                                      const absPath: string = path.join(__dirname, '..', '..', '..', filepath);
                                      const markdown: string = fs.readFileSync(absPath, 'utf-8');
