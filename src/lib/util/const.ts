@@ -1,7 +1,7 @@
 // urls
 
 // local routes
-export const ROUTE_TREE          : string = '/tree';
+export const ROUTE_TREE          : string = '/tree/base';
 export const ROUTE_GERMINATOR    : string = '/germinator';
 // external urls
 export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions'
@@ -28,6 +28,7 @@ export const URL_SSG_ASTRO       : string = 'https://astro-wikibonsai.netlify.ap
 export const URL_SSG_ELEVENTY    : string = 'https://eleventy-wikibonsai.netlify.app';
 export const URL_SSG_JEKYLL      : string = 'https://jekyll-wikibonsai.netlify.app';
 // refs
+export const URL_REF_MAPPLE      : string = 'https://github.com/MaggieAppleton/digital-gardeners';
 export const URL_REF_ICONS8      : string = 'https://icons8.com';
 export const URL_REF_MARKDOWN    : string = 'https://www.markdownguide.org/basic-syntax/';
 export const URL_REF_MARKMAP     : string = 'https://markmap.js.org/';
