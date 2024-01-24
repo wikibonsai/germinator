@@ -2,7 +2,7 @@
   import type { PageData } from './$types'
   import {
     DEMO_MKDN,
-    ROUTE_BONSAI_TREE,
+    ROUTE_TREE,
     ROUTE_GERMINATOR,
     URL_SOCIAL_GITHUB,
     URL_SSG_ASTRO,
@@ -13,7 +13,7 @@
   import { goTo } from '$lib/util/func';
   import AppTabSelect from '$lib/components/landing/AppTabSelect.svelte';
   import BonsaiJungleGymSVG from '$lib/components/landing/BonsaiJungleGymSVG.svelte';
-  import BonsaisDropDown from '$lib/components/DropDown.svelte';
+  import DropDown from '$lib/components/DropDown.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
   import MarkMap from '$lib/components/MarkMap.svelte';
@@ -44,7 +44,7 @@
       </p> -->
     </div>
     <div class="dropdown-container">
-      <BonsaisDropDown title={'Knowledge Bonsais'} items={data.trees}></BonsaisDropDown>
+      <DropDown title={'Knowledge Bonsais'} items={data.trees}></DropDown>
     </div>
   </section>
   <BonsaiJungleGymSVG></BonsaiJungleGymSVG>
