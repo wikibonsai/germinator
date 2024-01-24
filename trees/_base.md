@@ -1,0 +1,11 @@
+- Semantic Tree
+  - [[[mathematics]]](/tree/math)
+  - [[science]]
+    - [[[chemistry]]](/tree/chemistry)
+    - [[[physics]]](/tree/physics)
+  - [[[computer-science]]](/tree/computer-science)
+    - [[[machine-learning]]](/tree/machine-learning)
+  - [[books]]
+    - [[[how-to-read-a-book]]](/tree/how-to-read-a-book)
+  - [[websites]]
+    - [[[lesswrong]]](/tree/lesswrong)

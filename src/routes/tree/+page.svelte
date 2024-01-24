@@ -13,11 +13,11 @@
   <div class="overlay">
     <div class="ctrl">
       <Logo></Logo>
-      <DropDown title={data.title} items={data.bonsais}></DropDown>
+      <DropDown title={data.tree.title} items={data.trees}></DropDown>
     </div>
     <Theme pin={true}></Theme>
   </div>
-  <MarkMap markdown={data.markdown}
+  <MarkMap markdown={data.tree.markdown}
            bind:markmap={$resultMkmp}
            height={100}
            width={100}>

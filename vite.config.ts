@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [sveltekit()],
-  // allows vite access to ./bonsais
+  // allows vite access to top level markdown dirs (./trees)
   server: {
     fs: {
       allow: ['./']

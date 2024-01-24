@@ -1,7 +1,7 @@
 <script lang='ts'>
   import { onMount } from 'svelte';
   import {
-    ROUTE_BONSAI,
+    ROUTE_TREE,
     ROUTE_GERM,
     URL_SOCIAL_GITHUB,
     URL_VSCODE_PLUGIN,
@@ -55,7 +55,7 @@
           <Theme></Theme>
         {/if}
         <a href={URL_SOCIAL_GITHUB} class="nav-link">GitHub</a>
-        <a href={ROUTE_BONSAI} class="nav-link">Bonsais</a>
+        <a href={ROUTE_TREE} class="nav-link">Bonsais</a>
         <a href={ROUTE_GERM} class="nav-link">Germinator</a>
         <a href={URL_VSCODE_PLUGIN} class="nav-link">Markdown</a>
       </div>

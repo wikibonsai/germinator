@@ -13,7 +13,7 @@
   <div class="overlay">
     <div class="ctrl">
       <Logo></Logo>
-      <DropDown title={'Bonsai'} items={data.bonsais}></DropDown>
+      <DropDown title={data.title} items={data.trees}></DropDown>
     </div>
     <Theme pin={true}></Theme>
   </div>

@@ -1,7 +1,7 @@
 // urls
 
 // local routes
-export const ROUTE_BONSAI         : string = '/bonsai';
+export const ROUTE_TREE           : string = '/tree';
 export const ROUTE_GERM           : string = '/germ';
 // external urls
 export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions'

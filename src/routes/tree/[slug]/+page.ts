@@ -5,9 +5,9 @@ import type { PageLoad } from './$types'
 export const load: PageLoad = async ({ parent, data }) => {
   await parent();
   return {
-    bonsais: data.bonsais,
-    title: data.bonsai.title,
-    markdown: data.bonsai.markdown,
-    slug: data.bonsai.slug,
+    trees: data.trees,
+    title: data.tree.title,
+    markdown: data.tree.markdown,
+    slug: data.tree.slug,
   }
 }

@@ -2,7 +2,7 @@
   import type { PageData } from './$types'
   import {
     DEMO_MKDN,
-    ROUTE_BONSAI,
+    ROUTE_BONSAI_TREE,
     ROUTE_GERM,
     URL_SOCIAL_GITHUB,
     URL_SSG_ASTRO,
@@ -44,7 +44,7 @@
       </p> -->
     </div>
     <div class="dropdown-container">
-      <BonsaisDropDown title={'bonsais'} items={data.bonsais}></BonsaisDropDown>
+      <BonsaisDropDown title={'Knowledge Bonsais'} items={data.trees}></BonsaisDropDown>
     </div>
   </section>
   <BonsaiJungleGymSVG></BonsaiJungleGymSVG>
@@ -121,7 +121,7 @@
     <span class="description-body description-body-col">
       <TendNTinkerCards content={
         {
-          'Bonsais'        : [ROUTE_BONSAI      , 'Browse some example knowledge bonsais.'],
+          'Bonsais'        : [ROUTE_BONSAI_TREE      , 'Browse some example knowledge bonsais.'],
           'The Germinator' : [ROUTE_GERM        , 'Query an LLM to generate conceptual analyses.'],
           'Markdown'       : [URL_VSCODE_PLUGIN , 'Tend your markdown notes in VSCode.'],
           // 'CLI'            : [URL_TENDR_CLI     , 'Tend your markdown notes in the CLI.'],
