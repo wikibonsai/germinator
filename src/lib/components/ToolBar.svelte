@@ -1,13 +1,12 @@
 <script lang='ts'>
   import { onMount } from 'svelte';
   import { isMarkdown, resultMkdn, resultMkmp, theme } from '$lib/util/store';
-  import AboutModal from "$lib/components/AboutModal.svelte";
+  import AboutButton from '$lib/components/AboutButton.svelte';
   import MkdnFrmtModal from "$lib/components/MkdnFrmtModal.svelte";
 
   let isCopied: boolean = false;
 
   // image sources based on theme color
-  $: helpIcon         = `./img/icons/icons8-help-50-${$theme}.png`;
   $: resultFormatIcon = $isMarkdown
                         ? `./img/icons/icons8-markdown-30-${$theme}.png`
                         : `./img/icons/icons8-mind-map-30-${$theme}.png`;
@@ -20,12 +19,7 @@
     $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
   });
 
-  // modals
-
-  let isAbtMdlOpen: boolean = false;
-  function toggleAbtMdl(): void {
-    isAbtMdlOpen = !isAbtMdlOpen;
-  }
+  // modal
 
   let isFrmtMdlOpen: boolean = false;
   function toggleFrmtMdl(): void {
@@ -110,13 +104,7 @@
 </script>
 
 <div class="flex justify-end items-center mb-4">
-  <!-- About -->
-  <button id="aboutButton"
-          class="toolbar-button"
-          title="About"
-          on:click={toggleAbtMdl}>
-    <img id="helpIcon" alt="Format" class="w-6 h-6" src={helpIcon}>
-  </button>
+  <AboutButton></AboutButton>
   <!-- Format Markdown -->
   <button id="mkdnFormatButton"
           class="toolbar-button"
@@ -140,7 +128,6 @@
   </button>
 </div>
 
-<AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
 <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}></MkdnFrmtModal>
 
 <style>
@@ -151,6 +138,7 @@
     padding: 0.5rem;
     margin-right: 0.5rem;
   }
+
   .toolbar-button:hover {
     border-color: var(--accent-color-light);
   }
