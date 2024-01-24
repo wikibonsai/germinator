@@ -8,12 +8,12 @@
 
   // image sources based on theme color
   $: resultFormatIcon = $isMarkdown
-                        ? `./img/icons/icons8-markdown-30-${$theme}.png`
-                        : `./img/icons/icons8-mind-map-30-${$theme}.png`;
-  $: mkdnFormatIcon   = `./img/icons/icons8-adjust-30-${$theme}.png`;
+                        ? `/img/icons/icons8-markdown-30-${$theme}.png`
+                        : `/img/icons/icons8-mind-map-30-${$theme}.png`;
+  $: mkdnFormatIcon   = `/img/icons/icons8-adjust-30-${$theme}.png`;
   $: copyIcon         = isCopied
-                        ? './img/icons/icons8-check-30.png'
-                        : `./img/icons/icons8-copy-30-${$theme}.png`;
+                        ? '/img/icons/icons8-check-30.png'
+                        : `/img/icons/icons8-copy-30-${$theme}.png`;
 
   onMount(() => {
     $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
