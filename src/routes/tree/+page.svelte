@@ -1,19 +1,23 @@
 <script lang='ts'>
   import type { PageData } from './$types'
+  import { resultMkmp } from '$lib/util/store';
+  import AboutButton from '$lib/components/AboutButton.svelte';
   import DropDown from '$lib/components/DropDown.svelte';
   import Logo from '$lib/components/Logo.svelte';
   import MarkMap from '$lib/components/MarkMap.svelte';
   import Theme from '$lib/components/Theme.svelte';
-  import { resultMkmp } from '$lib/util/store';
 
   export let data: PageData;
 </script>
 
 <div class="main">
   <div class="overlay">
-    <div class="ctrl">
+    <div class="ctrl-panel">
       <Logo></Logo>
-      <DropDown title={data.tree.title} items={data.trees}></DropDown>
+      <div class="ctrl">
+        <AboutButton></AboutButton>
+        <DropDown title={data.tree.title} items={data.trees}></DropDown>
+      </div>
     </div>
     <Theme pin={true}></Theme>
   </div>
@@ -27,6 +31,13 @@
 <style>
   .ctrl {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .ctrl-panel {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -35,8 +46,8 @@
   .main {
     height: 100vh;
     width: 100vw;
-    font-family: sans-serif; /* Tailwind's 'font-sans' uses a specific sans-serif font stack */
-    margin-left: 2.5rem; /* Assuming 1rem = 4 units, so 10 units = 2.5rem */
+    font-family: sans-serif;
+    margin-left: 2.5rem;
     margin-right: 2.5rem;
   }
 
