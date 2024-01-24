@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import {
     ROUTE_TREE,
-    ROUTE_GERM,
+    ROUTE_GERMINATOR,
     URL_SOCIAL_GITHUB,
     URL_VSCODE_PLUGIN,
   } from '$lib/util/const';
@@ -56,7 +56,7 @@
         {/if}
         <a href={URL_SOCIAL_GITHUB} class="nav-link">GitHub</a>
         <a href={ROUTE_TREE} class="nav-link">Bonsais</a>
-        <a href={ROUTE_GERM} class="nav-link">Germinator</a>
+        <a href={ROUTE_GERMINATOR} class="nav-link">Germinator</a>
         <a href={URL_VSCODE_PLUGIN} class="nav-link">Markdown</a>
       </div>
       <button class="btn btn-pad">sign up</button>

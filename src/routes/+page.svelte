@@ -3,7 +3,7 @@
   import {
     DEMO_MKDN,
     ROUTE_BONSAI_TREE,
-    ROUTE_GERM,
+    ROUTE_GERMINATOR,
     URL_SOCIAL_GITHUB,
     URL_SSG_ASTRO,
     URL_SSG_ELEVENTY,
@@ -72,7 +72,7 @@
       </div>
       <div class="come-with-me">
         <span>Come with me if you want to</span>
-        <button class="btn" on:click={goTo(ROUTE_GERM)}>grow</button>
+        <button class="btn" on:click={goTo(ROUTE_GERMINATOR)}>grow</button>
       </div>
     </div>
   </section>
@@ -121,8 +121,8 @@
     <span class="description-body description-body-col">
       <TendNTinkerCards content={
         {
-          'Bonsais'        : [ROUTE_BONSAI_TREE      , 'Browse some example knowledge bonsais.'],
-          'The Germinator' : [ROUTE_GERM        , 'Query an LLM to generate conceptual analyses.'],
+          'Bonsais'        : [ROUTE_TREE      , 'Browse some example knowledge bonsais.'],
+          'The Germinator' : [ROUTE_GERMINATOR        , 'Query an LLM to generate conceptual analyses.'],
           'Markdown'       : [URL_VSCODE_PLUGIN , 'Tend your markdown notes in VSCode.'],
           // 'CLI'            : [URL_TENDR_CLI     , 'Tend your markdown notes in the CLI.'],
         }

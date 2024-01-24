@@ -1,8 +1,8 @@
 // urls
 
 // local routes
-export const ROUTE_TREE           : string = '/tree';
-export const ROUTE_GERM           : string = '/germ';
+export const ROUTE_TREE          : string = '/tree';
+export const ROUTE_GERMINATOR    : string = '/germinator';
 // external urls
 export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions'
 // apps
@@ -55,5 +55,5 @@ export const DEMO_MKDN           : string = `
 
 // prompt
 
-export const SEPARATOR           : string = '\n!!!\n';
+export const SEPARATOR           : string = '\n\n!!!\n\n';
 export const AI_ERROR            : string = 'error:\n\n😲 something went wrong with chatgpt' + '\n\n';
