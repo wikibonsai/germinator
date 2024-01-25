@@ -223,6 +223,7 @@ Make sure to format the markdown of the semantic ancestors using:
 - ${cap} case each word.
 - whitespace between words should be converted to '${whitespace}'.
 - separate each ancestors with a greater-than sign, padded with single whitespaces ' > '.
+${wikiFrmt}
 
 
 FORMAT::MARKDOWN::SEMANTIC NODE:
