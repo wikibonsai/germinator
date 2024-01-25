@@ -6,6 +6,7 @@ import type { Tree } from '$lib/types';
 
 
 // we require some server-side APIs to parse all metadata
+// (not sure if this is actually doing anything...)
 if (browser) {
   throw new Error(`maps can only be imported server-side`);
 }
@@ -20,7 +21,7 @@ export const trees: Tree[] = Object.entries(import.meta.glob('/trees/**/*.md', {
                                    .map(([filepath, tree]) => {
                                      const fname: string = path.basename(filepath, '.md');
                                      const title: string = (fname === '_base') ? 'base' : filepath.split('/').slice(-1)[0].replace('.md', '');
-                                     const slug: string =  (fname === '_base') ? 'base' : filepath.split('/').slice(-1)[0].replace('.md', '');
+                                     const slug: string =  (fname === '_base') ? '' : filepath.split('/').slice(-1)[0].replace('.md', '');
                                      const route: string = '/tree/' + slug;
                                      const absPath: string = path.join(__dirname, '..', '..', '..', filepath);
                                      const markdown: string = fs.readFileSync(absPath, 'utf-8');
