@@ -4,7 +4,7 @@
   import Loader from "$lib/components/Loader.svelte";
   import Logo from '$lib/components/Logo.svelte';
   import MarkMap from '$lib/components/MarkMap.svelte';
-  import Search from "$lib/components/Search.svelte";
+  import Prompt from "$lib/components/Prompt.svelte";
   import Theme from '$lib/components/Theme.svelte';
   import ToolBar from "$lib/components/ToolBar.svelte";
 
@@ -24,7 +24,7 @@
       </h1>
       <Theme pin={true}></Theme>
     </div>
-    <Search on:loading={load}></Search>
+    <Prompt on:loading={load}></Prompt>
     <ToolBar></ToolBar>
     {#if loading}
       <Loader></Loader>
