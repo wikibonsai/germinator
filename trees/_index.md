@@ -1,4 +1,4 @@
-- Semantic Tree
+- index
   - [[concepts]]
     - [[[mathematics]]](/tree/math)
     - [[science]]
