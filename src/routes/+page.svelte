@@ -52,7 +52,7 @@
   <section class="description">
     <h1 class="description-title">Workflows</h1>
     <div class="description-body description-body-col">
-      The WikiBonsai project strives to add specific workflows to the infrastructure of the internet:
+      The WikiBonsai project strives to make specific plaintext workflows more openly accessible:
       <WorkflowsShowCase></WorkflowsShowCase>
     </div>
   </section>
@@ -80,7 +80,7 @@
   <section class="description">
     <h1 class="description-title">✂️ Tools for Tending</h1>
     <div class="description-body description-body-col">
-      Tend your digital garden and knowledge bonsai from...
+      Tend your markdown digital garden from...
       <AppTabSelect></AppTabSelect>
     </div>
   </section>

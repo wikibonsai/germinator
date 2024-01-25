@@ -10,7 +10,7 @@
        on:blur="{() => hovered = 0}"
        role="listitem"
        tabindex="-1">
-    <h2 class="workflow-title">Markdown Webs</h2>
+    <h2 class="workflow-title">Concept Webs</h2>
     <p class="workflow-description">Extend markdown with <code>[[wikirefs]]</code> and <code>:semantic::attributes</code></p>
   </div>
   <div class="workflow"
@@ -20,7 +20,7 @@
        on:blur="{() => hovered = 0}"
        role="listitem"
        tabindex="-1">
-    <h2 class="workflow-title">Markdown Trees</h2>
+    <h2 class="workflow-title">Semantic Trees</h2>
     <p class="workflow-description">Cultivate and train a knowledge bonsai in markdown</p>
   </div>
   <div class="workflow"
@@ -30,8 +30,8 @@
        on:blur="{() => hovered = 0}"
        role="listitem"
        tabindex="-1">
-    <h2 class="workflow-title">Graphs</h2>
-    <p class="workflow-description">Make a memory palace from your markdown with graph visualizations</p>
+    <h2 class="workflow-title">Memory Palaces</h2>
+    <p class="workflow-description">Explore the visual graphs that emerge from your markdown notes</p>
   </div>
   <div class="workflow"
        on:mouseover="{() => hovered = 4}"
@@ -40,7 +40,7 @@
        on:blur="{() => hovered = 0}"
        role="listitem"
        tabindex="-1">
-    <h2 class="workflow-title">AI</h2>
+    <h2 class="workflow-title">AI-Enabled</h2>
     <p class="workflow-description">Assisted concept analysis with LLMs</p>
   </div>
 </div>
