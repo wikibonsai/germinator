@@ -1,12 +1,14 @@
 <script lang='ts'>
+  import type { PageData } from './$types'
   import { isMarkdown, resultMkdn, resultMkmp } from '$lib/util/store';
-  import ApiKey from "$lib/components/APIKey.svelte";
   import Loader from "$lib/components/Loader.svelte";
   import Logo from '$lib/components/Logo.svelte';
   import MarkMap from '$lib/components/MarkMap.svelte';
   import Prompt from "$lib/components/Prompt.svelte";
   import Theme from '$lib/components/Theme.svelte';
   import ToolBar from "$lib/components/ToolBar.svelte";
+
+  export let data: PageData;
 
   let loading: boolean = false;
 
@@ -24,7 +26,7 @@
       </h1>
       <Theme pin={true}></Theme>
     </div>
-    <Prompt on:loading={load}></Prompt>
+    <Prompt apiKey={data.apiKey} on:loading={load}></Prompt>
     <ToolBar></ToolBar>
     {#if loading}
       <Loader></Loader>
@@ -54,7 +56,6 @@
     {/if}
     </div>
   </div>
-  <ApiKey></ApiKey>
 </div>
 
 <style>

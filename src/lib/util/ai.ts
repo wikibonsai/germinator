@@ -1,17 +1,17 @@
 // courtesy: https://github.com/tldraw/make-real-starter
 
-import { AI_ERROR } from './const';
+import { AI_ERROR, URL_OPENAI_API } from './const';
 import { formatPrompt, SYSTEM_PROMPT, PEPTALK } from './prompt';
 
 
-async function fetchFromOpenAi(apiKey: string, body: JSON): any {
+async function fetchFromOpenAi(apiKey: string, body: JSON): Promise<any> {
   if (apiKey === '' ) {
     throw new Error(
       'You need to provide an API key. Make sure OPENAI_API_KEY is set in your .env file.'
     )
   }
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch(URL_OPENAI_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

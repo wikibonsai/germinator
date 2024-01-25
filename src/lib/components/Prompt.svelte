@@ -2,14 +2,16 @@
   import type { EventDispatcher } from 'svelte';
   import { createEventDispatcher } from 'svelte';
   import { AI_ERROR, SEPARATOR } from '$lib/util/const';
-  import { apiKey, mkdnFrmt, resultMkdn } from '$lib/util/store';
+  import { mkdnFrmt, resultMkdn } from '$lib/util/store';
   import { makeReal } from "$lib/util/ai";
 
-  let userMsg: string = '';
+  export let apiKey: string = '';
+
   const dispatch: EventDispatcher<any> = createEventDispatcher();
+  let userMsg: string = '';
 
   async function goai() {
-    if ($apiKey === '' ) {
+    if (apiKey === '' ) {
       alert('Please enter an OpenAI API key');
       return;
     }
@@ -17,9 +19,9 @@
     $resultMkdn.ancestors = '';
     $resultMkdn.descendants = '';
     $resultMkdn.atom = '';
-    if ($apiKey === '') { alert('Please enter an OpenAI API key'); return; }
+    if (apiKey === '') { alert('Problem with OpenAI API key, please contact customer support.'); return; }
     const result: string = await makeReal(
-      $apiKey,
+      apiKey,
       userMsg,
       {
         indent: $mkdnFrmt.indentKind,

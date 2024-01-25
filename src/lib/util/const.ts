@@ -1,10 +1,11 @@
 // urls
 
+////
 // local routes
 export const ROUTE_TREE          : string = '/tree';
 export const ROUTE_GERMINATOR    : string = '/germinator';
+////
 // external urls
-export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions'
 // apps
 export const URL_TENDR_CLI       : string = 'https://www.npmjs.com/package/tendr-cli';
 export const URL_VSCODE_PLUGIN   : string = 'https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai';
@@ -36,6 +37,9 @@ export const URL_REF_OPENAI      : string = 'https://beta.openai.com/';
 export const URL_REF_GPT3        : string = 'https://beta.openai.com/docs/introduction';
 export const URL_REF_WAITBUTWHY  : string = 'https://waitbutwhy.com/2017/04/neuralink.html';
 export const URL_REF_R_MUSK_TREE : string = 'https://www.reddit.com/r/IAmA/comments/2rgsan/comment/cnfre0a/?utm_source=share&utm_medium=web2x&context=3&rdt=50009';
+////
+// api
+export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions';
 
 
 // landing page markmap input
