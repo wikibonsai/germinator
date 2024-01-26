@@ -1,8 +1,8 @@
 <script lang='ts'>
   export let title: string = 'dropdown';
-  export let items: { title: string, route: string }[] = [];
+  export let items: { route: string, title: string }[] = [];
 
-  let isDropdownOpen = false;
+  let isDropdownOpen: boolean = false;
 
   function toggleDropdown() {
     isDropdownOpen = !isDropdownOpen;
