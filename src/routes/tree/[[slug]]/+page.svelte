@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import type { PageData } from './$types'
+  import type { LayoutData } from '../$types'
   import { ROUTE_GERMINATOR } from '$lib/util/const';
   import { resultMkmp } from '$lib/util/store';
   import AboutButton from '$lib/components/AboutButton.svelte';
@@ -8,7 +8,7 @@
   import MarkMap from '$lib/components/MarkMap.svelte';
   import Theme from '$lib/components/Theme.svelte';
 
-  export let data: PageData;
+  export let data: LayoutData;
 </script>
 
 <div class="main">
@@ -31,10 +31,13 @@
          width={100}>
   </MarkMap>
 </div>
-<!-- note: atm, 'slot' shouldn't actually render anything... -->
-<slot></slot>
 
 <style>
+  /* not sure why this isn't carrying over from 'styles.css'... */
+  a {
+    color: #00CC92;
+  }
+
   .ctrl {
     display: flex;
     align-items: center;
