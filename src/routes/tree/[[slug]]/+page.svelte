@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import type { LayoutData } from '../$types'
+  import type { PageData } from '../$types'
   import { ROUTE_GERMINATOR } from '$lib/util/const';
   import { resultMkmp } from '$lib/util/store';
   import AboutButton from '$lib/components/AboutButton.svelte';
@@ -8,7 +8,7 @@
   import MarkMap from '$lib/components/MarkMap.svelte';
   import Theme from '$lib/components/Theme.svelte';
 
-  export let data: LayoutData;
+  export let data: PageData;
 </script>
 
 <div class="main">
