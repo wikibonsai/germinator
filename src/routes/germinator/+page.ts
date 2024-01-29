@@ -1,4 +1,4 @@
-import type { PageLoad } from './$types'
+import type { PageLoad } from './$types';
 
 
 // ref: https://scottspence.com/posts/passing-sveltekit-page-server-js-data-to-page-js
