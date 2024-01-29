@@ -1,7 +1,7 @@
 <script lang='ts'>
   import type { EventDispatcher } from 'svelte';
   import { createEventDispatcher } from 'svelte';
-  import { AI_ERROR, SEPARATOR } from '$lib/util/const';
+  import { AI_ERROR, SEPARATOR, SEPARATOR_SHORT } from '$lib/util/const';
   import { mkdnFrmt, resultMkdn } from '$lib/util/store';
   import { makeReal } from "$lib/util/ai";
 
@@ -35,10 +35,10 @@
       alert(result);
     } else {
       const resultStrippedBackTicks: string = result.replace(/```/g, '');
-      const results: string[] = resultStrippedBackTicks.split(SEPARATOR);
+      const results: string[] = resultStrippedBackTicks.split(SEPARATOR_SHORT);
       console.debug('result string: ', result);
       console.debug('result array: ', results);
-      $resultMkdn.all = resultStrippedBackTicks.replace(new RegExp(SEPARATOR, 'g'), '\n\n');
+      $resultMkdn.all = resultStrippedBackTicks.replace(new RegExp(SEPARATOR_SHORT, 'g'), '\n\n');
       $resultMkdn.ancestors = results[0];
       $resultMkdn.atom = results[1];
       $resultMkdn.descendants = results[2];

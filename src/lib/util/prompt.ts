@@ -5,6 +5,26 @@ import { SEPARATOR } from './const';
 
 export const SYSTEM_PROMPT: string = 
 `
+DEFINE::CAML:
+
+A syntax for semantic attributes that looks like this:
+
+: single-attr :: value
+: multi-attrs ::
+                  - value1
+                  - value2
+
+DEFINE::YAML:
+
+A syntax for semantic attributes that looks like this:
+
+---
+single-attr: value
+multi-attrs:
+  - value1
+  - value2
+---
+
 DEFINE::SEMANTIC NODE:
 
 A "semantic node" is a concept that has been broken down into a set of features called "semantic attributes" which describe that concept. These nodes may be woven together to weave a "semantic web" or chunked hierarchically into a "semantic tree".
