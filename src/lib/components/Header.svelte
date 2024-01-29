@@ -56,10 +56,12 @@
         {/if}
         <a href={URL_SOCIAL_GITHUB} class="nav-link">GitHub</a>
         <a href={ROUTE_TREE} class="nav-link">Bonsais</a>
-        <a href={ROUTE_GERMINATOR} class="nav-link">Germinator</a>
+        <!-- #todo: germinator -->
+        <!-- <a href={ROUTE_GERMINATOR} class="nav-link">Germinator</a> -->
         <a href={URL_VSCODE_PLUGIN} class="nav-link">Markdown</a>
       </div>
-      <button class="btn btn-pad">sign up</button>
+      <!-- #todo: germinator -->
+      <!-- <button class="btn btn-pad">sign up</button> -->
     </nav>
   </div>
   {#if screensize === 'large'}

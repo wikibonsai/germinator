@@ -33,7 +33,8 @@
     <h2 class="workflow-title">Memory Palaces</h2>
     <p class="workflow-description">Explore the visual graphs that emerge from your markdown notes</p>
   </div>
-  <div class="workflow"
+  <!-- #todo: germinator -->
+  <!-- <div class="workflow"
        on:mouseover="{() => hovered = 4}"
        on:mouseout="{() => hovered = 0}"
        on:focus="{() => hovered = 2}"
@@ -42,7 +43,7 @@
        tabindex="-1">
     <h2 class="workflow-title">AI-Enabled</h2>
     <p class="workflow-description">Assisted concept analysis with LLMs</p>
-  </div>
+  </div> -->
 </div>
 
 <style>

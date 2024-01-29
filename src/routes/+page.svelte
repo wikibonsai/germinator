@@ -56,8 +56,9 @@
       <WorkflowsShowCase></WorkflowsShowCase>
     </div>
   </section>
+  <!-- #todo: germinator -->
   <!-- ai section -->
-  <section class="description">
+  <!-- <section class="description">
     <h1 class="description-title">🌱 Tools for Germinating</h1>
     <div class="description-body description-body-col">
       Tease apart complex concepts with the help of AI analysis.
@@ -75,7 +76,7 @@
         <button class="btn" on:click={goTo(ROUTE_GERMINATOR)}>grow</button>
       </div>
     </div>
-  </section>
+  </section> -->
   <!-- app-group section -->
   <section class="description">
     <h1 class="description-title">✂️ Tools for Tending</h1>
@@ -122,7 +123,8 @@
       <TendNTinkerCards content={
         {
           'Bonsais'        : [ROUTE_TREE      , 'Browse some example knowledge bonsais.'],
-          'The Germinator' : [ROUTE_GERMINATOR        , 'Query an LLM to generate conceptual analyses.'],
+          // #todo: germinator
+          // 'The Germinator' : [ROUTE_GERMINATOR        , 'Query an LLM to generate conceptual analyses.'],
           'Markdown'       : [URL_VSCODE_PLUGIN , 'Tend your markdown notes in VSCode.'],
           // 'CLI'            : [URL_TENDR_CLI     , 'Tend your markdown notes in the CLI.'],
         }
