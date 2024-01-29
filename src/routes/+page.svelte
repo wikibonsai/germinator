@@ -43,8 +43,9 @@
         and bridges the divide between plaintext, spatial computing, and AI.
       </p> -->
     </div>
-    <div class="dropdown-container">
-      <DropDown title={'Knowledge Bonsais'} items={data.trees}></DropDown>
+    <div class="btn-container">
+      <button class="btn" on:click={goTo(ROUTE_TREE)}>Knowledge Bonsai</button>
+      <!-- <DropDown title={'Knowledge Bonsais'} items={data.trees}></DropDown> -->
     </div>
   </section>
   <BonsaiJungleGymSVG></BonsaiJungleGymSVG>
@@ -154,7 +155,7 @@
     margin-right: 1rem;
   } */
 
-  .dropdown-container {
+  .btn-container {
     display: flex;
     justify-content: center;
     align-items: center;

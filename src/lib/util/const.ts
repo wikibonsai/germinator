@@ -2,6 +2,7 @@
 
 ////
 // local routes
+export const ROUTE_ROOT          : string = '/';
 export const ROUTE_TREE          : string = '/tree';
 export const ROUTE_GERMINATOR    : string = '/germinator';
 ////
@@ -61,4 +62,5 @@ export const DEMO_MKDN           : string = `
 // prompt
 
 export const SEPARATOR           : string = '\n\n!!!\n\n';
+export const SEPARATOR_SHORT     : string = '\n!!!\n';
 export const AI_ERROR            : string = 'error:\n\n😲 something went wrong with chatgpt' + '\n\n';

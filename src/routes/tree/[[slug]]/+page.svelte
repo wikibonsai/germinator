@@ -1,8 +1,11 @@
 <script lang='ts'>
-  import type { PageData } from '../$types'
-  import { ROUTE_GERMINATOR } from '$lib/util/const';
+  import type { PageData } from './$types'
+  import { page } from '$app/stores';
+  import { ROUTE_GERMINATOR, ROUTE_ROOT, ROUTE_TREE } from '$lib/util/const';
+  import { goTo } from '$lib/util/func';
   import { resultMkmp } from '$lib/util/store';
   import AboutButton from '$lib/components/AboutButton.svelte';
+  import CopyButton from '$lib/components/CopyButton.svelte';
   import DropDown from '$lib/components/DropDown.svelte';
   import Logo from '$lib/components/Logo.svelte';
   import MarkMap from '$lib/components/MarkMap.svelte';
@@ -17,11 +20,15 @@
       <Logo></Logo>
       <div class="ctrl">
         <AboutButton></AboutButton>
-        <DropDown title={data.tree.title} items={data.trees}></DropDown>
+        <CopyButton markdown={data.tree.markdown}></CopyButton>
+        <button class="btn" on:click={goTo(($page.url.pathname === ROUTE_TREE) ? ROUTE_ROOT : ROUTE_TREE)}>back</button>
+        <!-- #todo: dropdown -->
+        <!-- <DropDown title={data.tree.title} items={data.trees}></DropDown> -->
       </div>
-      <span class="grow-your-own">
+      <!-- #todo: germinator -->
+      <!-- <span class="grow-your-own">
         Grow your own with <a href={ROUTE_GERMINATOR}>The Germinator!</a>
-      </span>
+      </span> -->
     </div>
     <Theme pin={true}></Theme>
   </div>
@@ -36,6 +43,19 @@
   /* not sure why this isn't carrying over from 'styles.css'... */
   a {
     color: #00CC92;
+  }
+
+  .btn {
+    background: var(--btn-color);
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    /* margin: 0.5rem; */
+  }
+
+  .btn:hover {
+    cursor: pointer;
+    background: var(--btn-color--hover);
   }
 
   .ctrl {
