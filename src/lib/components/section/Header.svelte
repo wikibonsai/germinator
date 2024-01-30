@@ -6,8 +6,8 @@
     URL_SOCIAL_GITHUB,
     URL_VSCODE_PLUGIN,
   } from '$lib/util/const';
-  import Logo from '$lib/components/Logo.svelte';
-  import Theme from '$lib/components/Theme.svelte';
+  import Logo from '$lib/components/element/Logo.svelte';
+  import Theme from '$lib/components/element/Theme.svelte';
 
   let isMenuOpen: boolean = false;
   let screensize: string = 'small';

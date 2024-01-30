@@ -1,9 +1,9 @@
 <script lang='ts'>
   import { onMount } from 'svelte';
   import { isMarkdown, resultMkdn, theme } from '$lib/util/store';
-  import AboutButton from '$lib/components/AboutButton.svelte';
-  import CopyButton from '$lib/components/CopyButton.svelte';
-  import MkdnFrmtModal from "$lib/components/MkdnFrmtModal.svelte";
+  import AboutButton from '$lib/components/element/AboutButton.svelte';
+  import CopyButton from '$lib/components/element/CopyButton.svelte';
+  import MkdnFrmtModal from "$lib/components/component/MkdnFrmtModal.svelte";
 
   // image sources based on theme color
   $: resultFormatIcon = $isMarkdown

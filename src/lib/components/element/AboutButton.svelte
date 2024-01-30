@@ -1,6 +1,6 @@
 <script lang='ts'>
   import { theme } from '$lib/util/store';
-  import AboutModal from "$lib/components/AboutModal.svelte";
+  import AboutModal from "$lib/components/component/AboutModal.svelte";
 
   $: helpIcon         = `/img/icons/icons8-help-50-${$theme}.png`;
 

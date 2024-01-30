@@ -4,12 +4,12 @@
   import { ROUTE_GERMINATOR, ROUTE_ROOT, ROUTE_TREE } from '$lib/util/const';
   import { goTo } from '$lib/util/func';
   import { resultMkmp } from '$lib/util/store';
-  import AboutButton from '$lib/components/AboutButton.svelte';
-  import CopyButton from '$lib/components/CopyButton.svelte';
-  import DropDown from '$lib/components/DropDown.svelte';
-  import Logo from '$lib/components/Logo.svelte';
-  import MarkMap from '$lib/components/MarkMap.svelte';
-  import Theme from '$lib/components/Theme.svelte';
+  import AboutButton from '$lib/components/element/AboutButton.svelte';
+  import CopyButton from '$lib/components/element/CopyButton.svelte';
+  import DropDown from '$lib/components/element/DropDown.svelte';
+  import Logo from '$lib/components/element/Logo.svelte';
+  import MarkMap from '$lib/components/component/MarkMap.svelte';
+  import Theme from '$lib/components/element/Theme.svelte';
 
   export let data: PageData;
 </script>
