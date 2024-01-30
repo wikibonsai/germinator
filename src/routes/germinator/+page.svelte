@@ -36,7 +36,7 @@
          style="display: {($resultMkdn.ancestors === '') ? 'none' : 'flex'}">
          {@html $resultMkdn.ancestors}
     </div>
-    <!-- atom -->
+    <!-- word atom -->
     <div class="result-box box-border"
          style="display: {($resultMkdn.atom === '') ? 'none' : 'flex'}">
          {@html $resultMkdn.atom}
