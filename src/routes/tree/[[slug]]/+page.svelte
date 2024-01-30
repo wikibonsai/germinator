@@ -18,7 +18,7 @@
   <div class="overlay">
     <div class="ctrl-panel">
       <Logo></Logo>
-      <div class="ctrl">
+      <div class="ctrl-btns">
         <AboutButton></AboutButton>
         <CopyButton markdown={data.tree.markdown}></CopyButton>
         <button class="btn" on:click={goTo(($page.url.pathname === ROUTE_TREE) ? ROUTE_ROOT : ROUTE_TREE)}>back</button>
@@ -40,25 +40,7 @@
 </div>
 
 <style>
-  /* not sure why this isn't carrying over from 'styles.css'... */
-  a {
-    color: #00CC92;
-  }
-
-  .btn {
-    background: var(--btn-color);
-    color: white;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-    /* margin: 0.5rem; */
-  }
-
-  .btn:hover {
-    cursor: pointer;
-    background: var(--btn-color--hover);
-  }
-
-  .ctrl {
+  .ctrl-btns {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -37,7 +37,7 @@ body {
 }
 
 a {
-  color: #00CC92;
+  color: #00CC92 !important;
 }
 
 a:hover {
@@ -48,22 +48,45 @@ code {
   background-color: var(--accent-color-light);
 }
 
+select {
+  flex-grow: 1;
+}
+
 /* uniform element patterns */
 
+/*******/
 /* btn */
+/*******/
+
+.btn {
+  background: var(--btn-color);
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+}
+
+.btn:hover {
+  background: var(--btn-color--hover);
+}
+
+/* utility buttons (for toolbars etc.) */
 
 .util-btn {
+  min-width: 2.5rem;
   border-color: var(--accent-color-dark);
   border-radius: 0.25rem;
   border-width: 1px;
   padding: 0.5rem;
-  margin-right: 0.5rem;
+  margin: 0.25rem;
 }
 
 .util-btn:hover {
   cursor: pointer;
   border-color: var(--accent-color-light);
 }
+
+/* image buttons */
 
 .img-btn {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -149,8 +172,4 @@ code {
   font-size: 1.5rem;
   font-weight: 700;
   padding-bottom: 1rem;
-}
-
-select {
-  flex-grow: 1;
 }

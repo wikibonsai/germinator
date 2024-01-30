@@ -70,18 +70,6 @@
 </header>
 
 <style>
-  .btn {
-    background: var(--btn-color);
-    color: white;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
-  }
-
-  .btn:hover {
-    background: var(--btn-color--hover);
-  }
-
   .hamburger {
     cursor: pointer;
     /* small */
@@ -151,10 +139,6 @@
   }
 
   @media (min-width: 768px) {
-
-    .btn {
-      display: block;
-    }
 
     .hamburger {
       display: none;

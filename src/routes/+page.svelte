@@ -139,18 +139,6 @@
   /* todo: logo img + text styles are duplicated in header/footer */
   @import url('https://fonts.cdnfonts.com/css/terminator-2');
 
-  .btn {
-    background: var(--btn-color);
-    color: white;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
-  }
-
-  .btn:hover {
-    background: var(--btn-color--hover);
-  }
-
   /* .btn-pad {
     margin-right: 1rem;
   } */
@@ -290,10 +278,6 @@
   }
 
   @media (min-width: 768px) {
-
-    .btn {
-      display: block;
-    }
 
     /* .btn-pad {
       margin-right: 2rem;

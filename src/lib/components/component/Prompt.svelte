@@ -56,7 +56,7 @@
 
 <svelte:window on:keydown={submit} />
 
-<div class="flex items-center gap-2.5">
+<div class="prompt-container">
   <input
     id="input"
     type="text"
@@ -71,16 +71,10 @@
 </div>
 
 <style>
-  .btn {
-    background: var(--btn-color);
-    color: white;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
+  .prompt-container {
+    display: flex;
+    align-items: center;
     margin-bottom: 1rem;
-  }
-
-  .btn:hover {
-    background: var(--btn-color--hover);
   }
 
   .input {
@@ -90,7 +84,7 @@
     width: 100%;
     border-radius: 0.5rem;
     padding: 0.5rem;
-    margin-bottom: 1rem;
+    margin: 0.5rem;
   }
 
   .input:focus {
