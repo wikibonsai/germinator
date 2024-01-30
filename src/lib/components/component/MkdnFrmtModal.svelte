@@ -51,23 +51,21 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="modal about-modal fixed w-full h-full top-0 left-0 flex items-center justify-center z-50"
+<div class="modal"
      class:opacity-0={!isOpen}
      class:pointer-events-none={!isOpen}
      class:modal-active={isOpen}>
-  <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-  <div class="modal-container w-11/12 md:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto">
+  <div class="modal-overlay"></div>
+  <div class="modal-container">
     <!-- Add margin if you want to see some of the overlay behind the modal-->
-    <div class="modal-content py-4 text-left px-6">
-      <!--Title-->
-      <div class="flex justify-between items-center pb-3">
-        <p class="text-2xl font-bold">Markdown Formatting</p>
-        <button class="about-modal-close cursor-pointer z-50" on:click={closeModal}>
-          <svg class="title-color fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-            <path d="M16.292 2.292l-1.584-1.584-6.708 6.708-6.708-6.708-1.584 1.584 6.708 6.708-6.708 6.708 1.584 1.584 6.708-6.708 6.708 6.708 1.584-1.584-6.708-6.708z"></path>
-          </svg>
-        </button>
-      </div>
+    <div class="modal-content">
+      <!-- close / title -->
+      <button class="modal-close" on:click={closeModal}>
+        <svg class="title-color fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+          <path d="M16.292 2.292l-1.584-1.584-6.708 6.708-6.708-6.708-1.584 1.584 6.708 6.708-6.708 6.708 1.584 1.584 6.708-6.708 6.708 6.708 1.584-1.584-6.708-6.708z"></path>
+        </svg>
+      </button>
+      <p class="modal-title">Markdown Formatting</p>
       <!--Body-->
       <!-- todo: bind:group? https://svelte.dev/docs/element-directives#bind-group -->
       <form class="space-y-4">
@@ -128,7 +126,7 @@
         </div>
       </form>
       <!--Footer-->
-      <div class="flex justify-end pt-2">
+      <div class="modal-footer">
         <button id="saveButton"
                 class="px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-600"
                 on:click={saveMkdnFrmt}>

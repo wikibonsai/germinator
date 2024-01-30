@@ -67,14 +67,71 @@ code {
 /* modals */
 
 .modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
   transition: opacity 0.25s ease;
 }
-.modal-container {
-  background-color: var(--background-color);
-}
+
 .modal-active {
   overflow-x: hidden;
   overflow-y: visible !important;
+}
+
+.modal-close {
+  cursor: pointer;
+  z-index: 50;
+  padding-top: 0.2rem;
+}
+
+.modal-container {
+  background-color: var(--background-color);
+  width: 91.666667%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.25rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .modal-container {
+      max-width: 24rem;
+  }
+}
+
+.modal-content {
+  text-align: left;
+  padding: 1rem 1.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+.modal-overlay {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: #1f2937;
+   opacity: 0.5;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding-bottom: 1rem;
 }
 
 select {
