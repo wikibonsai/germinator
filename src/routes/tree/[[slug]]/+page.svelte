@@ -4,8 +4,8 @@
   import { ROUTE_GERMINATOR, ROUTE_ROOT, ROUTE_TREE } from '$lib/util/const';
   import { goTo } from '$lib/util/func';
   import { resultMkmp } from '$lib/util/store';
-  import AboutButton from '$lib/components/element/AboutButton.svelte';
-  import CopyButton from '$lib/components/element/CopyButton.svelte';
+  import AbtBtn from '$lib/components/element/AbtBtn.svelte';
+  import CpyBtn from '$lib/components/element/CpyBtn.svelte';
   import DropDown from '$lib/components/element/DropDown.svelte';
   import Logo from '$lib/components/element/Logo.svelte';
   import MarkMap from '$lib/components/component/MarkMap.svelte';
@@ -19,8 +19,8 @@
     <div class="ctrl-panel">
       <Logo></Logo>
       <div class="ctrl-btns">
-        <AboutButton></AboutButton>
-        <CopyButton markdown={data.tree.markdown}></CopyButton>
+        <AbtBtn></AbtBtn>
+        <CpyBtn markdown={data.tree.markdown}></CpyBtn>
         <button class="btn" on:click={goTo(($page.url.pathname === ROUTE_TREE) ? ROUTE_ROOT : ROUTE_TREE)}>back</button>
         <!-- #todo: dropdown -->
         <!-- <DropDown title={data.tree.title} items={data.trees}></DropDown> -->
