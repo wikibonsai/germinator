@@ -11,24 +11,10 @@
 </script>
 
 <button id="aboutButton"
-        class="toolbar-button"
+        class="util-btn"
         title="About"
         on:click={toggleAbtMdl}>
   <img id="helpIcon" alt="Format" class="w-6 h-6" src={helpIcon}>
 </button>
 
 <AboutModal bind:isOpen={isAbtMdlOpen}></AboutModal>
-
-<style>
-  .toolbar-button {
-    border-color: var(--accent-color-dark);
-    border-radius: 0.25rem;
-    border-width: 1px;
-    padding: 0.5rem;
-    margin-right: 0.5rem;
-  }
-
-  .toolbar-button:hover {
-    border-color: var(--accent-color-light);
-  }
-</style>

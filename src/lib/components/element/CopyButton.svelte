@@ -78,22 +78,8 @@
 </script>
 
 <button id="copyButton"
-        class="toolbar-button"
+        class="util-btn"
         title="Copy"
         on:click={copy}>
   <img id="copyIcon" alt="Copy" class="w-6 h-6" src={copyIcon}>
 </button>
-
-<style>
-  .toolbar-button {
-    border-color: var(--accent-color-dark);
-    border-radius: 0.25rem;
-    border-width: 1px;
-    padding: 0.5rem;
-    margin-right: 0.5rem;
-  }
-
-  .toolbar-button:hover {
-    border-color: var(--accent-color-light);
-  }
-</style>

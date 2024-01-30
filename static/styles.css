@@ -40,6 +40,10 @@ a {
   color: #00CC92;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 code {
   background-color: var(--accent-color-light);
 }
@@ -47,6 +51,19 @@ code {
 /* uniform element patterns */
 
 /* btn */
+
+.util-btn {
+  border-color: var(--accent-color-dark);
+  border-radius: 0.25rem;
+  border-width: 1px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.util-btn:hover {
+  cursor: pointer;
+  border-color: var(--accent-color-light);
+}
 
 .img-btn {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
