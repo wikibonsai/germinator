@@ -11,14 +11,15 @@
     URL_VSCODE_PLUGIN,
   } from '$lib/util/const';
   import { goTo } from '$lib/util/func';
-  import AppTabSelect from '$lib/components/section/landing/AppTabSelect.svelte';
-  import BonsaiJungleGymSVG from '$lib/components/section/landing/BonsaiJungleGymSVG.svelte';
   import DropDown from '$lib/components/element/DropDown.svelte';
   import Footer from '$lib/components/section/Footer.svelte';
   import Header from '$lib/components/section/Header.svelte';
   import MarkMap from '$lib/components/component/MarkMap.svelte';
-  import TendNTinkerCards from '$lib/components/section/landing/TendNTinkerCards.svelte';
-  import WorkflowsShowCase from '$lib/components/section/landing/WorkflowsShowCase.svelte';
+  // sections
+  import AppTabSelect from './AppTabSelect.svelte';
+  import BonsaiJungleGymSVG from './BonsaiJungleGymSVG.svelte';
+  import TendNTinkerCards from './TendNTinkerCards.svelte';
+  import WorkflowsShowCase from './WorkflowsShowCase.svelte';
 
   export let data: PageData;
 
