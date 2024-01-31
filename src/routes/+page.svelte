@@ -23,7 +23,8 @@
 
   export let data: PageData;
 
-  let temp: SVGSVGElement | null ;
+  // #todo: germinator
+  // let temp: SVGSVGElement | null ;
 </script>
 
 <Header></Header>
