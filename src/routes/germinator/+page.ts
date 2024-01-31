@@ -1,3 +1,6 @@
+////
+// +page.ts
+
 // #todo: germinator
 // import type { PageLoad } from './$types';
 

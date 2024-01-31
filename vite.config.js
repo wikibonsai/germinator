@@ -9,7 +9,6 @@ export default defineConfig({
       allow: ['./']
     }
   },
-  assetsInclude: ['**/*.md'],
   test: {
     include: ['src/**/*.{test,spec}.{js,ts}']
   }
