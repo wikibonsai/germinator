@@ -2,10 +2,15 @@
   - [[concepts]]
     - [[[mathematics]]](/tree/math)
     - [[science]]
+      - [[[biology]]](/tree/biology)
       - [[[chemistry]]](/tree/chemistry)
       - [[[physics]]](/tree/physics)
     - [[[computer-science]]](/tree/computer-science)
       - [[[machine-learning]]](/tree/machine-learning)
+    - [[[history]]](/tree/history)
+  - [[technology]]
+    - [[applied-science]]
+      - [[[engineering]]](/tree/engineering)
   - [[resources]]
     - [[books]]
       - [[[how-to-read-a-book]]](/tree/how-to-read-a-book)
