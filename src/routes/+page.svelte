@@ -184,9 +184,12 @@
     padding: 1rem;
   }
 
+  /* description sections */
+
   .description {
-    padding: 1rem;
     text-align: center;
+    /* small */
+    padding: 1rem;
   }
 
   .description-title {
@@ -200,6 +203,7 @@
   /* todo: split description-body into row v column arrangement */
 
   .description-body {
+    height: 100%;
     display: flex;
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -245,8 +249,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2rem;
-    padding-bottom: 0;
+    /* small */
+    padding: 2rem 0;
   }
 
   .ssg-logo {
@@ -285,7 +289,7 @@
     } */
 
     .description {
-      padding: 2rem;
+      padding: 3rem 2rem;
     }
 
     .description-title {
@@ -318,6 +322,10 @@
     .oss-logo {
       width: 25%;
       margin: 4rem;
+    }
+
+    .ssg {
+      padding: 2rem;
     }
 
     .ssg-logo {
