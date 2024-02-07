@@ -1,4 +1,4 @@
-import type { Tree } from '$lib/types';
+import type { Tree } from './$types';
 import fs from 'fs';
 import path from 'path';
 import { browser } from '$app/environment';

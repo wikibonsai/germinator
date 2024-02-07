@@ -1,5 +1,6 @@
 // see: https://github.com/wikibonsai/prompt
 
+import type { OptMkdn } from './$types';
 import { SEPARATOR } from './const';
 
 
@@ -186,7 +187,7 @@ Your goal here is to produce a semantic node that provides a well-rounded repres
 `;
 
 
-export function formatPrompt(opts: any): string {
+export function formatPrompt(opts: OptMkdn): string {
   const text: string = opts.text;
   const cap: string = opts.case; // 'capitalize' (can't use 'case' keyword)
   const indent: string = opts.indent;

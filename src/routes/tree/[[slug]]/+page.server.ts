@@ -1,5 +1,4 @@
-import type { EntryGenerator, PageServerLoad } from './$types';
-import type { Tree } from '$lib/types';
+import type { EntryGenerator, PageServerLoad, Tree } from './$types';
 import { error } from '@sveltejs/kit';
 import { trees } from '$lib/data/trees';
 
