@@ -132,25 +132,32 @@ select {
 
 .modal-container {
   background-color: var(--background-color);
-  width: 91.666667%;
-  max-width: none;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.25rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   z-index: 50;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  /* small */
+  width: 100%;
+  max-width: none;
 }
 
 @media (min-width: 768px) {
   .modal-container {
-      max-width: 24rem;
+    width: auto;
+    max-width: 24rem;
   }
 }
 
 .modal-content {
   text-align: left;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .modal-footer {
