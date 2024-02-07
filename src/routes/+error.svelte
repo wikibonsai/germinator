@@ -9,7 +9,7 @@
 
 <div class="error-page">
   <h1>{status}: {message}</h1>
-  <img src={image} alt="pixel bonsai jungle gym">
+  <img src={image} alt="fallen plant">
 </div>
 
 <style>
