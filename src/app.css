@@ -13,6 +13,7 @@
   --box-background: #fff;
   --accent-color-light: #D1ECDC;
   --accent-color-dark: #b6d1c1;
+  --link-color: #01946a;
   --branch-light: #8C6239;
   --branch-dark: #36290e;
   --leaf: #31AF31;
@@ -26,6 +27,7 @@
   --accent-color-light: #44434d;
   --accent-color-dark: #313036;
   --box-background: #44434d;
+  --link-color: #00CC92;
   --branch-light: #2d565e;
   --branch-dark: #1d1d1f;
   --leaf: #31AF31;
@@ -37,7 +39,7 @@ body {
 }
 
 a {
-  color: #00CC92 !important;
+  color: var(--link-color) !important;
 }
 
 a:hover {
