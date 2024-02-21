@@ -106,7 +106,7 @@
     display: none;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     .flex-center {
       justify-content: flex-start;
     }
