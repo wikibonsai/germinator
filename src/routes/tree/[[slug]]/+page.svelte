@@ -1,13 +1,10 @@
 <script lang='ts'>
   import type { PageData } from './$types'
   import { page } from '$app/stores';
-  import { ROUTE_GERMINATOR, ROUTE_ROOT, ROUTE_TREE } from '$lib/util/const';
+  import { ROUTE_ROOT, ROUTE_TREE } from '$lib/util/const';
   import { goTo } from '$lib/util/func';
   import { resultMkmp } from '$lib/util/store';
-  import AbtBtn from '$lib/components/element/AbtBtn.svelte';
-  import CpyBtn from '$lib/components/element/CpyBtn.svelte';
-  import DropDown from '$lib/components/element/DropDown.svelte';
-  import Logo from '$lib/components/element/Logo.svelte';
+  import HamburgerMenu from '$lib/components/component/HamburgerMenu.svelte';
   import MarkMap from '$lib/components/component/MarkMap.svelte';
   import Theme from '$lib/components/element/Theme.svelte';
 
@@ -17,19 +14,17 @@
 <div class="main">
   <div class="overlay">
     <div class="ctrl-panel">
-      <Logo></Logo>
-      <div class="ctrl-btns">
-        <AbtBtn></AbtBtn>
-        <CpyBtn markdown={data.tree.markdown}></CpyBtn>
-        <button class="btn" on:click={goTo(($page.url.pathname === ROUTE_TREE) ? ROUTE_ROOT : ROUTE_TREE)}>back</button>
-        <!-- #todo: dropdown -->
-        <!-- <DropDown title={data.tree.title} items={data.trees}></DropDown> -->
-      </div>
-      <!-- #todo: germinator -->
-      <!-- <span class="grow-your-own">
-        Grow your own with <a href={ROUTE_GERMINATOR}>The Germinator!</a>
-      </span> -->
+      <HamburgerMenu tree={data.tree}></HamburgerMenu>
+      <button on:click={goTo(($page.url.pathname === ROUTE_TREE) ? ROUTE_ROOT : ROUTE_TREE)}
+              class="back-btn img-btn"
+              title="Back">
+        ←
+      </button>
     </div>
+    <!-- #todo: germinator -->
+    <!-- <span class="grow-your-own">
+      Grow your own with <a href={ROUTE_GERMINATOR}>The Germinator!</a>
+    </span> -->
     <Theme pin={true}></Theme>
   </div>
   <MarkMap markdown={data.tree.markdown}
@@ -40,6 +35,11 @@
 </div>
 
 <style>
+  .back-btn {
+    padding: 0.5rem;
+    font-size: 2rem;
+  }
+
   .ctrl-btns {
     display: flex;
     align-items: center;
@@ -49,7 +49,6 @@
 
   .ctrl-panel {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     /* small */

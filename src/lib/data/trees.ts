@@ -1,4 +1,4 @@
-import type { Tree } from '$lib/types';
+import type { Tree } from './$types';
 import fs from 'fs';
 import path from 'path';
 import { browser } from '$app/environment';
@@ -10,9 +10,6 @@ if (browser) {
   throw new Error(`trees can only be imported server-side`);
 }
 
-// 'knowledge bonsai'
-// 'bonsai tree'
-// 'semantic tree'
 export const trees: Tree[] = Object.entries(import.meta.glob('/trees/**/*.md', { eager: true }))
                                    .map(([filepath, tree]) => {
                                      const fname: string = path.basename(filepath, '.md');

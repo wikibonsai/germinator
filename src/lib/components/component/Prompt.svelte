@@ -19,7 +19,10 @@
     $resultMkdn.ancestors = '';
     $resultMkdn.descendants = '';
     $resultMkdn.atom = '';
-    if (apiKey === '') { alert('Problem with OpenAI API key, please contact customer support.'); return; }
+    if (apiKey === '') {
+      alert('Problem with OpenAI API key, please contact customer support.');
+      return;
+    }
     const result: string = await makeReal(
       apiKey,
       userMsg,
@@ -34,14 +37,17 @@
     if (result.indexOf(AI_ERROR) === 0) {
       alert(result);
     } else {
-      const resultStrippedBackTicks: string = result.replace(/```/g, '');
-      const results: string[] = resultStrippedBackTicks.split(SEPARATOR_SHORT);
+      // const resultStrippedBackTicks: string = result.replace(/```/g, '');
+      const results: string[] = result.replace(/```/g, '')
+                                      .split(SEPARATOR_SHORT);
       console.debug('result string: ', result);
       console.debug('result array: ', results);
-      $resultMkdn.all = resultStrippedBackTicks.replace(new RegExp(SEPARATOR_SHORT, 'g'), '\n\n');
-      $resultMkdn.ancestors = results[0];
-      $resultMkdn.atom = results[1];
-      $resultMkdn.descendants = results[2];
+      $resultMkdn.all = result.replace(/```/g, '')
+                              .replace(new RegExp(SEPARATOR_SHORT, 'g'), '\n\n')
+                              .trim();
+      $resultMkdn.ancestors = results[0] ? results[0].trim() : '';
+      $resultMkdn.atom = results[1] ? results[1].trim() : '';
+      $resultMkdn.descendants = results[2] ? results[2].trim() : '';
     }
     dispatch('loading', false);
   }

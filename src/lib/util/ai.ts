@@ -1,10 +1,11 @@
 // courtesy: https://github.com/tldraw/make-real-starter
 
+import type { OptMkdn } from './$types';
 import { AI_ERROR, URL_OPENAI_API } from './const';
 import { formatPrompt, SYSTEM_PROMPT, PEPTALK } from './prompt';
 
 
-async function fetchFromOpenAi(apiKey: string, body: JSON): Promise<any> {
+async function fetchFromOpenAi(apiKey: string, body: JSON): Promise<JSON> {
   if (apiKey === '' ) {
     throw new Error(
       'You need to provide an API key. Make sure OPENAI_API_KEY is set in your .env file.'
@@ -26,8 +27,7 @@ async function fetchFromOpenAi(apiKey: string, body: JSON): Promise<any> {
   }
 }
 
-// todo: option type
-export async function makeReal(apiKey: string, userMessage: string, opts: any): string {
+export async function makeReal(apiKey: string, userMessage: string, opts: OptMkdn): string {
   // first, we build the prompt that we'll send to openai.
   const seedPrompt: string = SYSTEM_PROMPT + formatPrompt(opts) + PEPTALK;
   let chatGptResponse: string = '';

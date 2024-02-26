@@ -8,7 +8,6 @@ const config = {
 
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	// preprocess: vitePreprocess(),
 	preprocess: preprocess({
 		// this is for things like tailwind..
 		// postcss: true,

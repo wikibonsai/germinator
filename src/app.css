@@ -10,9 +10,11 @@
   --text-color: #5c5962;
   --accent-text-color: #918f96;
   --background-color: #e4f3ea;
+  --background-accent-color: #b9d2c4;
   --box-background: #fff;
   --accent-color-light: #D1ECDC;
   --accent-color-dark: #b6d1c1;
+  --link-color: #01946a;
   --branch-light: #8C6239;
   --branch-dark: #36290e;
   --leaf: #31AF31;
@@ -23,9 +25,11 @@
   --text-color: #e1e8e3;
   --accent-text-color: #959f99;
   --background-color: #27262b;
+  --background-accent-color: #323138;
   --accent-color-light: #44434d;
   --accent-color-dark: #313036;
   --box-background: #44434d;
+  --link-color: #00CC92;
   --branch-light: #2d565e;
   --branch-dark: #1d1d1f;
   --leaf: #31AF31;
@@ -37,7 +41,7 @@ body {
 }
 
 a {
-  color: #00CC92 !important;
+  color: var(--link-color) !important;
 }
 
 a:hover {
@@ -115,7 +119,7 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: 500;
   transition: opacity 0.25s ease;
 }
 
@@ -126,31 +130,38 @@ select {
 
 .modal-close {
   cursor: pointer;
-  z-index: 50;
+  z-index: 500;
   padding-top: 0.2rem;
 }
 
 .modal-container {
   background-color: var(--background-color);
-  width: 91.666667%;
-  max-width: none;
   margin-left: auto;
   margin-right: auto;
   border-radius: 0.25rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  z-index: 50;
+  z-index: 500;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  /* small */
+  width: 100%;
+  max-width: none;
 }
 
 @media (min-width: 768px) {
   .modal-container {
-      max-width: 24rem;
+    width: auto;
+    max-width: 24rem;
   }
 }
 
 .modal-content {
   text-align: left;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .modal-footer {
