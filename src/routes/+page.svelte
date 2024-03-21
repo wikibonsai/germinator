@@ -4,6 +4,7 @@
     DEMO_MKDN,
     ROUTE_TREE,
     ROUTE_GERMINATOR,
+    URL_REPO_WIKIBONSAI,
     URL_SOCIAL_GITHUB,
     URL_SSG_ASTRO,
     URL_SSG_ELEVENTY,
@@ -46,7 +47,8 @@
       </p> -->
     </div>
     <div class="btn-container">
-      <button class="btn" on:click={goTo(ROUTE_TREE)}>Knowledge Bonsai</button>
+      <!-- <button class="btn" on:click={goTo(ROUTE_TREE)}>Knowledge Bonsai</button> -->
+      <button class="btn" on:click={goTo(URL_REPO_WIKIBONSAI)}>About</button>
       <!-- <DropDown title={'Knowledge Bonsais'} items={data.trees}></DropDown> -->
     </div>
   </section>
