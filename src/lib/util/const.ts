@@ -3,8 +3,9 @@
 ////
 // local routes
 export const ROUTE_ROOT          : string = '/';
-export const ROUTE_TREE          : string = '/tree';
 export const ROUTE_GERMINATOR    : string = '/germinator';
+export const ROUTE_TEND          : string = '/tend';
+export const ROUTE_TREE          : string = '/tree';
 ////
 // external urls
 // apps

@@ -7,10 +7,10 @@
   $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side
     if ($isDark) {
       $theme = 'dark';
-      document.body.classList.add('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
     } else {
       $theme = 'light';
-      document.body.classList.remove('dark');
+      document.documentElement.setAttribute('data-theme', 'light');
     }
   }
   $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side

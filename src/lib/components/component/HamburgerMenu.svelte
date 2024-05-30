@@ -11,7 +11,7 @@
 
   let isOpen: boolean = false;
 
-  function toggleMenu() {
+  function toggleMenu(): void {
     isOpen = !isOpen;
   }
 </script>

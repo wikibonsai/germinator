@@ -28,6 +28,23 @@ declare global {
 			markdown?: string; // the markdown is the file content
 		}
 	}
+
+	interface MkdnDoc {
+		id: string;             // Unique identifier for each document, could be a UUID or file path
+		path: string;           // absolute path to file
+		filename: string;       // The name of the file
+		mkdn: string;           // The markdown content of the file
+		lastSaved: Date | null; // Timestamp of the last save operation
+		isDirty: boolean;       // Flag to indicate unsaved changes
+	}
+
+	export interface FileSystemNode {
+		id: string;
+		path: string;
+		name: string;
+		type: 'file' | 'directory';
+		children?: FileSystemNode[];
+	}
 }
 
 export {};

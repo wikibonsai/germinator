@@ -1,5 +1,7 @@
 <!-- #todo: dropdown -->
 <script lang='ts'>
+  import { clickOutside } from '$lib/util/func';
+
   export let title: string = 'dropdown';
   export let items: { route: string, title: string }[] = [];
 
@@ -16,9 +18,7 @@
   }
 </script>
 
-<svelte:window on:click={handleClickOutside} />
-
-<div class="dropdown">
+<div class="dropdown" use:clickOutside on:click_outside={handleClickOutside}>
   <button class="dropdown-button" on:click={toggleDropdown}>{title}</button>
   {#if isDropdownOpen}
     <div class="dropdown-menu">

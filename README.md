@@ -4,6 +4,10 @@
 
 > Come with me if you want to grow.
 
+- 'semantic tree'
+- 'bonsai tree'
+- 'knowledge bonsai'
+
 ## Creating a project
 
 If you're seeing this, you've probably already done this step. Congrats!
@@ -38,3 +42,14 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Influences
+
+- [svelte-blog-template](https://github.com/mattjennings/sveltekit-blog-template/)
+
+## todos
+
+- germinator
+  - implement once monetizing incidentals are in-place.
+- dropdown
+  - might want to get rid of this component.

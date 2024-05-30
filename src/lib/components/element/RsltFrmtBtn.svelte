@@ -10,7 +10,6 @@
     $isMarkdown = (localStorage.getItem('is-markdown') === 'true');
   });
 
-
   function toggleRsltFrmt() {
     $isMarkdown = !$isMarkdown;
     localStorage.setItem('is-markdown', String($isMarkdown));
