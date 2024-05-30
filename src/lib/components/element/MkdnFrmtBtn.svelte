@@ -14,7 +14,7 @@
         class="util-btn"
         title="Markdown Format"
         on:click={toggleFrmtMdl}>
-        <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6" src={mkdnFormatIcon}>
+  <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6" src={mkdnFormatIcon}>
 </button>
 
 <MkdnFrmtModal bind:isOpen={isFrmtMdlOpen}></MkdnFrmtModal>
