@@ -12,6 +12,7 @@
   import ToolBar from "$lib/components/component/ToolBar.svelte";
 
   export let data: PageData;
+  const apiKey: string = (data && data.apiKey) ? data.apiKey : '';
 
   let loading: boolean = false;
 
@@ -29,7 +30,7 @@
       </h1>
       <Theme pin={true} />
     </div>
-    <Prompt storedApiKey={data.apiKey} on:loading={load} />
+    <Prompt storedApiKey={apiKey} on:loading={load} />
     <ToolBar />
     {#if loading}
       <Loader />
