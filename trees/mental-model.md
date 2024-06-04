@@ -1,1 +1,0 @@
-- [[mental-model]]
