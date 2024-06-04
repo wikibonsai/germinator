@@ -1,6 +1,5 @@
 // see: https://github.com/wikibonsai/prompt
 
-import type { OptMkdn } from './$types';
 import { SEPARATOR } from './const';
 
 
@@ -70,7 +69,7 @@ EXAMPLE OUTPUT:
 
 DEFINE::SEMANTIC ANCESTORS:
 
-"Semantic ancestors" are the concepts that are above the current concept in the "semantic tree". They consist of the the path from the root of the semantic tree to the current concept.
+"Semantic ancestors" are the concepts that are above the current concept in the "semantic tree". The path should start from the root (least specific) of the semantic tree to the current concept (most specific) and should read root-first on the left to the specified node on the right.
 
 
 DEFINE::SEMANTIC TREE:

@@ -22,6 +22,10 @@ export const mkdnFrmt: Writable<Record<string, string>> = writable({
 
 export const apiKey: Writable<string> = writable('');
 
+// user input
+
+export const userConcept: Writable<string> = writable('');
+
 // result
 
 export const isMarkdown: Writable<boolean> = writable(true);
@@ -32,5 +36,6 @@ export const resultMkdn: Writable<Record<string, string>> = writable({
   descendants: '',
   atom: '',
 });
+export const resultAtmp: Writable<any | null> = writable(null);
 export const resultMkmp: Writable<SVGSVGElement | null> = writable(null);
 

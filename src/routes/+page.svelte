@@ -1,6 +1,9 @@
 <script lang='ts'>
   import type { PageData } from './$types'
-  import { isMarkdown, resultMkdn, resultMkmp } from '$lib/util/store';
+  import { isMarkdown, resultAtmp, resultMkdn, resultMkmp } from '$lib/util/store';
+  import ApiKey from "$lib/components/component/APIKey.svelte";
+  import AtomMap from '$lib/components/component/AtomMap.svelte';
+  import BranchMap from '$lib/components/component/BranchMap.svelte'
   import Loader from "$lib/components/element/Loader.svelte";
   import Logo from '$lib/components/element/Logo.svelte';
   import MarkMap from '$lib/components/component/MarkMap.svelte';
@@ -20,42 +23,54 @@
 <div class="main">
   <div class="container">
     <div class="flex-center">
-      <Logo></Logo>
+      <Logo />
       <h1 class="title-style">
         Germinator
       </h1>
-      <Theme pin={true}></Theme>
+      <Theme pin={true} />
     </div>
-    <Prompt apiKey={data.apiKey} on:loading={load}></Prompt>
-    <ToolBar></ToolBar>
+    <Prompt storedApiKey={data.apiKey} on:loading={load} />
+    <ToolBar />
     {#if loading}
-      <Loader></Loader>
+      <Loader />
     {/if}
-    <!-- ancestry -->
-    <div class="result-box box-border"
-         style="display: {($resultMkdn.ancestors === '') ? 'none' : 'flex'}">
-         {@html $resultMkdn.ancestors}
-    </div>
-    <!-- word atom -->
-    <div class="result-box box-border"
-         style="display: {($resultMkdn.atom === '') ? 'none' : 'flex'}">
-         {@html $resultMkdn.atom}
-    </div>
-    <!-- subtree -->
-    <div class="result-box box-border"
-         class:stretch-markmap={!$isMarkdown}
-         style="display: {($resultMkdn.descendants === '') ? 'none' : 'flex'}">
-    {#if $isMarkdown}
-      {@html $resultMkdn.descendants}
-    {:else}
-      <MarkMap markdown={$resultMkdn.descendants}
-              bind:markmap={$resultMkmp}
-              height={85}
-              width={75}>
-      </MarkMap>
-    {/if}
+    <div id="result" class="result-box-background">
+      <!-- ancestry -->
+      <div class="result-box box-border"
+          style="display: {($resultMkdn.ancestors === '') ? 'none' : 'flex'}">
+          {#if $isMarkdown}
+            {@html $resultMkdn.ancestors}
+          {:else}
+            <BranchMap markdown={$resultMkdn.ancestors} />
+          {/if}
+      </div>
+      <!-- word atom -->
+      <div class="result-box box-border"
+          style="display: {($resultMkdn.atom === '') ? 'none' : 'flex'}">
+          {#if $isMarkdown}
+            {@html $resultMkdn.atom}
+          {:else}
+            <AtomMap markdown={$resultMkdn.atom}
+                     height={35}
+                     width={75} />
+          {/if}
+      </div>
+      <!-- subtree -->
+      <div class="result-box box-border"
+          class:stretch-markmap={!$isMarkdown}
+          style="display: {($resultMkdn.descendants === '') ? 'none' : 'flex'}">
+      {#if $isMarkdown}
+        {@html $resultMkdn.descendants}
+      {:else}
+        <MarkMap markdown={$resultMkdn.descendants}
+                 bind:markmap={$resultMkmp}
+                 height={75}
+                 width={75} />
+      {/if}
+      </div>
     </div>
   </div>
+  <ApiKey />
 </div>
 
 <style>
@@ -89,6 +104,10 @@
     border-radius: 0.5rem;
     margin-bottom: 2.5rem;
     padding: 1rem;
+  }
+
+  .result-box-background {
+    background-color: transparent;
   }
 
   .stretch-markmap {

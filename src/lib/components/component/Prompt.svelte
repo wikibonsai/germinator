@@ -2,16 +2,16 @@
   import type { EventDispatcher } from 'svelte';
   import { createEventDispatcher } from 'svelte';
   import { AI_ERROR, SEPARATOR, SEPARATOR_SHORT } from '$lib/util/const';
-  import { mkdnFrmt, resultMkdn } from '$lib/util/store';
+  import { apiKey, mkdnFrmt, resultMkdn, userConcept } from '$lib/util/store';
   import { makeReal } from "$lib/util/ai";
 
-  export let apiKey: string = '';
+  export let storedApiKey: string = '';
 
   const dispatch: EventDispatcher<any> = createEventDispatcher();
-  let userMsg: string = '';
 
   async function goai() {
-    if (apiKey === '' ) {
+    const apiKeyToSend: string = (storedApiKey !== '') ? storedApiKey : $apiKey;
+    if (apiKeyToSend === '' ) {
       alert('Please enter an OpenAI API key');
       return;
     }
@@ -19,13 +19,13 @@
     $resultMkdn.ancestors = '';
     $resultMkdn.descendants = '';
     $resultMkdn.atom = '';
-    if (apiKey === '') {
+    if (apiKeyToSend === '') {
       alert('Problem with OpenAI API key, please contact customer support.');
       return;
     }
     const result: string = await makeReal(
-      apiKey,
-      userMsg,
+      apiKeyToSend,
+      $userConcept,
       {
         indent: $mkdnFrmt.indentKind,
         text: $mkdnFrmt.textKind,
@@ -68,7 +68,7 @@
     type="text"
     placeholder="tree (linguistics)"
     class="input box-border"
-    bind:value={userMsg}>
+    bind:value={$userConcept}>
   <button id="growButton"
           class="btn"
           on:click={goai}>
@@ -84,6 +84,26 @@
   }
 
   .input {
+    color: var(--text-color);
+    background-color: var(--box-background);
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  /* todo */
+  /* from: https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/ */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
     color: var(--text-color);
     background-color: var(--box-background);
     box-sizing: border-box;

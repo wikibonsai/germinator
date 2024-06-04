@@ -19,7 +19,7 @@
 
   .sprout {
     background-color: #31af31;
-    width: 5px;
+    width: 1px;
     height: 5px;
     border-radius: 50%;
     position: absolute;

@@ -3,8 +3,8 @@
   import { isMarkdown, resultMkdn, theme } from '$lib/util/store';
 
   $: resultFormatIcon = $isMarkdown
-                        ? `/img/icons/icons8-markdown-30-${$theme}.png`
-                        : `/img/icons/icons8-mind-map-30-${$theme}.png`;
+                        ? `/img/icons/icons8-mind-map-30-${$theme}.png`
+                        : `/img/icons/icons8-markdown-30-${$theme}.png`;
 
   onMount(() => {
     $isMarkdown = (localStorage.getItem('is-markdown') === 'true');

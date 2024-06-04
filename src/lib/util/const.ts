@@ -9,6 +9,7 @@ export const ROUTE_TREE          : string = '/tree';
 ////
 // external urls
 // apps
+export const URL_WIKIBONSAI      : string = 'https://wikibonsai.io';
 export const URL_TENDR_CLI       : string = 'https://www.npmjs.com/package/tendr-cli';
 export const URL_VSCODE_PLUGIN   : string = 'https://marketplace.visualstudio.com/items?itemName=manunamz.vscode-wikibonsai';
 // docs
@@ -18,6 +19,7 @@ export const URL_DOCS_PHILOSOPHY : string = 'https://github.com/wikibonsai/wikib
 export const URL_DOCS_USE        : string = 'https://github.com/wikibonsai/wikibonsai/tree/main/docs/USE.md';
 // repos
 export const URL_REPO_WIKIBONSAI : string = 'https://github.com/wikibonsai/wikibonsai';
+export const URL_REPO_GERMINATOR : string = 'https://github.com/wikibonsai/germinator';
 export const URL_REPO_VSCODE     : string = 'https://github.com/wikibonsai/vscode-wikibonsai';
 export const URL_REPO_TENDR      : string = 'https://github.com/wikibonsai/tendr-cli';
 export const URL_REPO_ASTRO      : string = 'https://github.com/wikibonsai/astro-wikibonsai';
@@ -39,26 +41,32 @@ export const URL_REF_OPENAI      : string = 'https://beta.openai.com/';
 export const URL_REF_GPT3        : string = 'https://beta.openai.com/docs/introduction';
 export const URL_REF_WAITBUTWHY  : string = 'https://waitbutwhy.com/2017/04/neuralink.html';
 export const URL_REF_R_MUSK_TREE : string = 'https://www.reddit.com/r/IAmA/comments/2rgsan/comment/cnfre0a/?utm_source=share&utm_medium=web2x&context=3&rdt=50009';
+export const URL_TWT_WAY         : string = 'https://x.com/wibomd/status/1703930973371412699';
 ////
 // api
 export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions';
 
+// style
 
-// landing page markmap input
-
-export const DEMO_MKDN           : string = `
-- WikiBonsai
-  - markdown
-    - \`[[wikirefs]]\`
-    - \`- semantic trees\`
-    - \`:semantic::attributes\`
-  - xr
-    - graphs
-      - tree
-      - web
-  - ai
-    - concept analysis
-`;
+// colors
+export const DARK_GREEN          : string = '#165016';
+export const DARK_TEAL           : string = '#2d565e';
+export const GREEN               : string = '#31AF31';
+export const LIGHT_BROWN         : string = '#8C6239';
+export const LIGHT_GREEN         : string = '#60D260';
+export const ORANGE              : string = '#EDA02E';
+export const RED                 : string = '#DA3434';
+export const YELLOW              : string = '#EEC746';
+export const COLORS              : string[] = [
+                                                LIGHT_BROWN,
+                                                DARK_TEAL,
+                                                DARK_GREEN,
+                                                GREEN,
+                                                LIGHT_GREEN,
+                                                YELLOW,
+                                                ORANGE,
+                                                RED,
+                                              ];
 
 // prompt
 

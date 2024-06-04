@@ -1,4 +1,5 @@
 <script lang='ts'>
+  import html2canvas from 'html2canvas';
   import { isMarkdown, theme } from '$lib/util/store';
 
   export let markdown: string = '';
@@ -20,54 +21,40 @@
     if ($isMarkdown) {
       copyMkdnToClipBoard(markdown);
     } else {
-      const width = 800;
-      const height = 800;
-      if (svg !== null) {
-        svgToPngAndCopyToClipboard(svg, width, height);
-      }
+      elementToImageAndCopyToClipboard(document.getElementById('result') as HTMLElement);
     }
   }
 
-  async function svgToPngAndCopyToClipboard(svgElement: SVGElement, width: number, height: number): void {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext('2d');
-    // Create an image and set the SVG data as the source
-    const img = new Image();
-    img.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(new XMLSerializer().serializeToString(svgElement))));
-      img.onload = () => {
-        // Draw the image onto the canvas
-        ctx.drawImage(img, 0, 0, width, height);
-        // Convert canvas to PNG
-        canvas.toBlob(async (blob) => {
-          try {
-            // Copy the PNG blob to the clipboard
-            await navigator.clipboard.write([
-              new ClipboardItem({
-                'image/png': blob
-              })
-            ]).then(() => {
-              if (blob) {
-                console.debug('Semantic tree PNG copied to clipboard');
-                copied();
-              }
+  async function elementToImageAndCopyToClipboard(element: HTMLElement): Promise<void> {
+    try {
+      // capture the element as a canvas
+      const canvas = await html2canvas(element, {
+        backgroundColor: 'transparent',
+      });
+      // convert the canvas to a PNG blob
+      canvas.toBlob(async (blob) => {
+        try {
+          // copy the PNG blob to the clipboard
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              'image/png': blob
             })
-            .catch(err => {
-              console.error('Error in copying text: ', err);
-            });
-          } catch (err) {
-            console.error('Could not copy PNG to clipboard', err);
-          }
-        }, 'image/png');
-      };
+          ]);
+          copied();
+        } catch (err) {
+          console.error('Could not copy PNG to clipboard', err);
+        }
+      }, 'image/png');
+    } catch (err) {
+      console.error('Could not capture element as image', err);
+    }
   }
 
   function copyMkdnToClipBoard(text: string): void {
     navigator.clipboard.writeText(text)
       .then(() => {
         if (text.length > 0) {
-          console.debug('Semantic tree Markdown copied to clipboard');
+          console.debug('Markdown copied to clipboard');
           copied();
         }
       })

@@ -1,10 +1,15 @@
 <script lang='ts'>
+  import { URL_REPO_GERMINATOR, URL_WIKIBONSAI } from '$lib/util/const';
   import { theme } from '$lib/util/store';
 
+  export let which: string = 'germinator';
   // note: 'wTxt' is short for 'with text'
   export let wTxt: boolean = false;
   export let size: string = 'medium';
-  $: logo = `/img/logo/wikibonsai-${$theme}.svg`;
+
+  $: logo = (which === 'germinator' ) ? '/img/logo/germinator.svg' : `/img/logo/wikibonsai-${$theme}.svg`;
+  $: logoTxt = (which === 'germinator') ? 'Germinator' : 'WikiBonsai';
+  $: logoUrl = (which === 'germinator') ? URL_REPO_GERMINATOR : URL_WIKIBONSAI;
 
   $: dimensions = {
     small: { width: '50px', height: '40px' },
@@ -14,14 +19,14 @@
 </script>
 
 <div class="logo-container">
-  <a href="/">
-    <img id="wikibonsai-logo"
+  <a href={logoUrl}>
+    <img id="logo"
         src={logo}
         style={`width: ${dimensions.width}; height: ${dimensions.height};`}
         alt="Logo" />
   </a>
   {#if wTxt}
-    <div class="logo">WikiBonsai</div>
+    <div class="logo">{logoTxt}</div>
   {/if}
 </div>
 

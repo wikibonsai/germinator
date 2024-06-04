@@ -1,15 +1,21 @@
 <script lang='ts'>
   import {
-    URL_REF_ICONS8,
-    URL_REF_MARKMAP,
-    URL_REF_R_MUSK_TREE,
-    URL_REF_WAITBUTWHY,
-    URL_REPO_WIKIBONSAI,
+    URL_SOCIAL_GITHUB,
+    URL_SOCIAL_X,
+    URL_TWT_WAY,
     URL_VSCODE_PLUGIN,
+    URL_WIKIBONSAI,
   } from '$lib/util/const';
+  import { theme } from '$lib/util/store';
+  import Logo from '$lib/components/element/Logo.svelte';
+  import SocialBar from '$lib/components/component/SocialBar.svelte'
+
+  $: logoGitHub = `/img/social/github-mark-${$theme}.svg`;
+  $: logoX = `/img/social/x-${$theme}.png`;
 
   export let isOpen: boolean = false;
   const semtreeImg: string = '/img/waitbutwhy-neuralink-tree.png';
+  const wikibonsaiWayImg: string = '/img/wikibonsai-way-meme.png';
 
   function closeModal(): void {
     isOpen = false;
@@ -24,6 +30,8 @@
       toggleModal();
     }
   }
+
+  let activeTab = 0;
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -44,32 +52,17 @@
           <path d="M16.292 2.292l-1.584-1.584-6.708 6.708-6.708-6.708-1.584 1.584 6.708 6.708-6.708 6.708 1.584 1.584 6.708-6.708 6.708 6.708 1.584-1.584-6.708-6.708z"></path>
         </svg>
       </button>
-      <p class="title">About</p>
+      <Logo which="wikibonsai" />
+      <p class="title">A <a href={URL_WIKIBONSAI}>WikiBonsai</a> project.</p>
       <!--Body-->
       <div class="container mx-auto p-4">
-        <a href={URL_REF_WAITBUTWHY} class="block">
-          <img src={semtreeImg} class="mx-auto" height="50%" width="50%" alt="waitbutwhy's neuralink semantic tree">
+        <a href={URL_TWT_WAY}>
+          <img src={wikibonsaiWayImg} class="mx-auto" height="100%" width="100%" alt="wikibonsai way meme" />
         </a>
-        <blockquote class="text-lg mb-4">
-          <p>
-            It is important to view knowledge as a sort of semantic tree. Make sure you understand the fundamental principles, i.e., the trunk and big branches before you get into the leaves/details or there is nothing for them to hang on to.
-          </p>
-          <p>
-            ~ <a href={URL_REF_R_MUSK_TREE}>Elon Musk</a>
-          </p>
-        </blockquote>
-        <p class="text-xs mt-2">
-          Text output is formatted in markdown, which can be particularly useful for markdown-based PKMs like <a href={URL_VSCODE_PLUGIN}>vscode-wikibonsai</a>.
-        </p>
-        <p class="text-xs mt-2">
-          A <a href={URL_REPO_WIKIBONSAI}>WikiBonsai</a> project;
-          above image from <a href={URL_REF_WAITBUTWHY}>waitbutwhy</a>;
-          mindmap courtesy of <a href={URL_REF_MARKMAP}>markmap</a>; 
-          icons from <a href={URL_REF_ICONS8}>icons8</a>.
-        </p>
       </div>
       <!--Footer-->
       <div class="modal-footer">
+        <SocialBar />
         <button id="okButton"
                 class="px-4 bg-green-500 p-3 rounded-lg text-white hover:bg-green-600"
                 on:click={toggleModal}>
@@ -103,7 +96,7 @@
     color: var(--accent-color-light);
     font-family: 'Special Elite', cursive;
     font-size: 50px;
-    content: '“';
+    content: '"';
     position: absolute;
     padding: 10px;
   }
@@ -113,5 +106,28 @@
     align-self: center;
     font-size: 1.5rem;
     font-weight: 700;
+  }
+
+  .tab-panel {
+    margin-top: 1rem;
+  }
+
+  .tab-buttons {
+    display: flex;
+  }
+
+  .tab-button {
+    padding: 0.5rem 1rem;
+    background-color: #eee;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tab-button.active {
+    background-color: #ccc;
+  }
+
+  .tab-content {
+    margin-top: 1rem;
   }
 </style>
