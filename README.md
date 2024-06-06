@@ -8,6 +8,8 @@
 
 > Come with me if you want to [grow](https://germinator.netlify.app/).
 
+🌱 Germinate semantic seedlings for your [🎋 WikiBonsai](https://github.com/wikibonsai/wikibonsai) digital garden.
+
 <p align="center">
   <img src="./static/img/demo/demo-graph.png"/>
 </p>
