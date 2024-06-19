@@ -9,6 +9,10 @@
             ? localStorage.getItem('api-key')
             : '';
   });
+
+  function notify() {
+    alert('If you have an OpenAI developer key, you can put it in this input and it will be used when posting to OpenAI.\n\nSee https://platform.openai.com/api-keys to get a key.\n\nPutting API keys into boxes is generally a bad idea! If you have any concerns, create an API key and then revoke it after using this site.)');
+  }
 </script>
 
 <div class="fixed bottom-4 right-4 w-full max-w-xs flex flex-row gap-1 rounded p-1.5 z-50 pointer-events-none api-key-input-bg-color">
@@ -30,7 +34,7 @@
       }}
     />
   </div>
-  <button class="flex-shrink-0 w-8 h-8 rounded p-0 cursor-pointer flex items-center justify-center pointer-events-auto" onclick="alert('If you have an OpenAI developer key, you can put it in this input and it will be used when posting to OpenAI.\n\nSee https://platform.openai.com/api-keys to get a key.\n\nPutting API keys into boxes is generally a bad idea! If you have any concerns, create an API key and then revoke it after using this site.)')">
+  <button class="flex-shrink-0 w-8 h-8 rounded p-0 cursor-pointer flex items-center justify-center pointer-events-auto" onclick={notify}>
     <img id="helpApiKeyIcon" src={imgSrc} class="fill-current text-gray-600">
   </button>
 </div>
