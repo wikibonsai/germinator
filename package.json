@@ -3,6 +3,16 @@
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
+	"description": "Have an LLM generate a semantic seedling from a given word or concept.",
+	"license": "GPL-3.0",
+	"author": {
+		"name": "manunamz",
+		"email": "manuanmz@pm.me"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wikibonsai/germinator"
+	},
 	"scripts": {
 		"clean": "del-cli .svelte-kit .netlify build",
 		"dev": "vite dev",
