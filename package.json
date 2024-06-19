@@ -46,7 +46,7 @@
 		"eslint-plugin-svelte": "^2.35.1",
 		"force-graph": "^1.43.5",
 		"gray-matter": "^4.0.3",
-		"html2canvas": "^1.4.1",
+		"html-to-image": "^1.11.11",
 		"markdown-it": "^14.1.0",
 		"markdown-it-caml": "^0.0.2",
 		"markdown-it-wikirefs": "^0.0.3",

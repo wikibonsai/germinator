@@ -16,6 +16,7 @@
     medium: { width: '75px', height: '60px' },
     large: { width: '100px', height: '80px' }
   }[size] || { width: '75px', height: '60px' }; // Default to medium if size is not recognized
+  $: txtSize = (size === 'small') ? '0.75rem' : (size === 'medium') ? '1rem' : '1.5rem';
 </script>
 
 <div class="logo-container">
@@ -26,13 +27,13 @@
         alt="Logo" />
   </a>
   {#if wTxt}
-    <div class="logo">{logoTxt}</div>
+    <div class="logo" style={`font-size: ${txtSize}`}>{logoTxt}</div>
   {/if}
 </div>
 
 <style>
   .logo {
-    font-size: 1.5rem;
+
   }
 
   .logo-container {

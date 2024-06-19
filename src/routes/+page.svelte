@@ -39,35 +39,38 @@
       <!-- ancestry -->
       <div class="result-box box-border"
           style="display: {($resultMkdn.ancestors === '') ? 'none' : 'flex'}">
-          {#if $isMarkdown}
-            {@html $resultMkdn.ancestors}
-          {:else}
-            <BranchMap markdown={$resultMkdn.ancestors} />
-          {/if}
+        {#if $isMarkdown}
+          {@html $resultMkdn.ancestors}
+        {:else}
+          <BranchMap markdown={$resultMkdn.ancestors} />
+        {/if}
       </div>
       <!-- word atom -->
       <div class="result-box box-border"
           style="display: {($resultMkdn.atom === '') ? 'none' : 'flex'}">
-          {#if $isMarkdown}
-            {@html $resultMkdn.atom}
-          {:else}
-            <AtomMap markdown={$resultMkdn.atom}
-                     height={35}
-                     width={75} />
-          {/if}
+        {#if $isMarkdown}
+          {@html $resultMkdn.atom}
+        {:else}
+          <AtomMap markdown={$resultMkdn.atom}
+                    height={35}
+                    width={75} />
+        {/if}
       </div>
       <!-- subtree -->
       <div class="result-box box-border"
           class:stretch-markmap={!$isMarkdown}
           style="display: {($resultMkdn.descendants === '') ? 'none' : 'flex'}">
-      {#if $isMarkdown}
-        {@html $resultMkdn.descendants}
-      {:else}
-        <MarkMap markdown={$resultMkdn.descendants}
-                 bind:markmap={$resultMkmp}
-                 height={75}
-                 width={75} />
-      {/if}
+        {#if $isMarkdown}
+          {@html $resultMkdn.descendants}
+        {:else}
+          <MarkMap markdown={$resultMkdn.descendants}
+                  bind:markmap={$resultMkmp}
+                  height={75}
+                  width={75} />
+        {/if}
+        <div class="pin-logo">
+          <Logo which={'wikibonsai'} wTxt={true} size={'small'}/>
+        </div>
       </div>
     </div>
   </div>
@@ -97,7 +100,14 @@
     margin-right: 2.5rem;
   }
 
+  .pin-logo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
   .result-box {
+    position: relative;
     display: flex;
     white-space: pre-wrap;
     background-color: var(--box-background);
@@ -116,7 +126,7 @@
   }
 
   .title-style {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     line-height: 2.5rem;
     font-weight: 600;
     margin-top: 0;

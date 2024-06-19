@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import html2canvas from 'html2canvas';
+  import * as htmlToImage from 'html-to-image';
   import { isMarkdown, theme } from '$lib/util/store';
 
   export let markdown: string = '';
@@ -27,24 +27,18 @@
 
   async function elementToImageAndCopyToClipboard(element: HTMLElement): Promise<void> {
     try {
-      // capture the element as a canvas
-      const canvas = await html2canvas(element, {
+      // Capture the element as a Blob
+      const blob = await htmlToImage.toBlob(element, {
         backgroundColor: 'transparent',
       });
-      // convert the canvas to a PNG blob
-      canvas.toBlob(async (blob) => {
-        try {
-          // copy the PNG blob to the clipboard
-          await navigator.clipboard.write([
-            new ClipboardItem({
-              'image/png': blob
-            })
-          ]);
-          copied();
-        } catch (err) {
-          console.error('Could not copy PNG to clipboard', err);
-        }
-      }, 'image/png');
+
+      // Copy the Blob to the clipboard
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'image/png': blob
+        })
+      ]);
+      copied();
     } catch (err) {
       console.error('Could not capture element as image', err);
     }
