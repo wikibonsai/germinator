@@ -6,7 +6,8 @@ export const prerender: boolean = false;
 
 // ref: https://scottspence.com/posts/passing-sveltekit-page-server-js-data-to-page-js
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, url }) => {
+  const query: string = url.searchParams.get('query') || '';
   let apiKey = '';
 
   try {
@@ -20,5 +21,6 @@ export const load: PageServerLoad = async ({ params }) => {
   // throw error(404, 'Page not found');
   return {
     apiKey,
+    query,
   };
 };

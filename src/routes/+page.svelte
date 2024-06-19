@@ -30,7 +30,7 @@
       </h1>
       <Theme pin={true} />
     </div>
-    <Prompt storedApiKey={apiKey} on:loading={load} />
+    <Prompt storedApiKey={apiKey} bind:text={data.query} on:loading={load} />
     <ToolBar />
     {#if loading}
       <Loader />

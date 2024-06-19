@@ -1,13 +1,21 @@
 <script lang='ts'>
   import type { EventDispatcher } from 'svelte';
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { AI_ERROR, SEPARATOR, SEPARATOR_SHORT } from '$lib/util/const';
   import { apiKey, mkdnFrmt, resultMkdn, userConcept } from '$lib/util/store';
   import { makeReal } from "$lib/util/ai";
 
   export let storedApiKey: string = '';
+  export let text: string = '';
 
   const dispatch: EventDispatcher<any> = createEventDispatcher();
+
+  onMount(async () => {
+    if (text.length > 0) {
+      $userConcept = text;
+      goai();
+    }
+  });
 
   async function goai() {
     const apiKeyToSend: string = (storedApiKey !== '') ? storedApiKey : $apiKey;
