@@ -7,10 +7,19 @@
   import ShareBtn from '$lib/components/element/ShareBtn.svelte';
 </script>
 
-<div class="flex justify-end items-center mb-4">
+<div class="toolbar-container">
   <AbtBtn />
-  <ShareBtn />
   <MkdnFrmtBtn />
+  <ShareBtn />
   <RsltFrmtBtn />
   <CpyBtn markdown={$resultMkdn.all} />
 </div>
+
+<style>
+  .toolbar-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+</style>

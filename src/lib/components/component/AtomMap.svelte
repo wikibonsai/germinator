@@ -53,7 +53,6 @@
       const payload: any = matter(markdown);
       const data: any = payload.data;
       for (const [key, value] of Object.entries(data)) {
-        console.log('key: ', key, 'value: ', value);
         // single
         if(typeof value === 'string' && wikirefs.RGX.WIKI.LINK.test(value)) {
           add(key, value);

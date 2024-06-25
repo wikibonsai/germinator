@@ -1,6 +1,5 @@
 <script lang='ts'>
   import { page } from '$app/stores';
-  import { ROUTE_GERMINATOR, ROUTE_ROOT, ROUTE_TREE } from '$lib/util/const';
   import { goTo } from '$lib/util/func';
   import AbtBtn from '$lib/components/element/AbtBtn.svelte';
   import CpyBtn from '$lib/components/element/CpyBtn.svelte';
