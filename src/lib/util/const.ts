@@ -41,6 +41,7 @@ export const URL_REF_OPENAI      : string = 'https://beta.openai.com/';
 export const URL_REF_GPT3        : string = 'https://beta.openai.com/docs/introduction';
 export const URL_REF_WAITBUTWHY  : string = 'https://waitbutwhy.com/2017/04/neuralink.html';
 export const URL_REF_R_MUSK_TREE : string = 'https://www.reddit.com/r/IAmA/comments/2rgsan/comment/cnfre0a/?utm_source=share&utm_medium=web2x&context=3&rdt=50009';
+export const URL_TWT_NODE        : string = 'https://x.com/wibomd/status/1798046383754400082';
 export const URL_TWT_WAY         : string = 'https://x.com/wibomd/status/1703930973371412699';
 ////
 // api

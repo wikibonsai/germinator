@@ -10,7 +10,6 @@
 
   /* depth (z-indices) */
 
-  /* todo */
 
   /* colors */
 
@@ -126,6 +125,10 @@ select {
   background: var(--btn-color--hover);
 }
 
+.btn-close {
+  fill: var(--text-color);
+}
+
 /* utility buttons (for toolbars etc.) */
 
 .util-btn {
@@ -160,83 +163,6 @@ select {
   border-width: 2px;
 }
 
-/* modals */
-
-.modal {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 500;
-  transition: opacity 0.25s ease;
-}
-
-.modal-active {
-  overflow-x: hidden;
-  overflow-y: visible !important;
-}
-
-.modal-close {
-  cursor: pointer;
-  z-index: 500;
-  padding-top: 0.2rem;
-}
-
-.modal-container {
-  background-color: var(--background-color);
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 0.25rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  z-index: 500;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  max-height: 100vh;
-  /* small */
-  width: 100%;
-  max-width: none;
-}
-
-@media (min-width: 768px) {
-  .modal-container {
-    width: auto;
-    max-width: 24rem;
-  }
-}
-
-.modal-content {
-  text-align: left;
-  padding: 1rem;
-  overflow-y: auto;
-  flex: 1;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-}
-
-.modal-overlay {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   background-color: #1f2937;
-   opacity: 0.5;
-}
-
-.modal-title {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding-bottom: 1rem;
-}
-
 /* hide scrollbar */
 
 .hide-scrollbar {
@@ -247,4 +173,10 @@ select {
 /* hide actual scrollbar */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* fix: toolbar rendering breaks when this is removed */
+
+.modal {
+  position: fixed;
 }
