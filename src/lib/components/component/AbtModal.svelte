@@ -49,11 +49,11 @@
     <div class="modal-body">
       <p>If you were to view a concept up close, it might look like this:</p>
       <a class="modal-img" href={URL_TWT_NODE}>
-        <img src={imgConceptNode} height=50% width=50% alt="guilford concept node diagram" />
+        <img id="img-node" src={imgConceptNode} alt="guilford concept node diagram" />
       </a>
-      <p>And if you took a step back, many conceptss might look like this:</p>
+      <p>And if you took a step back, many concepts might look like this:</p>
       <a class="modal-img" href={URL_TWT_WAY}>
-        <img src={imgWikiBonsaiWay} height=100% width=100% alt="wikibonsai way meme" />
+        <img id="img-way" src={imgWikiBonsaiWay} alt="wikibonsai way meme" />
       </a>
       <p>If you want to see a fuller knowledge bonsai you can see one <a href={URL_WIKIBONSAI_TREE}>here</a>.</p>
       <p>If you want to work more with markdown, you can go <a href={URL_VSCODE_PLUGIN}>here</a>.</p>
@@ -182,7 +182,7 @@
 
   .modal-button {
     background-color: var(--hover-color);
-    color: var(--text-color);
+    color: white;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.25rem;
@@ -192,5 +192,30 @@
 
   .modal-button:hover {
     background-color: var(--hover-color);
+  }
+
+  /* images */
+
+  #img-node {
+    width: 50%;
+    height: 50%;
+  }
+
+  #img-way {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 768px) {
+
+    #img-node {
+      width: 40%;
+      height: 40%;
+    }
+
+    #img-way {
+      width: 50%;
+      height: 50%;
+    }
   }
 </style>
