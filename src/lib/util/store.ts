@@ -21,17 +21,6 @@ export const mkdnFrmt: Writable<OptMkdn> = writable({
   attrKind: '',
 });
 
-export function resetMkdnResult(): void {
-  resultMkdn.update(() => ({
-    all: '',
-    ancestors: '',
-    descendants: '',
-    atom: '',
-  }));
-  resultAtmp.update(() => null);
-  resultMkmp.update(() => null);
-}
-
 // api
 
 export const llm: Writable<OptLLM> = writable({
@@ -96,3 +85,11 @@ export const resultMkdn: Writable<Record<string, string>> = writable({
 export const resultAtmp: Writable<any | null> = writable(null);
 export const resultMkmp: Writable<SVGSVGElement | null> = writable(null);
 
+export function resetMkdnResult(): void {
+  resultMkdn.update(() => ({
+    all: '',
+    ancestors: '',
+    descendants: '',
+    atom: '',
+  }));
+}

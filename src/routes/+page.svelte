@@ -83,9 +83,9 @@
             {@html $resultMkdn.descendants}
           {:else}
             <MarkMap markdown={$resultMkdn.descendants}
-                    bind:markmap={$resultMkmp}
-                    height={75}
-                    width={75} />
+                     bind:markmap={$resultMkmp}
+                     height={75}
+                     width={75} />
           {/if}
           <div class="pin-logo">
             <Logo which={'wikibonsai'} wTxt={true} size={'small'}/>
