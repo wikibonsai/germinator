@@ -2,14 +2,14 @@
   import { resultMkdn } from '$lib/util/store';
   import AbtBtn from '$lib/components/element/AbtBtn.svelte';
   import CpyBtn from '$lib/components/element/CpyBtn.svelte';
-  import MkdnFrmtBtn from '$lib/components/element/MkdnFrmtBtn.svelte';
+  import OptsBtn from '$lib/components/element/OptsBtn.svelte';
   import RsltFrmtBtn from '$lib/components/element/RsltFrmtBtn.svelte';
   import ShareBtn from '$lib/components/element/ShareBtn.svelte';
 </script>
 
 <div class="toolbar-container">
   <AbtBtn />
-  <MkdnFrmtBtn />
+  <OptsBtn />
   <RsltFrmtBtn />
   <ShareBtn />
   <CpyBtn markdown={$resultMkdn.all} />
