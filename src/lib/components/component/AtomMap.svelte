@@ -21,10 +21,8 @@
   // (only passing in $theme to trigger reactivity)
   $: render($theme);
   // update graph on markdown change
-  $: if (markdown && markdown.length > 0) {
-    if (atommap) {
-      render();
-    }
+  $: if (markdown && markdown.length > 0 && atommap) {
+    render();
   }
 
   onMount(() => {
