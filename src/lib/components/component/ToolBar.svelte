@@ -10,8 +10,8 @@
 <div class="toolbar-container">
   <AbtBtn />
   <MkdnFrmtBtn />
-  <ShareBtn />
   <RsltFrmtBtn />
+  <ShareBtn />
   <CpyBtn markdown={$resultMkdn.all} />
 </div>
 
