@@ -3,17 +3,19 @@
   import ShareIcon from '../icons/ShareIcon.svelte';
 
   function share() {
-    if ($userConcept.length > 0) {
-      const baseUrl: string = window.location.origin + window.location.pathname;
-      const shareableUrl: string = `${baseUrl}?query=${encodeURIComponent($userConcept)}`;
-      navigator.clipboard.writeText(shareableUrl)
-        .then(() => {
-          alert('Shareable URL copied to clipboard');
-        })
-        .catch((err) => {
-          alert('Failed to copy shareable URL: ', err);
-        });
+    if ($userConcept.length === 0) {
+      alert('Enter a concept in the search bar to share');
+      return;
     }
+    const baseUrl: string = window.location.origin + window.location.pathname;
+    const shareableUrl: string = `${baseUrl}?query=${encodeURIComponent($userConcept)}`;
+    navigator.clipboard.writeText(shareableUrl)
+      .then(() => {
+        alert('Shareable URL copied to clipboard');
+      })
+      .catch((err) => {
+        alert('Failed to copy shareable URL: ', err);
+      });
   }
 </script>
 
