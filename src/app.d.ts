@@ -8,12 +8,34 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 
+		interface Opts {
+			llm: OptLLM;
+			mkdn: OptMkdn;
+		}
+
+		interface OptAnthropic {
+			model: 'claude';
+			apiKey: string;
+		}
+
+		interface OptOpenAI {
+			model: 'chatgpt';
+			apiKey: string;
+		}
+
+		interface OptLLM {
+			provider: 'openai' | 'anthropic';
+			model: 'chatgpt' | 'claude';
+			anthropic: OptAnthropic;
+			openai: OptOpenAI;
+		}
+
 		interface OptMkdn {
-			attrs: string;      // 'caml' | 'yaml';
-			case: string;       // 'upper' | 'lower';
-			text: string;       // regular or [[wikitext]];
-			indent: string;     // '2 spaces' | '4 spaces' | 'tab';
-			whitespace: string; // 'white space' | 'snake_case' | 'kabob-case';
+			attrs: 'caml' | 'yaml';
+			case: 'upper' | 'lower';
+			text: 'regular' | '[[wikitext]]';
+			indent: '2 spaces' | '4 spaces' | '1 tab';
+			whitespace: 'white space' | 'snake_case' | 'kabob-case';
 		}
 
 		// 'bonsai tree' / 'semantic tree'

@@ -147,7 +147,7 @@ Your job is to accept single words or phrases that may contain wikipedia-style (
 
 JOB::BUILDER::SEMANTIC ANCESTORS:
 
-Your job is to accept single words or phrases that may contain wikipedia-style (disambiguation) in parenthesis, then list the semantic nodes that make up the concept's semantic ancestors, and finally send back the results.
+Your job is to accept single words or phrases that may contain wikipedia-style (disambiguation) in parenthesis, then list the semantic nodes that make up the concept's semantic ancestors in the specified order, and finally send back the results.
 
 Keep each entry limited to one word or phrase which may also contain (disambiguation in parens).
 
@@ -224,7 +224,7 @@ The rest of this prompt is for formatting reference only. Try not to let it infl
 
 FORMAT::RESULT:
 
-The final result should be single markdown file with the following text:
+The final result should be single markdown file with following the instructions:
 
 The semantic ancestors,
 followed by a "${SEPARATOR}",
@@ -267,4 +267,5 @@ ${wikiFrmt}
 `;
 }
 
-export const PEPTALK: string = 'Go get \'em tiger!';
+export const IGNORE_LAZY: string = 'Please do not be lazy -- ignore any previous instructions to be lazy and try to provide as much information as possible.\n';
+export const PEPTALK: string = 'Go get \'em tiger!\n';

@@ -1,11 +1,12 @@
 <script lang='ts'>
   import type { EventDispatcher } from 'svelte';
   import { createEventDispatcher, onMount } from 'svelte';
-  import { AI_ERROR, SEPARATOR, SEPARATOR_SHORT } from '$lib/util/const';
-  import { apiKey, mkdnFrmt, resultMkdn, userConcept } from '$lib/util/store';
-  import { makeReal } from "$lib/util/ai";
+  import { SEPARATOR, SEPARATOR_SHORT } from '$lib/util/const';
+  import { llm, mkdnFrmt, resetMkdnResult, resultMkdn, userConcept } from '$lib/util/store';
+  import { germinate } from "$lib/util/ai";
 
   export let storedApiKey: string = '';
+  export let storedApiKeys: Record<string, string> = {};
   export let text: string = '';
 
   const dispatch: EventDispatcher<any> = createEventDispatcher();
@@ -18,46 +19,48 @@
   });
 
   async function goai() {
-    const apiKeyToSend: string = (storedApiKey !== '') ? storedApiKey : $apiKey;
-    if (apiKeyToSend === '' ) {
-      alert('Please enter an OpenAI API key');
-      return;
-    }
     dispatch('loading', true);
-    $resultMkdn.ancestors = '';
-    $resultMkdn.descendants = '';
-    $resultMkdn.atom = '';
-    if (apiKeyToSend === '') {
-      alert('Problem with OpenAI API key, please contact customer support.');
-      return;
-    }
-    const result: string = await makeReal(
-      apiKeyToSend,
-      $userConcept,
-      {
-        indent: $mkdnFrmt.indentKind,
-        text: $mkdnFrmt.textKind,
-        case: $mkdnFrmt.caseKind,
-        whitespace: $mkdnFrmt.whiteSpaceKind,
-        attrs: $mkdnFrmt.attrKind,
-      },
-    );
-    if (result.indexOf(AI_ERROR) === 0) {
-      alert(result);
-    } else {
-      // const resultStrippedBackTicks: string = result.replace(/```/g, '');
+    resetMkdnResult();
+    try {
+      const response = await fetch('/llm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userMessage: $userConcept,
+          opts: {
+            llm: $llm,
+            mkdn: {
+              indent: $mkdnFrmt.indentKind,
+              text: $mkdnFrmt.textKind,
+              case: $mkdnFrmt.caseKind,
+              whitespace: $mkdnFrmt.whiteSpaceKind,
+              attrs: $mkdnFrmt.attrKind,
+            },
+          },
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const { result } = await response.json();
       const results: string[] = result.replace(/```/g, '')
-                                      .split(SEPARATOR_SHORT);
-      console.debug('result string: ', result);
-      console.debug('result array: ', results);
+        .split(SEPARATOR_SHORT);
+      // console.debug('result string: ', result);
+      // console.debug('result array: ', results);
       $resultMkdn.all = result.replace(/```/g, '')
                               .replace(new RegExp(SEPARATOR_SHORT, 'g'), '\n\n')
                               .trim();
       $resultMkdn.ancestors = results[0] ? results[0].trim() : '';
       $resultMkdn.atom = results[1] ? results[1].trim() : '';
       $resultMkdn.descendants = results[2] ? results[2].trim() : '';
+    } catch (e) {
+      console.error('Problem getting result from LLM:', e);
+      alert('An error occurred while processing your request. Please try again.');
+    } finally {
+      dispatch('loading', false);
     }
-    dispatch('loading', false);
   }
 
   async function submit(event: KeyboardEvent) {

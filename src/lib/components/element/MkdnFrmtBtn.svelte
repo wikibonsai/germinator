@@ -12,7 +12,7 @@
 
 <button id="mkdnFormatButton"
         class="util-btn"
-        title="Markdown Format"
+        title="Options"
         on:click={toggleFrmtMdl}>
   <img id="mkdnFormatIcon" alt="Format" class="w-6 h-6" src={mkdnFormatIcon}>
 </button>

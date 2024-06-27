@@ -39,8 +39,14 @@ export const URL_REF_WAITBUTWHY  : string = 'https://waitbutwhy.com/2017/04/neur
 export const URL_REF_R_MUSK_TREE : string = 'https://www.reddit.com/r/IAmA/comments/2rgsan/comment/cnfre0a/?utm_source=share&utm_medium=web2x&context=3&rdt=50009';
 export const URL_TWT_NODE        : string = 'https://x.com/wibomd/status/1798046383754400082';
 export const URL_TWT_WAY         : string = 'https://x.com/wibomd/status/1703930973371412699';
+// ai
 // api
+export const URL_API_ANTHROPIC   : string = 'https://api.anthropic.com/v1/messages';
+export const URL_API_OPENAI      : string = 'https://api.openai.com/v1/chat/completions';
 export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions';
+// default models
+export const DEFAULT_MODEL_ANTHROPIC : string = 'claude-3-5-sonnet-20240620';
+export const DEFAULT_MODEL_OPENAI    : string = 'gpt-4o';
 
 // style
 
@@ -68,4 +74,3 @@ export const COLORS              : string[] = [
 
 export const SEPARATOR           : string = '\n\n!!!\n\n';
 export const SEPARATOR_SHORT     : string = '\n!!!\n';
-export const AI_ERROR            : string = 'error:\n\n😲 something went wrong with chatgpt' + '\n\n';
