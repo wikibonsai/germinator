@@ -197,25 +197,50 @@
   /* images */
 
   #img-node {
-    width: 50%;
-    height: 50%;
+    width: 80vw;
+    max-width: 300px;
+    height: auto;
   }
 
   #img-way {
-    width: 100%;
-    height: 100%;
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
   }
 
-  @media (min-width: 768px) {
-
+  @media (min-width: 640px) {
     #img-node {
-      width: 40%;
-      height: 40%;
+      width: 50vw;
+      max-width: 250px;
     }
 
     #img-way {
-      width: 50%;
-      height: 50%;
+      width: 70vw;
+      max-width: 400px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #img-node {
+      width: 30vw;
+      max-width: 200px;
+    }
+
+    #img-way {
+      width: 50vw;
+      max-width: 350px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    #img-node {
+      width: 20vw;
+      max-width: 180px;
+    }
+
+    #img-way {
+      width: 40vw;
+      max-width: 300px;
     }
   }
 </style>
