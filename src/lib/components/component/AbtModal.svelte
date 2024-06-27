@@ -126,9 +126,15 @@
     padding: 0.5rem 0;
   }
 
+  .modal-img img {
+    border: 3px solid var(--accent-color-dark);
+    border-radius: 0.5rem;
+  }
+
   .modal-img:hover img {
     cursor: pointer;
     border: 3px solid var(--hover-color);
+    border-radius: 0.5rem;
   }
 
   .modal-open {

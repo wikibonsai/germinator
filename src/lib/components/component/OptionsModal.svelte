@@ -393,11 +393,11 @@
   .tab-button {
     background: none;
     color: var(--text-color);
-    border-color: var(--accent-color-light);
-    border: 1px solid var(--accent-color-light);
+    border-color: var(--accent-color-dark);
+    border: 1px solid var(--accent-color-dark);
+    border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     margin: 0 0.25rem;
-    border: none;
     border-radius: 0.25rem;
     cursor: pointer;
     opacity: 0.7;
@@ -407,15 +407,18 @@
   .tab-button:hover {
     opacity: 1;
     border: 1px solid var(--hover-color);
+    border-radius: 0.5rem;
   }
 
   .tab-button.active {
     opacity: 1;
     border: 1px solid var(--accent-color-light);
+    border-radius: 0.5rem;
     /* border-bottom: 2px solid var(--accent-color); */
   }
 
   .tab-button.active:hover {
     border: 1px solid var(--hover-color);
+    border-radius: 0.5rem;
   }
 </style>
