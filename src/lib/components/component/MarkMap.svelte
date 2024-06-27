@@ -14,10 +14,8 @@
   export let move: boolean = true;
 
   // update graph on markdown change
-  $: if (markdown && markdown.length > 0) {
-    if (markmap) {
-      generateMarkmap();
-    }
+  $: if (markdown && markdown.length > 0 && markmap) {
+    generateMarkmap();
   }
 
   onMount(() => {
