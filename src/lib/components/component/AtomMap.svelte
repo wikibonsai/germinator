@@ -1,49 +1,52 @@
-<script lang='ts'>
+<script lang="ts">
+
   import { onMount } from 'svelte';
-  import { Graph } from '@antv/g6';
-  // from: https://github.com/jonschlinkert/gray-matter/issues/171#issuecomment-2072454372
+  let ForceGraph: any;
+  let graph: any;
+  let atommap: any;
+
   import { default as matter } from 'gray-matter';
   import * as caml from 'caml-mkdn';
   import * as wikirefs from 'wikirefs';
-  import { COLORS, DARK_GREEN, GREEN, LIGHT_BROWN } from '$lib/util/const';
+  import { COLORS, LIGHT_BROWN } from '$lib/util/const';
   import { mkdnFrmt, theme, userConcept } from '$lib/util/store';
 
   export let markdown: string = 'no markdown received';
   export let height: number = 100;
   export let width: number = 100;
-  let textColor: string = getTextColor();
-  let atommap: any;
-  let graph: any;
-  const nodes = [];
-  const edges = [];
+  const nodes: any[] = [];
+  const links: any[] = [];
+  const groupColors: Record<string, string> = {};
+  let colorIndex = 0;
+  const sourceUserConcept: string = `[[${$userConcept}]]`;
 
   // update text color on theme change
-  // (only passing in $theme to trigger reactivity)
   $: render($theme);
   // update graph on markdown change
   $: if (markdown && markdown.length > 0 && atommap) {
     render();
   }
 
-  onMount(() => {
+  onMount(async () => {
+    // Import force-graph only on the client side
+    ForceGraph = (await import('force-graph')).default;
     render();
   });
 
   function render(theme?: string) {
-    textColor = getTextColor();
+    if (!ForceGraph) return;
     getData();
     draw();
   }
 
   function getData() {
     nodes.length = 0;
-    edges.length = 0;
+    links.length = 0;
+    groupColors[''] = getNextColor();
     const coreNode: any = {
-      id: $userConcept,
-      style: {
-        labelFill: textColor,
-        labelPlacement: 'top',
-      },
+      id: sourceUserConcept,
+      label: sourceUserConcept,
+      color: groupColors[''],
     };
     nodes.push(coreNode);
     // yaml
@@ -51,13 +54,16 @@
       const payload: any = matter(markdown);
       const data: any = payload.data;
       for (const [key, value] of Object.entries(data)) {
+        if (!groupColors[key]) {
+          groupColors[key] = getNextColor();
+        }
         // single
-        if(typeof value === 'string' && wikirefs.RGX.WIKI.LINK.test(value)) {
+        if (typeof value === 'string' && wikirefs.RGX.WIKI.LINK.test(value)) {
           add(key, value);
         // list
         } else {
           for (const v of value) {
-            if(wikirefs.RGX.WIKI.LINK.test(v)) {
+            if (wikirefs.RGX.WIKI.LINK.test(v)) {
               add(key, v);
             }
           }
@@ -65,11 +71,14 @@
       }
     // caml
     } else {
-      const payload = wikirefs.scan(markdown);
+      const payload: any = wikirefs.scan(markdown);
       for (const i of payload) {
         for (const fname of i.filenames) {
           const attrtype: string = i.type[0];
           const wikilink: string = `[[${fname[0]}]]`;
+          if (!groupColors[attrtype]) {
+            groupColors[attrtype] = getNextColor();
+          }
           add(attrtype, wikilink);
         }
       }
@@ -79,20 +88,14 @@
   function add(key: string, value: string) {
     nodes.push({
       id: value,
-      data: {
-        cluster: key,
-      },
-      style: {
-        labelFill: textColor,
-        labelPlacement: 'top',
-      },
+      label: value,
+      group: key,
+      color: groupColors[key],
     });
-    edges.push({
-      source: $userConcept,
+    links.push({
+      source: sourceUserConcept,
       target: value,
-      style: {
-        color: LIGHT_BROWN,
-      }
+      color: LIGHT_BROWN,
     });
   }
 
@@ -100,61 +103,50 @@
     while (atommap && atommap.firstChild) {
       atommap.removeChild(atommap.firstChild);
     }
-    graph = new Graph({
-      container: 'atom',
-      autoFit: 'center',
-      // width/height matches that of parent div
-      height: vToPx(`${height}vh`),
-      width: vToPx(`${width}vw`),
-      data: { nodes, edges, },
-      layout: {
-        type: 'radial',
-        unitRadius: 100,
-        linkDistance: 200,
-        preventOverlap: true,
-        maxPreventOverlapIteration: 100,
-      },
-      node: {
-        style: {
-          labelPlacement: 'center',
-          labelText: (d) => d.id,
-          lineWidth: 1,
-          size: 20,
-        },
-        palette: {
-          field: 'cluster',
-          color: COLORS,
-        },
-      },
-      edge: {
-        style: {
-          endArrow: false,
-          color: LIGHT_BROWN,
-        },
-      },
-      behaviors: [
-        'zoom-canvas',
-        'drag-canvas',
-        'drag-element',
-      ],
-    });
-    graph.render();
+    if (!ForceGraph) return;
+    console.log({ nodes, links });
+    graph = ForceGraph()(atommap)
+      .graphData({ nodes, links })
+      .nodeId('id')
+      .linkColor('color')
+      .width(vToPx(`${width}vw`))
+      .height(vToPx(`${height}vh`))
+      .nodeCanvasObject((node, ctx, globalScale) => {
+        // node
+        ctx.fillStyle = node.color;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 3, 0, 2 * Math.PI, false);
+        ctx.fill();
+        // label
+        ctx.font = `${12 / globalScale}px Sans-Serif`;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        const rootStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
+        const textColor: string = rootStyle.getPropertyValue('--text-color').trim();
+        ctx.fillStyle = textColor;
+        ctx.fillText(node.label, node.x + 5, node.y);
+      })
+      .linkDirectionalParticles(2)
+      .linkDirectionalParticleSpeed(d => d.value * 0.001)
+      .onNodeClick(node => {
+        alert(`Clicked on node ${node.id}`);
+      });
   }
 
-  function getTextColor(): string {
-    const cssVar: string = '--text-color';
-    const computedStyle = getComputedStyle(document.documentElement);
-    const colorValue = computedStyle.getPropertyValue(cssVar).trim();
-    return colorValue;
+  function getNextColor(): string {
+    // increment color
+    const color: string = COLORS[colorIndex];
+    // cycle colors
+    colorIndex = (colorIndex + 1) % COLORS.length;
+    return color;
   }
 
-  // convert 'vh' and 'vw' to raw pixel size
-  function vToPx(value) {
-    const match = value.match(/^(\d+)(vh|vw)$/);
+  function vToPx(value: string) {
+    const match: RegExpMatchArray | null = value.match(/^(\d+)(vh|vw)$/);
     if (match) {
       const [_, number, unit] = match;
-      const window = document.documentElement;
-      const pixels =
+      const window: any = document.documentElement;
+      const pixels: number =
         unit === 'vh'
           ? (window.clientHeight * parseFloat(number)) / 100
           : (window.clientWidth * parseFloat(number)) / 100;
@@ -165,6 +157,4 @@
 </script>
 
 <!-- width/height matches that of graph -->
-<div id='atom'
-     bind:this={atommap}
-     style={`height: ${height}vh; width: ${width}vw;`}></div>
+<div id='atom' bind:this={atommap} style={`height: ${height}vh; width: ${width}vw;`}></div>
