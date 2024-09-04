@@ -18,8 +18,8 @@
   const links: any[] = [];
   const groupColors: Record<string, string> = {};
   let colorIndex = 0;
-  const sourceUserConcept: string = `[[${$userConcept}]]`;
-
+  
+  $: sourceUserConcept = `[[${$userConcept}]]`;
   // update text color on theme change
   $: render($theme);
   // update graph on markdown change
