@@ -129,10 +129,9 @@
         ctx.fillStyle = textColor;
         ctx.fillText(node.label, node.x + 5, node.y);
       })
-      .linkDirectionalParticles(2)
-      .linkDirectionalParticleSpeed(d => d.value * 0.001)
-      .onNodeClick(node => {
-        alert(`Clicked on node ${node.id}`);
+      .onNodeDragEnd(node => {
+        node.fx = node.x;
+        node.fy = node.y;
       });
   }
 
