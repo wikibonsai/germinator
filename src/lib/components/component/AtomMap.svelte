@@ -105,12 +105,15 @@
     }
     if (!ForceGraph) return;
     console.log({ nodes, links });
+
     graph = ForceGraph()(atommap)
       .graphData({ nodes, links })
-      .nodeId('id')
-      .linkColor('color')
       .width(vToPx(`${width}vw`))
       .height(vToPx(`${height}vh`))
+      .linkColor('color')
+      // .linkDirectionalParticles(2)
+      // .linkDirectionalParticleSpeed(d => d.value * 0.001)
+      .nodeId('id')
       .nodeCanvasObject((node, ctx, globalScale) => {
         // node
         ctx.fillStyle = node.color;
