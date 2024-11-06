@@ -18,7 +18,7 @@
   const links: any[] = [];
   const groupColors: Record<string, string> = {};
   let colorIndex = 0;
-  
+
   $: sourceUserConcept = `[[${$userConcept}]]`;
   // update text color on theme change
   $: render($theme);
@@ -104,7 +104,7 @@
       atommap.removeChild(atommap.firstChild);
     }
     if (!ForceGraph) return;
-    console.log({ nodes, links });
+    console.debug('WordAtomMap: ', { nodes, links });
 
     graph = ForceGraph()(atommap)
       .graphData({ nodes, links })

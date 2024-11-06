@@ -1,7 +1,7 @@
 <script lang='ts'>
   import type { PageData } from './$types'
   import { initOpts, isMarkdown, llm, mkdnFrmt, resultAtmp, resultMkdn, resultMkdnTLDR, resultMkmp, systemApiKeys } from '$lib/util/store';
-  import AtomMap from '$lib/components/component/AtomMap.svelte';
+  import WordAtomMap from '$lib/components/component/WordAtomMap.svelte';
   import BranchMap from '$lib/components/component/BranchMap.svelte'
   import Loader from "$lib/components/element/Loader.svelte";
   import Logo from '$lib/components/element/Logo.svelte';
@@ -75,7 +75,7 @@
           {#if $isMarkdown}
             {@html $resultMkdn.atom}
           {:else}
-            <AtomMap markdown={$resultMkdn.atom}
+            <WordAtomMap markdown={$resultMkdn.atom}
                       height={35}
                       width={75} />
           {/if}
