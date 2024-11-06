@@ -3,7 +3,6 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import { SEPARATOR, SEPARATOR_SHORT } from '$lib/util/const';
   import { llm, mkdnFrmt, resetMkdnResult, resultMkdn, userConcept } from '$lib/util/store';
-  import { germinate } from "$lib/util/ai";
 
   export let storedApiKey: string = '';
   export let storedApiKeys: Record<string, string> = {};

@@ -20,7 +20,7 @@ export const POST: RequestHandler = async ({ request }) => {
     if (opts.llm.openai.apiKey === '') {
       opts.llm.openai.apiKey = apiKeyOpenAI;
     }
-    const result = await germinate(userMessage, opts);
+    const result: string = await germinate(userMessage, opts);
     return json({ result });
   } catch (error) {
     console.error('Error in \'/llm\' endpoint:', error);

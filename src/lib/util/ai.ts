@@ -20,7 +20,7 @@ function validate(opts: OptLLM): void {
 }
 
 export async function germinate(userMessage: string, opts: Opts): Promise<string> {
-  console.log('germinating with opts: ', opts);
+  console.debug('germinating with opts: ', opts);
   try {
     validate(opts.llm);
   } catch (e) {
@@ -42,7 +42,7 @@ export async function germinate(userMessage: string, opts: Opts): Promise<string
         { role: 'user', content: "SEED PROMPT:\n\n" + seedPrompt + "\n\nUSER MSG:\n\n" + userMessage }
       ],
     };
-    
+
     try {
       const response = await fetch(URL_API_ANTHROPIC, {
         method: 'POST',
