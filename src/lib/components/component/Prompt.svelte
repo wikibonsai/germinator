@@ -11,7 +11,25 @@
 
   const dispatch: EventDispatcher<any> = createEventDispatcher();
 
+  const placeholders = [
+    'tree (art)',
+    'tree (botany)',
+    'tree (chemistry)',
+    'tree (computer science)',
+    'tree (engineering)',
+    'tree (game theory)',
+    'tree (genealogy)',
+    'tree (genetics)',
+    'tree (linguistics)',
+    'tree (mathematics)',
+    'tree (mythology)',
+    'tree (phylogenetics)',
+  ];
+
+  let placeholder: string;
+
   onMount(async () => {
+    placeholder = placeholders[Math.floor(Math.random() * placeholders.length)];
     if (text.length > 0) {
       $userConcept = text;
       goai();
@@ -77,7 +95,7 @@
   <input
     id="input"
     type="text"
-    placeholder="tree (linguistics)"
+    {placeholder}
     class="input box-border"
     bind:value={$userConcept}>
   <button id="growButton"
