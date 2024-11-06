@@ -57,7 +57,7 @@
       <div id="result" class="result-box-background" class:monospace-text={$isMarkdown}>
         <!-- tldr -->
         <div class="result-box box-border"
-             style="display: {($resultMkdnTLDR === '') ? 'none' : 'flex'}">
+             style="display: {($isMarkdown || ($resultMkdnTLDR === '')) ? 'none' : 'flex'}">
           <TLDR markdown={$resultMkdnTLDR} />
         </div>
         <!-- ancestry -->
