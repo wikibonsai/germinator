@@ -1,7 +1,8 @@
 import type { Writable } from 'svelte/store';
 import type { OptLLM, OptMkdn } from './types';
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 import { DEFAULT_MODEL_ANTHROPIC, DEFAULT_MODEL_OPENAI } from './const';
+import { extractTldr } from './attr';
 
 
 // colors
@@ -76,12 +77,17 @@ export const userConcept: Writable<string> = writable('');
 
 export const isMarkdown: Writable<boolean> = writable(true);
 
+
 export const resultMkdn: Writable<Record<string, string>> = writable({
   all: '',
   ancestors: '',
   descendants: '',
   atom: '',
 });
+export const resultMkdnTLDR = derived(
+  resultMkdn,
+  $resultMkdn => $resultMkdn.atom ? extractTldr($resultMkdn.atom) : ''
+);
 export const resultAtmp: Writable<any | null> = writable(null);
 export const resultMkmp: Writable<SVGSVGElement | null> = writable(null);
 

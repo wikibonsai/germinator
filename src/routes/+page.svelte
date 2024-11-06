@@ -1,6 +1,6 @@
 <script lang='ts'>
   import type { PageData } from './$types'
-  import { initOpts, isMarkdown, llm, mkdnFrmt, resultAtmp, resultMkdn, resultMkmp, systemApiKeys } from '$lib/util/store';
+  import { initOpts, isMarkdown, llm, mkdnFrmt, resultAtmp, resultMkdn, resultMkdnTLDR, resultMkmp, systemApiKeys } from '$lib/util/store';
   import AtomMap from '$lib/components/component/AtomMap.svelte';
   import BranchMap from '$lib/components/component/BranchMap.svelte'
   import Loader from "$lib/components/element/Loader.svelte";
@@ -8,6 +8,7 @@
   import MarkMap from '$lib/components/component/MarkMap.svelte';
   import Prompt from "$lib/components/component/Prompt.svelte";
   import Theme from '$lib/components/element/Theme.svelte';
+  import TLDR from '$lib/components/component/TLDR.svelte';
   import ToolBar from "$lib/components/component/ToolBar.svelte";
 
   export let data: PageData;
@@ -54,6 +55,11 @@
         <Loader />
       {/if}
       <div id="result" class="result-box-background" class:monospace-text={$isMarkdown}>
+        <!-- tldr -->
+        <div class="result-box box-border"
+             style="display: {($resultMkdnTLDR === '') ? 'none' : 'flex'}">
+          <TLDR markdown={$resultMkdnTLDR} />
+        </div>
         <!-- ancestry -->
         <div class="result-box box-border"
             style="display: {($resultMkdn.ancestors === '') ? 'none' : 'flex'}">
