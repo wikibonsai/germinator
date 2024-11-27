@@ -1,7 +1,11 @@
 <script lang='ts'>
   import { onMount } from 'svelte';
   import { llm, mkdnFrmt, systemApiKeys } from '$lib/util/store';
-  import { DEFAULT_MODEL_ANTHROPIC, DEFAULT_MODEL_OPENAI } from '$lib/util/const';
+  import {
+    DEFAULT_MODEL_ANTHROPIC,
+    DEFAULT_MODEL_OPENAI,
+    DEFAULT_MODEL_XAI,
+  } from '$lib/util/const';
 
   export let isOpen: boolean = false;
 
@@ -19,6 +23,9 @@
     $llm.openai.model = localStorage.getItem('model-openai')
               ? localStorage.getItem('model-openai')
               : DEFAULT_MODEL_OPENAI;
+    $llm.xai.model = localStorage.getItem('model-xai')
+              ? localStorage.getItem('model-xai')
+              : DEFAULT_MODEL_XAI;
     if ($systemApiKeys.anthropic === '') {
       $llm.anthropic.apiKey = localStorage.getItem('api-key-anthropic')
                             ? localStorage.getItem('api-key-anthropic')
@@ -27,6 +34,11 @@
     if ($systemApiKeys.openai === '') {
       $llm.openai.apiKey = localStorage.getItem('api-key-openai')
                       ? localStorage.getItem('api-key-openai')
+                      : '';
+    }
+    if ($systemApiKeys.xai === '') {
+      $llm.xai.apiKey = localStorage.getItem('api-key-xai')
+                      ? localStorage.getItem('api-key-xai')
                       : '';
     }
     // mkdn format
@@ -66,6 +78,7 @@
     // todo: if loaded from server, skip
     localStorage.setItem('api-key-anthropic', $llm[provider].apiKey);
     localStorage.setItem('api-key-openai', $llm[provider].apiKey);
+    localStorage.setItem('api-key-xai', $llm[provider].apiKey);
     // mkdn
     localStorage.setItem('indent', $mkdnFrmt.indentKind);
     localStorage.setItem('text', $mkdnFrmt.textKind);
@@ -174,6 +187,7 @@
             <select id="indentSelect" bind:value={$llm.provider}>
               <option value="anthropic">Anthropic</option>
               <option value="openai">OpenAI</option>
+              <option value="xai">xAI</option>
               <!-- <option value="google">Gemini</option> -->
             </select>
           </div>
@@ -190,9 +204,15 @@
             {:else if $llm.provider === 'openai'}
               <select id="indentSelect" bind:value={$llm.openai.model}>
                 <!-- <option value="chatgpt">ChatGPT</option> -->
+                <option value="o1-mini">o1-mini</option>
+                <option value="o1-preview">o1-preview</option> 
                 <option value="gpt-4o">gpt-4o</option>
                 <option value="gpt-4-turbo">gpt-4-turbo</option>
                 <option value="gpt-4">gpt-4</option>
+              </select>
+            {:else if $llm.provider === 'xai'}
+              <select id="indentSelect" bind:value={$llm.xai.model}>
+                <option value="grok-beta">grok-beta</option>
               </select>
             <!-- {:else if $llm.model === 'google'}
               <select id="indentSelect" bind:value={$llm.google.model}>
@@ -239,6 +259,23 @@
                   }}
                   on:input={e => {
                     localStorage.setItem('api-key-openai', e.target.value);
+                  }}/>
+          </div>
+          <div class="dropdown-label">
+            <span>xAI</span>
+            <input id="xai_key_risky_but_cool"
+                  type="password"
+                  class="w-full px-3 py-1.5 bg-gray-200 text-sm border-none rounded focus:outline-none focus:bg-white focus:text-gray-800"
+                  placeholder="Your xAI API Key (risky but cool)"
+                  bind:value={$llm.xai.apiKey}
+                  on:focus={e => {
+                    e.target.type = 'text';
+                  }}
+                  on:blur={e => {
+                    e.currentTarget.type = 'password';
+                  }}
+                  on:input={e => {
+                    localStorage.setItem('api-key-xai', e.target.value);
                   }}/>
           </div>
         </form>

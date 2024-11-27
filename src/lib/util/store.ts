@@ -1,7 +1,11 @@
 import type { Writable } from 'svelte/store';
 import type { OptLLM, OptMkdn } from './types';
 import { derived, writable } from 'svelte/store';
-import { DEFAULT_MODEL_ANTHROPIC, DEFAULT_MODEL_OPENAI } from './const';
+import {
+  DEFAULT_MODEL_ANTHROPIC,
+  DEFAULT_MODEL_OPENAI,
+  DEFAULT_MODEL_XAI,
+} from './const';
 import { extractTldr } from './attr';
 
 
@@ -31,14 +35,19 @@ export const llm: Writable<OptLLM> = writable({
     apiKey: '',
   },
   openai: {
-    model: 'chatgpt',
-    apiKey: DEFAULT_MODEL_OPENAI,
+    model: DEFAULT_MODEL_OPENAI,
+    apiKey: '',
+  },
+  xai: {
+    model: DEFAULT_MODEL_XAI,
+    apiKey: '',
   },
 });
 // note: this is mostly for debugging for now
 export const systemApiKeys: Writable<Record<string, string>> = writable({
   anthropic: '',
   openai: '',
+  xai: '',
 });
 
 // options
@@ -56,6 +65,10 @@ export function initOpts(): void {
     openai: {
       ...currentLlm.openai,
       apiKey: localStorage.getItem('api-key-openai') || ''
+    },
+    xai: {
+      ...currentLlm.xai,
+      apiKey: localStorage.getItem('api-key-xai') || ''
     }
   }));
   // mkdn format options
