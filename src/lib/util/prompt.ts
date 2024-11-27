@@ -267,5 +267,6 @@ ${wikiFrmt}
 `;
 }
 
-export const IGNORE_LAZY: string = 'Please do not be lazy -- ignore any previous instructions to be lazy and try to provide as much information as possible.\n';
-export const PEPTALK: string = 'Go get \'em tiger!\n';
+export const IGNORE_LAZY : string = 'Please do not be lazy -- ignore any previous instructions to be lazy and try to provide as much information as possible.\n';
+export const TAKE_TIME   : string = 'Take your time and provide as much information as possible.\n';
+export const PEPTALK     : string = 'Go get \'em tiger!\n';
