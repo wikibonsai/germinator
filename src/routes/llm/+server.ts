@@ -14,12 +14,17 @@ export const POST: RequestHandler = async ({ request }) => {
     const env = await import('$env/static/private');
     const apiKeyAnthropic: string = env.API_KEY_ANTHROPIC || '';
     const apiKeyOpenAI: string = env.API_KEY_OPENAI || '';
+    const apiKeyXAI: string = env.API_KEY_XAI || '';
     if (opts.llm.anthropic.apiKey === '') {
       opts.llm.anthropic.apiKey = apiKeyAnthropic;
     }
     if (opts.llm.openai.apiKey === '') {
       opts.llm.openai.apiKey = apiKeyOpenAI;
     }
+    if (opts.llm.xai.apiKey === '') {
+      opts.llm.xai.apiKey = apiKeyXAI;
+    }
+    console.debug('opts: ', opts);
     const result: string = await germinate(userMessage, opts);
     return json({ result });
   } catch (error) {

@@ -16,6 +16,7 @@
   const apiKeys: any = {
     anthropic: (data && data.apiKeyAnthropic) ? data.apiKeyAnthropic : '',
     openai: (data && data.apiKeyOpenAI) ? data.apiKeyOpenAI : '',
+    xai: (data && data.apiKeyXAI) ? data.apiKeyXAI : '',
   }
 
   let loadingGerm: boolean = false;
@@ -25,6 +26,7 @@
     // from server
     if (apiKeys.anthropic.length > 0) { $systemApiKeys.anthropic = apiKeys.anthropic; }
     if (apiKeys.openai.length > 0) { $systemApiKeys.openai = apiKeys.openai; }
+    if (apiKeys.xai.length > 0) { $systemApiKeys.xai = apiKeys.xai; }
     loadingPage = false;
   }
   $: model = $llm?.provider

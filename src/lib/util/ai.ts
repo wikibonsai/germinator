@@ -1,18 +1,20 @@
 // courtesy: https://github.com/tldraw/make-real-starter
 
 import type { Opts, OptLLM } from './$types';
-import { URL_API_ANTHROPIC, URL_API_OPENAI } from './const';
+import { URL_API_ANTHROPIC, URL_API_OPENAI, URL_API_XAI } from './const';
 import { formatPrompt, SYSTEM_PROMPT, PEPTALK } from './prompt';
 
 
 function validate(opts: OptLLM): void {
-  if ((opts.provider !== 'anthropic') && (opts.provider !== 'openai')) {
+  if ((opts.provider !== 'anthropic') && (opts.provider !== 'openai') && (opts.provider !== 'xai')) {
+    console.error('invalid provider: ', opts);
     throw new Error(
       'You need to provide a valid llm provider. Make sure a valid provider is selected in your options.'
     )
   }
   const selectedProvider: string = opts.provider;
   if (opts[selectedProvider].apiKey === '') {
+    console.error('invalid api key: ', opts);
     throw new Error(
       'You need to provide an API key. Make sure valid api keys are set in your options.'
     )
@@ -99,5 +101,52 @@ export async function germinate(userMessage: string, opts: Opts): Promise<string
     console.debug('chatgpt response payload: ', responseJSON);
     console.debug('chatgpt response string: ', responseStr);
   }
+  if (opts.llm.provider === 'xai') {
+    const request = prepXAI(opts.llm.xai.apiKey, opts.llm.xai.model, seedPrompt, userMessage);
+
+    try {
+      const response = await fetch(request.url, {
+        method: 'POST',
+        headers: request.headers,
+        body: JSON.stringify(request.body),
+      });
+      responseJSON = await response.json();
+      if (!response.ok) {
+        throw new Error(responseJSON.error?.message || 'An error occurred with the XAI API');
+      }
+      responseStr = responseJSON.choices[0].message.content;
+      console.debug('xai response payload: ', responseJSON);
+      console.debug('xai response string: ', responseStr);
+    } catch (e) {
+      console.error(e);
+      throw new Error('Sorry, there was an error fetching from ' + opts.llm.provider);
+    }
+  }
+  console.debug('germinate response string: ', responseStr);
   return responseStr;
+}
+
+export function prepXAI(
+  apiKey: string,
+  model: string,
+  seedPrompt: string,
+  userMessage: string,
+) {
+  // from: https://docs.x.ai/docs/quickstart#making-your-first-request
+  return {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: {
+      model: model,
+      stream: false,
+      temperature: 0,
+      messages: [
+        { role: 'system', content: seedPrompt },
+        { role: 'user', content: userMessage },
+      ],
+    },
+    url: URL_API_XAI,
+  }
 }

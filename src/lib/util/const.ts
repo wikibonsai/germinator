@@ -43,10 +43,11 @@ export const URL_TWT_WAY         : string = 'https://x.com/wibomd/status/1703930
 // api
 export const URL_API_ANTHROPIC   : string = 'https://api.anthropic.com/v1/messages';
 export const URL_API_OPENAI      : string = 'https://api.openai.com/v1/chat/completions';
-export const URL_OPENAI_API      : string = 'https://api.openai.com/v1/chat/completions';
+export const URL_API_XAI           : string = 'https://api.x.ai/v1/chat/completions';
 // default models
 export const DEFAULT_MODEL_ANTHROPIC : string = 'claude-3-5-sonnet-20240620';
 export const DEFAULT_MODEL_OPENAI    : string = 'gpt-4o';
+export const DEFAULT_MODEL_XAI       : string = 'grok-beta';
 
 // style
 

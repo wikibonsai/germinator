@@ -23,11 +23,17 @@ declare global {
 			apiKey: string;
 		}
 
+		interface OptXAI {
+			model: 'grok-beta';
+			apiKey: string;
+		}
+
 		interface OptLLM {
-			provider: 'openai' | 'anthropic';
-			model: 'chatgpt' | 'claude';
+			provider: 'openai' | 'anthropic' | 'xai';
+			model: 'chatgpt' | 'claude' | 'grok-beta';
 			anthropic: OptAnthropic;
 			openai: OptOpenAI;
+			xai: OptXAI;
 		}
 
 		interface OptMkdn {
