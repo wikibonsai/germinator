@@ -13,11 +13,6 @@
       document.documentElement.setAttribute('data-theme', 'light');
     }
   }
-  $: if (typeof window !== 'undefined') { // wrapper to ensure this only runs client-side
-    const link: HTMLLinkElement = document.querySelector("[rel='icon']") || createFaviconLink();
-    link.href = favicon;
-  }
-  $: favicon          = `/favicon-${$theme}.png`;
 
   onMount(() => {
     const prefersDarkScheme: boolean = window.matchMedia("(prefers-color-scheme: dark)").matches;
