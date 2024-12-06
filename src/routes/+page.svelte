@@ -78,8 +78,8 @@
             {@html $resultMkdn.atom}
           {:else}
             <WordAtomMap markdown={$resultMkdn.atom}
-                      height={35}
-                      width={75} />
+                         height={35}
+                         width={85} />
           {/if}
         </div>
         <!-- subtree -->
@@ -93,7 +93,7 @@
             <MarkMap markdown={$resultMkdn.descendants}
                      bind:markmap={$resultMkmp}
                      height={75}
-                     width={75} />
+                     width={85} />
           {/if}
           <div class="pin-logo">
             <Logo which={'wikibonsai'} wTxt={true} size={'small'}/>
