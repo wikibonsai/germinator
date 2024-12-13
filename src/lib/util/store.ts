@@ -9,23 +9,6 @@ import {
 import { extractTldr } from './attr';
 
 
-// colors
-
-export const isDark: Writable<boolean> = writable(false);
-export const theme: Writable<string> = writable('light');
-
-// markdown format
-
-export const mkdnFrmt: Writable<OptMkdn> = writable({
-  // tree
-  indentKind: '',
-  textKind: '',
-  caseKind: '',
-  whiteSpaceKind: '',
-  // attrs
-  attrKind: '',
-});
-
 // api
 
 export const llm: Writable<OptLLM> = writable({
@@ -48,6 +31,24 @@ export const systemApiKeys: Writable<Record<string, string>> = writable({
   anthropic: '',
   openai: '',
   xai: '',
+});
+
+// colors
+
+export const isDark: Writable<boolean> = writable(false);
+export const theme: Writable<string> = writable('light');
+
+// markdown format
+
+export const isMarkdown: Writable<boolean> = writable(true);
+export const mkdnFrmt: Writable<OptMkdn> = writable({
+  // tree
+  indentKind: '',
+  textKind: '',
+  caseKind: '',
+  whiteSpaceKind: '',
+  // attrs
+  attrKind: '',
 });
 
 // options
@@ -87,9 +88,6 @@ export function initOpts(): void {
 export const userConcept: Writable<string> = writable('');
 
 // result
-
-export const isMarkdown: Writable<boolean> = writable(true);
-
 
 export const resultMkdn: Writable<Record<string, string>> = writable({
   all: '',
