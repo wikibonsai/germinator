@@ -4,8 +4,7 @@
   import { SEPARATOR, SEPARATOR_SHORT } from '$lib/util/const';
   import { llm, mkdnFrmt, resetMkdnResult, resultMkdn, userConcept } from '$lib/util/store';
 
-  export let storedApiKey: string = '';
-  export let storedApiKeys: Record<string, string> = {};
+
   export let text: string = '';
 
   const dispatch: EventDispatcher<any> = createEventDispatcher();
@@ -24,7 +23,6 @@
     'tree (mythology)',
     'tree (phylogenetics)',
   ];
-
   let placeholder: string;
 
   onMount(async () => {

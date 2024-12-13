@@ -12,7 +12,6 @@
   import ToolBar from "$lib/components/component/ToolBar.svelte";
 
   export let data: PageData;
-  const apiKey: string = (data && data.apiKey) ? data.apiKey : '';
   const apiKeys: any = {
     anthropic: (data && data.apiKeyAnthropic) ? data.apiKeyAnthropic : '',
     openai: (data && data.apiKeyOpenAI) ? data.apiKeyOpenAI : '',
@@ -51,7 +50,7 @@
         </h1>
         <Theme pin={true} />
       </div>
-      <Prompt storedApiKey={apiKey} storedApiKeys={apiKeys} bind:text={data.query} on:loading={load} />
+      <Prompt bind:text={data.query} on:loading={load} />
       <ToolBar />
       {#if loadingGerm}
         <Loader />

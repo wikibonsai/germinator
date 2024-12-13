@@ -4,6 +4,7 @@ import type { Opts, OptLLM } from './$types';
 import { URL_API_ANTHROPIC, URL_API_OPENAI, URL_API_XAI } from './const';
 import { formatPrompt, IGNORE_LAZY, SYSTEM_PROMPT, TAKE_TIME, PEPTALK } from './prompt';
 
+
 function validate(opts: OptLLM): void {
   if ((opts.provider !== 'anthropic') && (opts.provider !== 'openai') && (opts.provider !== 'xai')) {
     throw new Error(
