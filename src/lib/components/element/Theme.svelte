@@ -20,13 +20,6 @@
     $isDark = (storedIsDark !== null) ? (storedIsDark === 'true') : prefersDarkScheme;
   });
 
-  function createFaviconLink(): HTMLLinkElement {
-    const link: HTMLLinkElement = document.createElement('link');
-    link.rel = 'icon';
-    document.head.appendChild(link);
-    return link;
-  }
-
   function toggleTheme(): void {
     $isDark = !$isDark;
     localStorage.setItem('is-dark', String($isDark));
