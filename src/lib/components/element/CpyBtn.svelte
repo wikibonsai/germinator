@@ -27,12 +27,21 @@
 
   async function elementToImageAndCopyToClipboard(element: HTMLElement): Promise<void> {
     try {
-      // Capture the element as a Blob
+      ////
+      // full result box
+      // capture the element as a Blob
       const blob = await htmlToImage.toBlob(element, {
         backgroundColor: 'transparent',
       });
-
-      // Copy the Blob to the clipboard
+      ////
+      // graphs only
+      // find the graphs if they exist
+      // const graphElement = element.querySelector('.markmap svg, .word-atom-map svg, .branch-map svg');
+      // // Capture the element as a Blob
+      // const blob = await htmlToImage.toBlob(graphElement, {
+      //   backgroundColor: 'transparent',
+      // });
+      // copy the Blob to the clipboard
       await navigator.clipboard.write([
         new ClipboardItem({
           'image/png': blob
