@@ -196,22 +196,29 @@
             {#if $llm.provider === 'anthropic'}
               <select id="indentSelect" bind:value={$llm.anthropic.model}>
                 <!-- <option value="claude">Claude</option> -->
-                <option value="claude-3-opus-20240229">claude-3-opus-20240229</option>
+                <option value="claude-3-7-sonnet-20250219">claude-3-7-sonnet-20250219</option>
+                <option value="claude-3-5-sonnet-20241022">claude-3-5-sonnet-20241022</option>
                 <option value="claude-3-5-sonnet-20240620">claude-3-5-sonnet-20240620</option>
+                <option value="claude-3-5-haiku-20241022">claude-3-5-haiku-20241022</option>
+                <option value="claude-3-opus-20240229">claude-3-opus-20240229</option>
                 <option value="claude-3-sonnet-20240229">claude-3-sonnet-20240229</option>
                 <option value="claude-3-haiku-20240307">claude-3-haiku-20240307</option>
               </select>
             {:else if $llm.provider === 'openai'}
               <select id="indentSelect" bind:value={$llm.openai.model}>
-                <!-- <option value="chatgpt">ChatGPT</option> -->
+                <option value="o3-mini">o3-mini</option>
+                <option value="o1">o1</option>
                 <option value="o1-mini">o1-mini</option>
                 <option value="o1-preview">o1-preview</option> 
+                <option value="gpt-4o-mini-2024-07-18">gpt-4o-mini-2024-07-18</option>
                 <option value="gpt-4o">gpt-4o</option>
                 <option value="gpt-4-turbo">gpt-4-turbo</option>
                 <option value="gpt-4">gpt-4</option>
               </select>
             {:else if $llm.provider === 'xai'}
               <select id="indentSelect" bind:value={$llm.xai.model}>
+                <option value="grok-3">grok-3</option>
+                <option value="grok-2-1212">grok-2-1212</option>
                 <option value="grok-beta">grok-beta</option>
               </select>
             <!-- {:else if $llm.model === 'google'}
